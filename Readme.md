@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
-* Студент: [Неопознанный енот](https://up.htmlacademy.ru/react/4/user/1094899).
-* Наставник: `Неизвестно`.
+* Студент: `Anton Churkin` (https://up.htmlacademy.ru/react/4/user/1094899).
+* Наставник: `Ruslan Malogulko`.
 
 ---
 
