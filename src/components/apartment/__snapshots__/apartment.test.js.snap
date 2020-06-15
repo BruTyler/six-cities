@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Apartment render suit Apartment render apartment item case 1`] = `
+<div>
+  <img
+    height="40"
+    src="img/no-places.png"
+    width="50"
+  />
+  <a
+    className="apartment__title"
+    href="#"
+  >
+    apart1
+  </a>
+</div>
+`;
