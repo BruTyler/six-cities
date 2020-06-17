@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
 
-const RENTCOUNT = 99;
+const APARTMENTS = [`Beautiful & luxurious apartment at great location`, `Wood and stone place`];
 
 const init = () => {
   ReactDOM.render(
-      <App rentCount={RENTCOUNT} />,
+      <App apartmentList = {APARTMENTS}/>,
       document.querySelector(`#root`)
   );
 };
