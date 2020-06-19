@@ -14,5 +14,4 @@ describe(`Main render suit`, () => {
 
     expect(generatedTree).toMatchSnapshot();
   });
-
 });
