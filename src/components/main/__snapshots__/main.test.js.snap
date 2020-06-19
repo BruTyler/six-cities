@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main render suit Main render apartment list case 1`] = `
+Array [
+  <p>
+    Предложения аренды:
+  </p>,
+  <div>
+    <img
+      height="40"
+      src="img/no-places.png"
+      width="50"
+    />
+    <a
+      className="apartment__title"
+      href="#"
+    >
+      apart1
+    </a>
+  </div>,
+  <div>
+    <img
+      height="40"
+      src="img/no-places.png"
+      width="50"
+    />
+    <a
+      className="apartment__title"
+      href="#"
+    >
+      apart2
+    </a>
+  </div>,
+  <hr />,
+  <p>
+    Всего предложений: 
+    2
+  </p>,
+]
+`;
