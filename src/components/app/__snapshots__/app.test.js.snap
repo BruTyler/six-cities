@@ -1,55 +1,129 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App render suit App render apartment list 1`] = `
-Array [
-  <p>
-    Предложения аренды:
-  </p>,
-  <div>
-    <img
-      height="40"
-      src="img/no-places.png"
-      width="50"
-    />
-    <a
-      className="apartment__title"
-      href="#"
-      onClick={[Function]}
+exports[`<App /> render suit <App /> render apartment list 1`] = `
+<section
+  className="cities__places places"
+>
+  <h2
+    className="visually-hidden"
+  >
+    Places
+  </h2>
+  <b
+    className="places__found"
+  >
+    1
+     places to stay 
+  </b>
+  <div
+    className="cities__places-list places__list tabs__content"
+  >
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={[Function]}
     >
-      apart1
-    </a>
-  </div>,
-  <div>
-    <img
-      height="40"
-      src="img/no-places.png"
-      width="50"
-    />
-    <a
-      className="apartment__title"
-      href="#"
-      onClick={[Function]}
-    >
-      apart2
-    </a>
-  </div>,
-  <hr />,
-  <p>
-    Всего предложений: 
-    2
-  </p>,
-]
-`;
-
-exports[`App render suit App render empty apartment list 1`] = `
-Array [
-  <p>
-    Предложения аренды:
-  </p>,
-  <hr />,
-  <p>
-    Всего предложений: 
-    0
-  </p>,
-]
+      <div
+        className="place-card__mark"
+      >
+        <span>
+          Premium
+        </span>
+      </div>
+      <div
+        className="cities__image-wrapper place-card__image-wrapper"
+      >
+        <a
+          href="#"
+        >
+          <img
+            alt="description0"
+            className="place-card__image"
+            height="200"
+            src="img0.jpg"
+            width="260"
+          />
+        </a>
+      </div>
+      <div
+        className="place-card__info"
+      >
+        <div
+          className="place-card__price-wrapper"
+        >
+          <div
+            className="place-card__price"
+          >
+            <b
+              className="place-card__price-value"
+            >
+              €
+              1
+            </b>
+            <span
+              className="place-card__price-text"
+            >
+              / night
+            </span>
+          </div>
+          <button
+            className="place-card__bookmark-button 
+          
+          button"
+            type="button"
+          >
+            <svg
+              className="place-card__bookmark-icon"
+              height="19"
+              width="18"
+            >
+              <use
+                xlinkHref="#icon-bookmark"
+              />
+            </svg>
+            <span
+              className="visually-hidden"
+            >
+              In
+               bookmarks
+            </span>
+          </button>
+        </div>
+        <div
+          className="place-card__rating rating"
+        >
+          <div
+            className="place-card__stars rating__stars"
+          >
+            <span
+              style={
+                Object {
+                  "width": "2%",
+                }
+              }
+            />
+            <span
+              className="visually-hidden"
+            >
+              Rating
+            </span>
+          </div>
+        </div>
+        <h2
+          className="place-card__name"
+        >
+          <a
+            href="#"
+          >
+            description0
+          </a>
+        </h2>
+        <p
+          className="place-card__type"
+        >
+          Apartment
+        </p>
+      </div>
+    </article>
+  </div>
+</section>
 `;
