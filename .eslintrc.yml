@@ -2,8 +2,11 @@ env:
   es6: true
   browser: true
   commonjs: true
+  jest: true
 
 extends: ['htmlacademy/es6', 'plugin:react/recommended']
+
+parser: "babel-eslint"
 
 parserOptions:
   ecmaFeatures:

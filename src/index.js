@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
-
-const APARTMENTS = [`Beautiful & luxurious apartment at great location`, `Wood and stone place`];
+import ApartmentContentMock from './mocks/offers.js';
 
 const init = () => {
   ReactDOM.render(
-      <App apartmentList = {APARTMENTS}/>,
+      <App apartmentList = {ApartmentContentMock}/>,
       document.querySelector(`#root`)
   );
 };

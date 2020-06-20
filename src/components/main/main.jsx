@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Apartment from './../apartment/apartment.jsx';
+import ApartmentList from '../apartment-list/apartment-list.jsx';
 
 const Main = (props) => {
-  const {apartmentList} = props;
+  const {apartmentList, onApartmentTitleClick} = props;
 
-  return <React.Fragment>
-    <p>Предложения аренды:</p>
-    {apartmentList.map((apartment) => <Apartment key={apartment} item={apartment} />)}
-    <hr />
-    <p>Всего предложений: {apartmentList.length}</p>
-  </React.Fragment>;
+  return <section className="cities__places places">
+    <h2 className="visually-hidden">Places</h2>
+    <b className="places__found">{apartmentList.length} places to stay </b>
+    <ApartmentList
+      apartmentList={apartmentList}
+      onApartmentTitleClick={onApartmentTitleClick}
+    />
+  </section>;
 };
 
 Main.propTypes = {
-  apartmentList: PropTypes.arrayOf(PropTypes.string).isRequired
+  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  onApartmentTitleClick: PropTypes.func.isRequired
 };
 
 export default Main;
