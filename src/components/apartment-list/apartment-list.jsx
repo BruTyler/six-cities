@@ -20,7 +20,7 @@ class ApartmentList extends PureComponent {
   }
 
   render() {
-    const {apartmentList} = this.props;
+    const {apartmentList, onApartmentTitleClick} = this.props;
 
     return <div className="cities__places-list places__list tabs__content">
       {apartmentList.map((apartment) =>
@@ -28,6 +28,7 @@ class ApartmentList extends PureComponent {
           key={apartment.id}
           apartment={apartment}
           onApartmentCardHover={this.handleApartmentCardHover}
+          onApartmentTitleClick={onApartmentTitleClick}
         />)
       }
     </div>;
@@ -40,6 +41,7 @@ ApartmentList.propTypes = {
         id: PropTypes.number.isRequired
       })
   ).isRequired,
+  onApartmentTitleClick: PropTypes.func.isRequired
 };
 
 export default ApartmentList;

@@ -99,6 +99,7 @@ exports[`<ApartmentList /> render suit <ApartmentList /> render apartment list 1
       >
         <a
           href="#"
+          onClick={[Function]}
         >
           description0
         </a>
@@ -199,6 +200,7 @@ exports[`<ApartmentList /> render suit <ApartmentList /> render apartment list 1
       >
         <a
           href="#"
+          onClick={[Function]}
         >
           description1
         </a>

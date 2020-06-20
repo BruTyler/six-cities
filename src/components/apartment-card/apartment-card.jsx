@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {PlaceType} from '../../const';
 
 const ApartmentCard = (props) => {
-  const {apartment, onApartmentCardHover} = props;
+  const {apartment, onApartmentCardHover, onApartmentTitleClick} = props;
   let percentageRating = Math.round(apartment.rating / 5 * 100);
 
   return <article className="cities__place-card place-card"
@@ -45,7 +45,7 @@ const ApartmentCard = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{apartment.description}</a>
+        <a href="#" onClick={onApartmentTitleClick}>{apartment.description}</a>
       </h2>
       <p className="place-card__type">{apartment.type}</p>
     </div>
@@ -63,7 +63,8 @@ ApartmentCard.propTypes = {
     isFavourite: PropTypes.bool.isRequired,
     photo: PropTypes.string.isRequired
   }).isRequired,
-  onApartmentCardHover: PropTypes.func.isRequired
+  onApartmentCardHover: PropTypes.func.isRequired,
+  onApartmentTitleClick: PropTypes.func.isRequired,
 };
 
 export default ApartmentCard;

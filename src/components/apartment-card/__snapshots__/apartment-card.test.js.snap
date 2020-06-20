@@ -90,6 +90,7 @@ exports[`<ApartmentCard /> render suit <ApartmentCard /> render single apartment
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         description1
       </a>

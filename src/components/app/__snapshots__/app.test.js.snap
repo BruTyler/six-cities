@@ -113,6 +113,7 @@ exports[`<App /> render suit <App /> render apartment list 1`] = `
         >
           <a
             href="#"
+            onClick={[Function]}
           >
             description0
           </a>

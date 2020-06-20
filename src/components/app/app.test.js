@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './app.jsx';
 
+const EMPTY_HANDLER = () => {};
 const APARTMENTS = [
   {
     id: 0,
@@ -20,6 +21,7 @@ describe(`<App /> render suit`, () => {
     const generatedTree = renderer.create(
         <App
           apartmentList={APARTMENTS}
+          onApartmentTitleClick={EMPTY_HANDLER}
         />
     ).toJSON();
 
