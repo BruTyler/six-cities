@@ -1,16 +1,32 @@
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import {mount} from 'enzyme';
 import Main from './main.jsx';
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
-
-describe(`Main e2e suite`, () => {
-  it(`Apartment title is pressed`, () => {
+describe(`<Main /> e2e suite`, () => {
+  it(`<Main /> Apartment title is pressed`, () => {
     const onApartmentTitleHandler = jest.fn();
-    const apartmentList = [`test-apartment1`, `test-apartment2`];
+    const apartmentList = [
+      {
+        id: 0,
+        type: `Apartment`,
+        description: `description0`,
+        rating: 0.1,
+        price: 1,
+        isPremium: true,
+        isFavourite: true,
+        photo: `img0.jpg`
+      },
+      {
+        id: 1,
+        type: `Private room`,
+        description: `description1`,
+        rating: 1,
+        price: 2,
+        isPremium: false,
+        isFavourite: false,
+        photo: `img1.jpg`
+      }
+    ];
 
     const mainWrapper = mount(
         <Main
@@ -19,7 +35,7 @@ describe(`Main e2e suite`, () => {
         />
     );
 
-    const apartmentButtons = mainWrapper.find(`a.apartment__title`);
+    const apartmentButtons = mainWrapper.find(`.place-card__name > a`);
     apartmentButtons.at(0).simulate(`click`, {preventDefault() {}});
 
     expect(apartmentButtons.length).toBe(2);

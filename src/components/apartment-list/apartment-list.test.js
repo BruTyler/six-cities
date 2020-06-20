@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main.jsx';
+import ApartmentList from './apartment-list.jsx';
 
 const EMPTY_HANDLER = () => {};
 const APARTMENTS = [
@@ -26,10 +26,10 @@ const APARTMENTS = [
   }
 ];
 
-describe(`<Main /> render suit`, () => {
-  it(`<Main /> render apartment list case`, () => {
+describe(`<ApartmentList /> render suit`, () => {
+  it(`<ApartmentList /> render apartment list`, () => {
     const generatedTree = renderer.create(
-        <Main
+        <ApartmentList
           apartmentList={APARTMENTS}
           onApartmentTitleClick={EMPTY_HANDLER}
         />

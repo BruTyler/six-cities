@@ -2,19 +2,19 @@ import React from 'react';
 import Main from './../main/main.jsx';
 import PropTypes from 'prop-types';
 
-const apartmentClickHandler = () => {};
+const handleApartmentTitleClick = () => {};
 
 const App = (props) => {
   const {apartmentList} = props;
 
   return <Main
     apartmentList={apartmentList}
-    onApartmentTitleClick={apartmentClickHandler}
+    onApartmentTitleClick={handleApartmentTitleClick}
   />;
 };
 
 App.propTypes = {
-  apartmentList: PropTypes.arrayOf(PropTypes.string).isRequired
+  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 export default App;
