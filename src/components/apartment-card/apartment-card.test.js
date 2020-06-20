@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Apartment from './apartment.jsx';
+import ApartmentCard from './apartment-card.jsx';
 
 const APARTMENTNAME = `apart1`;
 const CLICKHANDLER = () => {};
@@ -8,7 +8,7 @@ const CLICKHANDLER = () => {};
 describe(`Apartment render suit`, () => {
   it(`Apartment render apartment item case`, () => {
     const generatedTree = renderer.create(
-        <Apartment
+        <ApartmentCard
           item={APARTMENTNAME}
           onApartmentTitleClick={CLICKHANDLER}
         />
