@@ -4,10 +4,13 @@ import {PlaceType} from '../../const';
 
 const ApartmentCard = (props) => {
   const {apartment, onApartmentCardHover} = props;
-  const percentageRating = Math.round(apartment.rating / 5 * 100);
+  let percentageRating = Math.round(apartment.rating / 5 * 100);
 
   return <article className="cities__place-card place-card"
-    onMouseEnter={onApartmentCardHover(apartment)}>
+    onMouseEnter={(event) => {
+      event.preventDefault();
+      onApartmentCardHover(apartment);
+    }}>
     {apartment.isPremium ?
       <div className="place-card__mark">
         <span>Premium</span>
@@ -37,7 +40,7 @@ const ApartmentCard = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={`width: ${percentageRating}%`}></span>
+          <span style={{width: `${percentageRating}%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
