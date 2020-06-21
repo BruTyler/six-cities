@@ -8,15 +8,26 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = {
+      clickedProperty: null
+    };
+
     this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);
   }
 
-  handleApartmentTitleClick() {
-    // TODO доделать метод
+  handleApartmentTitleClick(prop) {
+    this.setState({clickedProperty: prop});
   }
 
   _renderMainScreen() {
     const {apartmentList} = this.props;
+    const {clickedProperty} = this.state;
+
+    if (clickedProperty) {
+      return <Property
+        property={clickedProperty}
+      />;
+    }
 
     return <Main
       apartmentList={apartmentList}
@@ -25,13 +36,17 @@ class App extends PureComponent {
   }
 
   render() {
+    const {apartmentList} = this.props;
+
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
           {this._renderMainScreen()}
         </Route>
         <Route exact path="/dev-property">
-          <Property/>
+          <Property
+            property={apartmentList[0]}
+          />
         </Route>
       </Switch>
     </BrowserRouter>;

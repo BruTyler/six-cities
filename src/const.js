@@ -1,4 +1,6 @@
 export const PlaceType = {
   APARTMENT: `Apartment`,
-  PRIVATE_ROOM: `Private room`,
+  ROOM: `Private room`,
+  HOUSE: `House`,
+  HOTEL: `Hotel`,
 };
