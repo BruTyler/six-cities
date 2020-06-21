@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {PlaceType} from '../../const';
 
-const Property = (props) => {
-  const {property} = props;
-  const {type, description, rating, price, isPremium, isFavourite, photoSet, bedrooms, adultsMax, goods, host} = property;
+const Property = ({ 
+  property: {
+    type, description, rating, price, isPremium, isFavourite, 
+    photoSet, bedrooms, adultsMax, goods, host
+  } 
+}) => {
   let percentageRating = Math.round(Math.round(rating) / 5 * 100);
 
   return <main className="page__main page__main--property">
