@@ -97,7 +97,7 @@ exports[`<App /> render suit <App /> render apartment list 1`] = `
             <span
               style={
                 Object {
-                  "width": "2%",
+                  "width": "0%",
                 }
               }
             />
