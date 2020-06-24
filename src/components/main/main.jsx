@@ -4,7 +4,7 @@ import ApartmentList from '../apartment-list/apartment-list.jsx';
 import Map from '../map/map.jsx';
 
 const Main = (props) => {
-  const {apartmentList, onApartmentTitleClick} = props;
+  const {city, apartmentList, onApartmentTitleClick} = props;
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -72,7 +72,7 @@ const Main = (props) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{apartmentList.length} places to stay in Amsterdam</b>
+            <b className="places__found">{apartmentList.length} places to stay in {city.name}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -94,7 +94,10 @@ const Main = (props) => {
             />
           </section>
           <div className="cities__right-section">
-            <Map />
+            <Map
+              city={city}
+              apartmentList={apartmentList}
+            />
           </div>
         </div>
       </div>
@@ -103,6 +106,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  city: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   onApartmentTitleClick: PropTypes.func.isRequired
 };

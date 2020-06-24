@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-
 
 class Map extends PureComponent {
   constructor(props) {
@@ -11,23 +10,20 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    // const {apartmentList, onApartmentPinClick} = props;
+    const {city, apartmentList} = this.props;
     const mapNode = this._mapRef.current;
-    const city = [52.38333, 4.9];
 
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
-    const zoom = 12;
     const map = leaflet.map(mapNode, {
-      center: city,
-      zoom,
+      center: city.location,
+      zoom: city.defaultZoom,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -35,13 +31,12 @@ class Map extends PureComponent {
       })
       .addTo(map);
 
-    const offerCords = [52.3709553943508, 4.89309666406198];
-
-    leaflet
-      .marker(offerCords, {icon})
-      .addTo(map);
+    apartmentList.map((pin) =>
+      leaflet
+        .marker(pin.location, {icon})
+        .addTo(map)
+    );
   }
-
 
   render() {
     return <div className="cities__right-section">
@@ -51,13 +46,15 @@ class Map extends PureComponent {
   }
 }
 
-/*
 Map.propTypes = {
+  city: PropTypes.shape({
+    defaultZoom: PropTypes.number.isRequired,
+    location: PropTypes.arrayOf(PropTypes.number).isRequired
+  }).isRequired,
   apartmentList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
     location: PropTypes.arrayOf(PropTypes.number).isRequired
   })).isRequired,
-  onApartmentTitleClick: PropTypes.func.isRequired
 };
-*/
 
 export default Map;

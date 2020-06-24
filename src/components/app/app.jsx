@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from './../main/main.jsx';
 import Property from '../property/property.jsx';
-import Map from '../map/map.jsx';
 
 class App extends PureComponent {
   constructor(props) {
@@ -21,7 +20,7 @@ class App extends PureComponent {
   }
 
   _renderMainScreen() {
-    const {apartmentList} = this.props;
+    const {apartmentList, cities} = this.props;
     const {clickedProperty} = this.state;
 
     if (clickedProperty) {
@@ -31,6 +30,7 @@ class App extends PureComponent {
     }
 
     return <Main
+      city={cities[0]}
       apartmentList={apartmentList}
       onApartmentTitleClick={this.handleApartmentTitleClick}
     />;
@@ -49,16 +49,14 @@ class App extends PureComponent {
             property={apartmentList[0]}
           />
         </Route>
-        <Route exact path="/dev-map">
-          <Map />
-        </Route>
       </Switch>
     </BrowserRouter>;
   }
 }
 
 App.propTypes = {
-  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 export default App;
