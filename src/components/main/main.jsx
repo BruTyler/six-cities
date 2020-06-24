@@ -78,7 +78,7 @@ const Main = (props) => {
               <span className="places__sorting-type" tabIndex="0">
               Popular
                 <svg className="places__sorting-arrow" width="7" height="4">
-                  <use xlinkhref="#icon-arrow-select"></use>
+                  <use xlinkHref="#icon-arrow-select"></use>
                 </svg>
               </span>
               <ul className="places__options places__options--custom places__options--opened">
@@ -107,7 +107,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   onApartmentTitleClick: PropTypes.func.isRequired
