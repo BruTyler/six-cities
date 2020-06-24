@@ -3,6 +3,21 @@ import renderer from 'react-test-renderer';
 import App from './app.jsx';
 
 const EMPTY_HANDLER = () => {};
+const CITIES = [
+  {
+    id: 0,
+    title: `A`,
+    location: [1, 2],
+    defaultZoom: 1
+  },
+  {
+    id: 1,
+    title: `B`,
+    location: [3, 4],
+    defaultZoom: 2
+  },
+];
+
 const APARTMENTS = [
   {
     id: 0,
@@ -22,6 +37,7 @@ const APARTMENTS = [
       name: `name`,
       isSuper: true,
     },
+    location: [1, 2],
   },
 ];
 
@@ -29,9 +45,15 @@ describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
     const generatedTree = renderer.create(
         <App
+          cities={CITIES}
           apartmentList={APARTMENTS}
           onApartmentTitleClick={EMPTY_HANDLER}
-        />
+        />,
+        {
+          createNodeMock: () => {
+            return document.createElement(`div`);
+          }
+        }
     ).toJSON();
 
     expect(generatedTree).toMatchSnapshot();
