@@ -7,7 +7,22 @@ export default [
     price: 120.0,
     isPremium: true,
     isFavourite: true,
-    photo: `img/room.jpg`
+    photo: `img/room.jpg`,
+    photoSet: [
+      `img/room.jpg`,
+      `img/apartment-01.jpg`,
+      `img/apartment-02.jpg`,
+      `img/apartment-03.jpg`,
+      `img/studio-01.jpg`,
+    ],
+    bedrooms: 3,
+    adultsMax: 4,
+    goods: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
+    host: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Angelina`,
+      isSuper: true,
+    },
   },
   {
     id: 2,
@@ -17,7 +32,19 @@ export default [
     price: 80.0,
     isPremium: false,
     isFavourite: false,
-    photo: `img/apartment-01.jpg`
+    photo: `img/apartment-01.jpg`,
+    photoSet: [
+      `img/apartment-02.jpg`,
+      `img/apartment-03.jpg`,
+    ],
+    bedrooms: 4,
+    adultsMax: 7,
+    goods: [`Wifi`, `Heating`, `Kitchen`, `Cable TV`],
+    host: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Katerina`,
+      isSuper: true,
+    }
   },
   {
     id: 3,
@@ -27,7 +54,19 @@ export default [
     price: 132.0,
     isPremium: false,
     isFavourite: true,
-    photo: `img/apartment-02.jpg`
+    photo: `img/apartment-02.jpg`,
+    photoSet: [
+      `img/studio-01.jpg`,
+      `img/apartment-01.jpg`,
+    ],
+    bedrooms: 2,
+    adultsMax: 3,
+    goods: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`],
+    host: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Carla`,
+      isSuper: true,
+    }
   },
   {
     id: 4,
@@ -37,6 +76,17 @@ export default [
     price: 180.0,
     isPremium: false,
     isFavourite: true,
-    photo: `img/apartment-03.jpg`
+    photo: `img/apartment-03.jpg`,
+    photoSet: [
+      `img/room.jpg`,
+    ],
+    bedrooms: 1,
+    adultsMax: 1,
+    goods: [`Kitchen`],
+    host: {
+      avatar: `img/avatar-angelina.jpg`,
+      name: `Elena`,
+      isSuper: false,
+    }
   },
 ];

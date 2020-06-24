@@ -15,7 +15,7 @@ class ApartmentList extends PureComponent {
 
   handleApartmentCardHover(apart) {
     this.setState({
-      selectedApartment: apart
+      selectedApartmentCard: apart
     });
   }
 

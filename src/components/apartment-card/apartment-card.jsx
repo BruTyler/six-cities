@@ -4,7 +4,7 @@ import {PlaceType} from '../../const';
 
 const ApartmentCard = (props) => {
   const {apartment, onApartmentCardHover, onApartmentTitleClick} = props;
-  let percentageRating = Math.round(apartment.rating / 5 * 100);
+  let percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
 
   return <article className="cities__place-card place-card"
     onMouseEnter={(event) => {
@@ -45,7 +45,7 @@ const ApartmentCard = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={onApartmentTitleClick}>{apartment.description}</a>
+        <a href="#" onClick={() => onApartmentTitleClick(apartment)}>{apartment.description}</a>
       </h2>
       <p className="place-card__type">{apartment.type}</p>
     </div>
@@ -55,7 +55,7 @@ const ApartmentCard = (props) => {
 ApartmentCard.propTypes = {
   apartment: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.PRIVATE_ROOM]).isRequired,
+    type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.ROOM]).isRequired,
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
