@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from './../main/main.jsx';
 import Property from '../property/property.jsx';
+import Map from '../map/map.jsx';
 
 class App extends PureComponent {
   constructor(props) {
@@ -47,6 +48,9 @@ class App extends PureComponent {
           <Property
             property={apartmentList[0]}
           />
+        </Route>
+        <Route exact path="/dev-map">
+          <Map />
         </Route>
       </Switch>
     </BrowserRouter>;
