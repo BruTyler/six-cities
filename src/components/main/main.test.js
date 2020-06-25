@@ -3,6 +3,12 @@ import renderer from 'react-test-renderer';
 import Main from './main.jsx';
 
 const EMPTY_HANDLER = () => {};
+const CITY = {
+  id: 0,
+  title: `Amsterdam`,
+  location: [1, 1],
+  defaultZoom: 1
+};
 const APARTMENTS = [
   {
     id: 0,
@@ -12,7 +18,8 @@ const APARTMENTS = [
     price: 1,
     isPremium: true,
     isFavourite: true,
-    photo: `img0.jpg`
+    photo: `img0.jpg`,
+    location: [1, 2],
   },
   {
     id: 1,
@@ -22,7 +29,8 @@ const APARTMENTS = [
     price: 2,
     isPremium: false,
     isFavourite: false,
-    photo: `img1.jpg`
+    photo: `img1.jpg`,
+    location: [3, 4],
   }
 ];
 
@@ -30,9 +38,15 @@ describe(`<Main /> render suit`, () => {
   it(`<Main /> render apartment list case`, () => {
     const generatedTree = renderer.create(
         <Main
+          city={CITY}
           apartmentList={APARTMENTS}
           onApartmentTitleClick={EMPTY_HANDLER}
-        />
+        />,
+        {
+          createNodeMock: () => {
+            return document.createElement(`div`);
+          }
+        }
     ).toJSON();
 
     expect(generatedTree).toMatchSnapshot();
