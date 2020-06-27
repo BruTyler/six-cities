@@ -1,4 +1,13 @@
-export default [
+import {reducer, ActionCreator} from "./reducer.js";
+
+const CITY_ID = 0;
+const CITY = {
+  id: 0,
+  title: `Amsterdam`,
+  location: [52.38333, 4.9],
+  defaultZoom: 12
+};
+const APARTMENTS = [
   {
     id: 1,
     cityId: 0,
@@ -98,3 +107,27 @@ export default [
     location: [52.3809553943508, 4.939309666406198],
   },
 ];
+
+describe(`Reducer unit- suit`, () => {
+  it(`Reducer should change city`, () => {
+    expect(reducer({
+      city: null,
+      apartmentList: []
+    }, ActionCreator.changeCity(CITY_ID))
+    ).toEqual({
+      city: CITY,
+      apartmentList: []
+    });
+  });
+
+  it(`Reducer should change apartment list`, () => {
+    expect(reducer({
+      city: null,
+      apartmentList: []
+    }, ActionCreator.getOffers(CITY_ID))
+    ).toEqual({
+      city: null,
+      apartmentList: APARTMENTS
+    });
+  });
+});
