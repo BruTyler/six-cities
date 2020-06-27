@@ -2,6 +2,12 @@ import React from 'react';
 import {mount} from 'enzyme';
 import Main from './main.jsx';
 
+const CITY = {
+  id: 0,
+  title: `Amsterdam`,
+  location: [1, 1],
+  defaultZoom: 1,
+};
 const APARTMENTS = [
   {
     id: 0,
@@ -11,7 +17,8 @@ const APARTMENTS = [
     price: 1,
     isPremium: true,
     isFavourite: true,
-    photo: `img0.jpg`
+    photo: `img0.jpg`,
+    location: [1, 1],
   },
   {
     id: 1,
@@ -21,7 +28,8 @@ const APARTMENTS = [
     price: 2,
     isPremium: false,
     isFavourite: false,
-    photo: `img1.jpg`
+    photo: `img1.jpg`,
+    location: [1, 1],
   }
 ];
 
@@ -31,6 +39,7 @@ describe(`<Main /> e2e suite`, () => {
 
     const mainWrapper = mount(
         <Main
+          city={CITY}
           apartmentList={APARTMENTS}
           onApartmentTitleClick={onApartmentTitleHandler}
         />

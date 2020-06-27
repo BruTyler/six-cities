@@ -23,6 +23,7 @@ export default [
       name: `Angelina`,
       isSuper: true,
     },
+    location: [52.3909553943508, 4.85309666406198],
   },
   {
     id: 2,
@@ -44,7 +45,8 @@ export default [
       avatar: `img/avatar-angelina.jpg`,
       name: `Katerina`,
       isSuper: true,
-    }
+    },
+    location: [52.369553943508, 4.85309666406198],
   },
   {
     id: 3,
@@ -66,7 +68,8 @@ export default [
       avatar: `img/avatar-angelina.jpg`,
       name: `Carla`,
       isSuper: true,
-    }
+    },
+    location: [52.3909553943508, 4.929309666406198],
   },
   {
     id: 4,
@@ -87,6 +90,7 @@ export default [
       avatar: `img/avatar-angelina.jpg`,
       name: `Elena`,
       isSuper: false,
-    }
+    },
+    location: [52.3809553943508, 4.939309666406198],
   },
 ];

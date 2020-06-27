@@ -20,7 +20,7 @@ class App extends PureComponent {
   }
 
   _renderMainScreen() {
-    const {apartmentList} = this.props;
+    const {apartmentList, cities} = this.props;
     const {clickedProperty} = this.state;
 
     if (clickedProperty) {
@@ -30,6 +30,7 @@ class App extends PureComponent {
     }
 
     return <Main
+      city={cities[0]}
       apartmentList={apartmentList}
       onApartmentTitleClick={this.handleApartmentTitleClick}
     />;
@@ -54,7 +55,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 export default App;
