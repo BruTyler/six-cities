@@ -7,6 +7,7 @@ const CITY = {
   location: [52.38333, 4.9],
   defaultZoom: 12
 };
+
 const APARTMENTS = [
   {
     id: 1,
@@ -112,22 +113,26 @@ describe(`Reducer unit- suit`, () => {
   it(`Reducer should change city`, () => {
     expect(reducer({
       city: null,
-      apartmentList: []
+      apartmentList: [],
+      cityList: [],
     }, ActionCreator.changeCity(CITY_ID))
     ).toEqual({
       city: CITY,
-      apartmentList: []
+      apartmentList: APARTMENTS,
+      cityList: [],
     });
   });
 
   it(`Reducer should change apartment list`, () => {
     expect(reducer({
       city: null,
-      apartmentList: []
+      apartmentList: [],
+      cityList: [],
     }, ActionCreator.getOffers(CITY_ID))
     ).toEqual({
       city: null,
-      apartmentList: APARTMENTS
+      apartmentList: APARTMENTS,
+      cityList: [],
     });
   });
 });

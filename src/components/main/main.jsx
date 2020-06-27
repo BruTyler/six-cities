@@ -4,7 +4,7 @@ import ApartmentList from '../apartment-list/apartment-list.jsx';
 import Map from '../map/map.jsx';
 
 const Main = (props) => {
-  const {city, apartmentList, onApartmentTitleClick} = props;
+  const {city, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick} = props;
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -35,36 +35,13 @@ const Main = (props) => {
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
+            {cityList.map((item) => {
+              return <li className="locations__item" key={`city-${item.id}`}>
+                <a className={`locations__item-link tabs__item ${item.id === city.id && `tabs__item--active`}`} href="#" onClick={() => onCityTitleClick(item.id)}>
+                  <span>{item.title}</span>
+                </a>
+              </li>;
+            })}
           </ul>
         </section>
       </div>
@@ -107,10 +84,16 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  onApartmentTitleClick: PropTypes.func.isRequired
+  cityList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
+  onApartmentTitleClick: PropTypes.func.isRequired,
+  onCityTitleClick: PropTypes.func.isRequired,
 };
 
 export default Main;

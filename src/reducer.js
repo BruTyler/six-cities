@@ -6,6 +6,7 @@ const DEFAULT_CITY_ID = 0;
 
 const initialState = {
   city: getItemById(CitiesMock, DEFAULT_CITY_ID),
+  cityList: CitiesMock,
   apartmentList: ApartmentContentMock.filter((x) => x.cityId === DEFAULT_CITY_ID)
 };
 
@@ -35,11 +36,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return extend(state, {
         city: getItemById(CitiesMock, action.payload),
+        apartmentList: ApartmentContentMock.filter((x) => x.cityId === action.payload),
       });
 
     case ActionType.GET_OFFERS:
       return extend(state, {
-        apartmentList: ApartmentContentMock.filter((x) => x.cityId === action.payload)
+        apartmentList: ApartmentContentMock.filter((x) => x.cityId === action.payload),
       });
   }
 
