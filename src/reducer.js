@@ -12,20 +12,12 @@ const initialState = {
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
-  GET_OFFERS: `GET_OFFERS`,
 };
 
 const ActionCreator = {
   changeCity: (cityId) => {
     return {
       type: ActionType.CHANGE_CITY,
-      payload: cityId,
-    };
-  },
-
-  getOffers: (cityId) => {
-    return {
-      type: ActionType.GET_OFFERS,
       payload: cityId,
     };
   },
@@ -38,15 +30,9 @@ const reducer = (state = initialState, action) => {
         city: getItemById(CitiesMock, action.payload),
         apartmentList: ApartmentContentMock.filter((x) => x.cityId === action.payload),
       });
-
-    case ActionType.GET_OFFERS:
-      return extend(state, {
-        apartmentList: ApartmentContentMock.filter((x) => x.cityId === action.payload),
-      });
   }
 
   return state;
 };
-
 
 export {reducer, ActionType, ActionCreator};

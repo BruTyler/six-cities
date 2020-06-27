@@ -45,9 +45,10 @@ describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
     const generatedTree = renderer.create(
         <App
-          cities={CITIES}
+          cityList={CITIES}
+          activeCity={CITIES[0]}
           apartmentList={APARTMENTS}
-          onApartmentTitleClick={EMPTY_HANDLER}
+          onCityTitleClick={EMPTY_HANDLER}
         />,
         {
           createNodeMock: () => {

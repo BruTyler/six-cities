@@ -110,7 +110,7 @@ const APARTMENTS = [
 ];
 
 describe(`Reducer unit- suit`, () => {
-  it(`Reducer should change city`, () => {
+  it(`Reducer should change city and update connected apartment list`, () => {
     expect(reducer({
       city: null,
       apartmentList: [],
@@ -118,19 +118,6 @@ describe(`Reducer unit- suit`, () => {
     }, ActionCreator.changeCity(CITY_ID))
     ).toEqual({
       city: CITY,
-      apartmentList: APARTMENTS,
-      cityList: [],
-    });
-  });
-
-  it(`Reducer should change apartment list`, () => {
-    expect(reducer({
-      city: null,
-      apartmentList: [],
-      cityList: [],
-    }, ActionCreator.getOffers(CITY_ID))
-    ).toEqual({
-      city: null,
       apartmentList: APARTMENTS,
       cityList: [],
     });

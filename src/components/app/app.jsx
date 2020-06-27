@@ -35,14 +35,14 @@ class App extends PureComponent {
 
     if (apartmentList.length === 0) {
       return <MainEmpty
-        city={activeCity}
+        activeCity={activeCity}
         cityList={cityList}
         onCityTitleClick={onCityTitleClick}
       />;
     }
 
     return <Main
-      city={activeCity}
+      activeCity={activeCity}
       cityList={cityList}
       apartmentList={apartmentList}
       onApartmentTitleClick={this.handleApartmentTitleClick}
@@ -86,7 +86,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   onCityTitleClick(cityId) {
     dispatch(ActionCreator.changeCity(cityId));
-    // this.forceUpdate();
   },
 });
 

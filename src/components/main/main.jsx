@@ -6,7 +6,7 @@ import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
 const Main = (props) => {
-  const {city, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick} = props;
+  const {activeCity, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick} = props;
 
   return <div className="page page--gray page--main">
     <header className="header">
@@ -36,7 +36,7 @@ const Main = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <CityList
-          activeCity={city}
+          activeCity={activeCity}
           cityList={cityList}
           onCityTitleClick={onCityTitleClick}
         />
@@ -45,7 +45,7 @@ const Main = (props) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{apartmentList.length} places to stay in {city.title}</b>
+            <b className="places__found">{apartmentList.length} places to stay in {activeCity.title}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -68,7 +68,7 @@ const Main = (props) => {
           </section>
           <div className="cities__right-section">
             <Map
-              city={city}
+              city={activeCity}
               apartmentList={apartmentList}
             />
           </div>
@@ -79,7 +79,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  city: PropTypes.shape({
+  activeCity: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
