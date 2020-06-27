@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {PlaceType} from '../../const';
 
 const Property = ({
-  property: {
+  apartment: {
     type, description, rating, price, isPremium, isFavourite,
     photoSet, bedrooms, adultsMax, goods, host
   }
@@ -273,7 +273,7 @@ const Property = ({
 };
 
 Property.propTypes = {
-  property: PropTypes.shape({
+  apartment: PropTypes.shape({
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
     description: PropTypes.string.isRequired,
@@ -290,7 +290,7 @@ Property.propTypes = {
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }),
-  }).isRequired,
+  }),
 };
 
 export default Property;

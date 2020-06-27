@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import ApartmentList from '../apartment-list/apartment-list.jsx';
 import Map from '../map/map.jsx';
+import CityList from '../city-list/city-list.jsx';
 
 const Main = (props) => {
   const {city, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick} = props;
@@ -33,17 +35,11 @@ const Main = (props) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            {cityList.map((item) => {
-              return <li className="locations__item" key={`city-${item.id}`}>
-                <a className={`locations__item-link tabs__item ${item.id === city.id && `tabs__item--active`}`} href="#" onClick={() => onCityTitleClick(item.id)}>
-                  <span>{item.title}</span>
-                </a>
-              </li>;
-            })}
-          </ul>
-        </section>
+        <CityList
+          activeCity={city}
+          cityList={cityList}
+          onCityTitleClick={onCityTitleClick}
+        />
       </div>
       <div className="cities">
         <div className="cities__places-container container">

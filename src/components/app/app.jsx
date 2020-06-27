@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 import Main from './../main/main.jsx';
 import Property from '../property/property.jsx';
+import MainEmpty from '../main-empty/main-empty.jsx';
 
 class App extends PureComponent {
   constructor() {
@@ -28,7 +29,15 @@ class App extends PureComponent {
 
     if (clickedProperty) {
       return <Property
-        property={clickedProperty}
+        apartment={clickedProperty}
+      />;
+    }
+
+    if (apartmentList.length === 0) {
+      return <MainEmpty
+        city={activeCity}
+        cityList={cityList}
+        onCityTitleClick={onCityTitleClick}
       />;
     }
 
@@ -51,7 +60,7 @@ class App extends PureComponent {
         </Route>
         <Route exact path="/dev-property">
           <Property
-            property={apartmentList[0]}
+            apartment={apartmentList[0]}
           />
         </Route>
       </Switch>
@@ -66,11 +75,13 @@ App.propTypes = {
   onCityTitleClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  apartmentList: state.apartmentList,
-  cityList: state.cityList,
-  activeCity: state.city,
-});
+const mapStateToProps = (state) => {
+  return {
+    apartmentList: state.apartmentList,
+    cityList: state.cityList,
+    activeCity: state.city,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onCityTitleClick(cityId) {
