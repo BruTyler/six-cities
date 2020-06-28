@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import {App} from './app.jsx';
 
 const EMPTY_HANDLER = () => {};
 const CITIES = [
@@ -45,9 +45,10 @@ describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
     const generatedTree = renderer.create(
         <App
-          cities={CITIES}
+          cityList={CITIES}
+          activeCity={CITIES[0]}
           apartmentList={APARTMENTS}
-          onApartmentTitleClick={EMPTY_HANDLER}
+          onCityTitleClick={EMPTY_HANDLER}
         />,
         {
           createNodeMock: () => {

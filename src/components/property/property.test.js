@@ -28,7 +28,7 @@ describe(`<Property /> render suit`, () => {
   it(`<Property /> render single apartment`, () => {
     const generatedTree = renderer.create(
         <Property
-          property={SINGLE_APARTMENT}
+          apartment={SINGLE_APARTMENT}
         />
     ).toJSON();
 

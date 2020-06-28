@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CityList /> render suit <CityList /> render city list 1`] = `
+<section
+  className="locations container"
+>
+  <ul
+    className="locations__list tabs__list"
+  >
+    <li
+      className="locations__item"
+    >
+      <a
+        className="locations__item-link tabs__item tabs__item--active"
+        href="#"
+        onClick={[Function]}
+      >
+        <span>
+          A
+        </span>
+      </a>
+    </li>
+    <li
+      className="locations__item"
+    >
+      <a
+        className="locations__item-link tabs__item"
+        href="#"
+        onClick={[Function]}
+      >
+        <span>
+          C
+        </span>
+      </a>
+    </li>
+  </ul>
+</section>
+`;
