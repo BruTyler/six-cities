@@ -30,8 +30,9 @@ class App extends PureComponent {
     if (clickedProperty) {
       return <Property
         apartment={clickedProperty}
-        neighboorApartmentList={apartmentList.slice(0, 4)}
+        neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
         city={activeCity}
+        onApartmentTitleClick={this.handleApartmentTitleClick}
       />;
     }
 

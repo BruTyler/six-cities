@@ -80,6 +80,7 @@ class Main extends PureComponent {
                 </ul>
               </form>
               <ApartmentList
+                className="cities"
                 apartmentList={apartmentList}
                 onApartmentTitleClick={onApartmentTitleClick}
                 onApartmentCardHover={this.handleApartmentCardHover}

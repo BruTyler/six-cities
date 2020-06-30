@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import ApartmentCard from '../apartment-card/apartment-card.jsx';
 
 const ApartmentList = (props) => {
-  const {apartmentList, onApartmentTitleClick, onApartmentCardHover} = props;
+  const {className, apartmentList, onApartmentTitleClick, onApartmentCardHover} = props;
 
-  return <div className="cities__places-list places__list tabs__content">
+  return <div className={`${className}__places-list ${className}__list places__list tabs__content`}>
     {apartmentList.map((apartment) =>
       <ApartmentCard
         key={apartment.id}
+        className={className}
         apartment={apartment}
         onApartmentCardHover={onApartmentCardHover}
         onApartmentTitleClick={onApartmentTitleClick}
@@ -18,6 +19,7 @@ const ApartmentList = (props) => {
 };
 
 ApartmentList.propTypes = {
+  className: PropTypes.string.isRequired,
   apartmentList: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired
