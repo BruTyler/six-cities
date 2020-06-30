@@ -7,10 +7,9 @@ const ApartmentCard = (props) => {
   let percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
 
   return <article className="cities__place-card place-card"
-    onMouseEnter={(event) => {
-      event.preventDefault();
-      onApartmentCardHover(apartment);
-    }}>
+    onMouseEnter={() => onApartmentCardHover(apartment)}
+    onMouseLeave={() => onApartmentCardHover()}
+  >
     {apartment.isPremium ?
       <div className="place-card__mark">
         <span>Premium</span>

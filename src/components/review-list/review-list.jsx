@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReviewItem from '../review-item/review-item';
+import ReviewItem from '../review-item/review-item.jsx';
 
 const ReviewList = ({reviewList}) => {
   return <section className="property__reviews reviews">

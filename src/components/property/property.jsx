@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {PlaceType} from '../../const';
-import ReviewList from '../review-list/review-list';
+import ReviewList from '../review-list/review-list.jsx';
 
 const Property = ({
   apartment: {
