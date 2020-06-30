@@ -1,12 +1,16 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+import {ActionCreator} from '../../reducer.js';
 import Main from './../main/main.jsx';
 import Property from '../property/property.jsx';
+import MainEmpty from '../main-empty/main-empty.jsx';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       clickedProperty: null
@@ -15,24 +19,34 @@ class App extends PureComponent {
     this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);
   }
 
-  handleApartmentTitleClick(prop) {
-    this.setState({clickedProperty: prop});
+  handleApartmentTitleClick(property) {
+    this.setState({clickedProperty: property});
   }
 
   _renderMainScreen() {
-    const {apartmentList, cities} = this.props;
+    const {apartmentList, cityList, activeCity, onCityTitleClick} = this.props;
     const {clickedProperty} = this.state;
 
     if (clickedProperty) {
       return <Property
-        property={clickedProperty}
+        apartment={clickedProperty}
+      />;
+    }
+
+    if (apartmentList.length === 0) {
+      return <MainEmpty
+        activeCity={activeCity}
+        cityList={cityList}
+        onCityTitleClick={onCityTitleClick}
       />;
     }
 
     return <Main
-      city={cities[0]}
+      activeCity={activeCity}
+      cityList={cityList}
       apartmentList={apartmentList}
       onApartmentTitleClick={this.handleApartmentTitleClick}
+      onCityTitleClick={onCityTitleClick}
     />;
   }
 
@@ -46,7 +60,7 @@ class App extends PureComponent {
         </Route>
         <Route exact path="/dev-property">
           <Property
-            property={apartmentList[0]}
+            apartment={apartmentList[0]}
           />
         </Route>
       </Switch>
@@ -56,7 +70,24 @@ class App extends PureComponent {
 
 App.propTypes = {
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  cities: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  cityList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  activeCity: PropTypes.shape().isRequired,
+  onCityTitleClick: PropTypes.func.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    apartmentList: state.apartmentList,
+    cityList: state.cityList,
+    activeCity: state.city,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityTitleClick(cityId) {
+    dispatch(ActionCreator.changeCity(cityId));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

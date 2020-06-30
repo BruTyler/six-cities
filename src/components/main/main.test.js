@@ -38,9 +38,11 @@ describe(`<Main /> render suit`, () => {
   it(`<Main /> render apartment list case`, () => {
     const generatedTree = renderer.create(
         <Main
-          city={CITY}
+          activeCity={CITY}
+          cityList={[CITY]}
           apartmentList={APARTMENTS}
           onApartmentTitleClick={EMPTY_HANDLER}
+          onCityTitleClick={EMPTY_HANDLER}
         />,
         {
           createNodeMock: () => {

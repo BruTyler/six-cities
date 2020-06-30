@@ -2,6 +2,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import Main from './main.jsx';
 
+const EMPTY_HANDLER = () => {};
 const CITY = {
   id: 0,
   title: `Amsterdam`,
@@ -39,9 +40,11 @@ describe(`<Main /> e2e suite`, () => {
 
     const mainWrapper = mount(
         <Main
-          city={CITY}
+          activeCity={CITY}
+          cityList={[CITY]}
           apartmentList={APARTMENTS}
           onApartmentTitleClick={onApartmentTitleHandler}
+          onCityTitleClick={EMPTY_HANDLER}
         />
     );
 

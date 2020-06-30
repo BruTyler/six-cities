@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {PlaceType} from '../../const';
 
 const Property = ({
-  property: {
+  apartment: {
     type, description, rating, price, isPremium, isFavourite,
     photoSet, bedrooms, adultsMax, goods, host
   }
@@ -66,8 +66,8 @@ const Property = ({
           <div className="property__inside">
             <h2 className="property__inside-title">What&apos;s inside</h2>
             <ul className="property__inside-list">
-              { goods.map((good, i) =>
-                <li className="property__inside-item" key={i}>{good}</li>
+              { goods.map((good) =>
+                <li className="property__inside-item" key={good}>{good}</li>
               )}
             </ul>
           </div>
@@ -273,7 +273,7 @@ const Property = ({
 };
 
 Property.propTypes = {
-  property: PropTypes.shape({
+  apartment: PropTypes.shape({
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
     description: PropTypes.string.isRequired,
@@ -290,7 +290,7 @@ Property.propTypes = {
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }),
-  }).isRequired,
+  }),
 };
 
 export default Property;

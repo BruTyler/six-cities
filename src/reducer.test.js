@@ -1,4 +1,14 @@
-export default [
+import {reducer, ActionCreator} from "./reducer.js";
+
+const CITY_ID = 0;
+const CITY = {
+  id: 0,
+  title: `Amsterdam`,
+  location: [52.38333, 4.9],
+  defaultZoom: 12
+};
+
+const APARTMENTS = [
   {
     id: 1,
     cityId: 0,
@@ -97,31 +107,19 @@ export default [
     },
     location: [52.3809553943508, 4.939309666406198],
   },
-  {
-    id: 5,
-    cityId: 1,
-    type: `Apartment`,
-    description: `Best basement`,
-    rating: 5.0,
-    price: 66.0,
-    isPremium: true,
-    isFavourite: true,
-    photo: `img/apartment-03.jpg`,
-    photoSet: [
-      `img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-    ],
-    bedrooms: 3,
-    adultsMax: 4,
-    goods: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
-    host: {
-      avatar: `img/avatar-angelina.jpg`,
-      name: `Angelina`,
-      isSuper: true,
-    },
-    location: [50.9324, 6.9418],
-  },
 ];
+
+describe(`Reducer unit- suit`, () => {
+  it(`Reducer should change city and update connected apartment list`, () => {
+    expect(reducer({
+      city: null,
+      apartmentList: [],
+      cityList: [],
+    }, ActionCreator.changeCity(CITY_ID))
+    ).toEqual({
+      city: CITY,
+      apartmentList: APARTMENTS,
+      cityList: [],
+    });
+  });
+});

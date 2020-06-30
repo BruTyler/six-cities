@@ -8,7 +8,7 @@ export default [
   {
     id: 1,
     title: `Cologne`,
-    location: [52.38333, 4.9],
+    location: [50.9324, 6.9418],
     defaultZoom: 12
   },
   {
