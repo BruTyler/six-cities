@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {PlaceType} from '../../const';
 import ReviewList from '../review-list/review-list.jsx';
+import Map from '../map/map.jsx';
 
-const Property = ({
-  apartment: {
+const Property = (props) => {
+  const {apartment: currentApartment, neighboorApartmentList, city} = props;
+  const {
     type, description, rating, price, isPremium, isFavourite,
     photoSet, bedrooms, adultsMax, goods, host, reviews
-  },
-}) => {
-  let percentageRating = Math.round(Math.round(rating) / 5 * 100);
+  } = currentApartment;
+  const percentageRating = Math.round(Math.round(rating) / 5 * 100);
 
   return <main className="page__main page__main--property">
     <section className="property">
@@ -94,7 +95,12 @@ const Property = ({
           <ReviewList reviewList={reviews} />
         </div>
       </div>
-      <section className="property__map map"></section>
+      <Map
+        className = "property__map"
+        apartmentList = {neighboorApartmentList}
+        city= {city}
+        activeApartment = {currentApartment}
+      />
     </section>
     <div className="container">
       <section className="near-places places">
@@ -202,6 +208,8 @@ const Property = ({
 };
 
 Property.propTypes = {
+  neighboorApartmentList: PropTypes.array.isRequired,
+  city: PropTypes.shape().isRequired,
   apartment: PropTypes.shape({
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,

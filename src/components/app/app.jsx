@@ -30,6 +30,8 @@ class App extends PureComponent {
     if (clickedProperty) {
       return <Property
         apartment={clickedProperty}
+        neighboorApartmentList={apartmentList.slice(0, 4)}
+        city={activeCity}
       />;
     }
 
@@ -51,17 +53,10 @@ class App extends PureComponent {
   }
 
   render() {
-    const {apartmentList} = this.props;
-
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
           {this._renderMainScreen()}
-        </Route>
-        <Route exact path="/dev-property">
-          <Property
-            apartment={apartmentList[0]}
-          />
         </Route>
       </Switch>
     </BrowserRouter>;

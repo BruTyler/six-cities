@@ -89,11 +89,13 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <section className="cities__map map" ref={this._mapRef}></section>;
+    const {className} = this.props;
+    return <section className={`${className} map`} ref={this._mapRef}></section>;
   }
 }
 
 Map.propTypes = {
+  className: PropTypes.string,
   city: PropTypes.shape({
     defaultZoom: PropTypes.number.isRequired,
     location: PropTypes.arrayOf(PropTypes.number).isRequired
