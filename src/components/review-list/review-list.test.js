@@ -4,16 +4,20 @@ import ReviewList from './review-list.jsx';
 
 const REVIEWS = [
   {
+    id: 1,
     authorName: `name1`,
     authorAvatar: `img1.jpg`,
     rating: 4,
     opinion: `Ok`,
+    publishDate: `2011-02-17`,
   },
   {
+    id: 2,
     authorName: `name2`,
     authorAvatar: `img2.jpg`,
     rating: 5,
     opinion: `Good`,
+    publishDate: `2011-02-15`,
   },
 ];
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {getMonthName} from './../../utils.js';
 
-const ReviewItem = ({authorName, authorAvatar, rating, opinion}) => {
-  let percentageRating = Math.round(Math.round(rating) / 5 * 100);
+const ReviewItem = ({authorName, authorAvatar, rating, opinion, publishDate: rawDate}) => {
+  const percentageRating = Math.round(Math.round(rating) / 5 * 100);
+  const convertedDate = new Date(rawDate);
+  const monthName = getMonthName(convertedDate.getMonth());
+  const year = convertedDate.getFullYear();
 
   return <li className="reviews__item">
     <div className="reviews__user user">
@@ -19,7 +23,7 @@ const ReviewItem = ({authorName, authorAvatar, rating, opinion}) => {
         </div>
       </div>
       <p className="reviews__text">{opinion}</p>
-      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+      <time className="reviews__time" dateTime={rawDate}>{monthName} {year}</time>
     </div>
   </li>;
 };
@@ -29,6 +33,7 @@ ReviewItem.propTypes = {
   authorAvatar: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   opinion: PropTypes.string.isRequired,
+  publishDate: PropTypes.string.isRequired,
 };
 
 export default ReviewItem;

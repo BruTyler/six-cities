@@ -8,11 +8,12 @@ const ReviewList = ({reviewList}) => {
     <ul className="reviews__list">
       {reviewList.map((review) =>
         <ReviewItem
-          key={review.opinion}
+          key={review.id}
           authorName={review.authorName}
           authorAvatar={review.authorAvatar}
           rating={review.rating}
           opinion={review.opinion}
+          publishDate={review.publishDate}
         />)
       }
     </ul>

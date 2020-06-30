@@ -14,7 +14,7 @@ exports[`<ReviewItem /> render suit <ReviewItem /> render single review 1`] = `
         alt="Reviews avatar"
         className="reviews__avatar user__avatar"
         height="54"
-        src="img/avatar-max.jpg"
+        src="img.jpg"
         width="54"
       />
     </div>
@@ -50,13 +50,15 @@ exports[`<ReviewItem /> render suit <ReviewItem /> render single review 1`] = `
     <p
       className="reviews__text"
     >
-      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+      nice
     </p>
     <time
       className="reviews__time"
-      dateTime="2019-04-24"
+      dateTime="2011-02-15"
     >
-      April 2019
+      February
+       
+      2011
     </time>
   </div>
 </li>

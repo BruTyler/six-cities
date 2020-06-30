@@ -27,10 +27,12 @@ export default [
     location: [52.3909553943508, 4.85309666406198],
     reviews: [
       {
+        id: 1,
         authorName: `Max`,
         authorAvatar: `img/avatar-max.jpg`,
         rating: 4,
         opinion: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        publishDate: `2014-05-20`,
       },
     ],
   },
@@ -135,10 +137,20 @@ export default [
     location: [50.9324, 6.9418],
     reviews: [
       {
+        id: 1,
         authorName: `Max`,
         authorAvatar: `img/avatar-max.jpg`,
         rating: 4,
         opinion: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        publishDate: `2014-05-20`,
+      },
+      {
+        id: 2,
+        authorName: `Ivan`,
+        authorAvatar: `img/avatar-max.jpg`,
+        rating: 5,
+        opinion: `Amazing apartment!`,
+        publishDate: `2016-07-05`,
       },
     ],
   },

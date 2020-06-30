@@ -250,9 +250,11 @@ exports[`<ReviewList /> render suit <ReviewList /> render list of reviews 1`] = 
         </p>
         <time
           className="reviews__time"
-          dateTime="2019-04-24"
+          dateTime="2011-02-17"
         >
-          April 2019
+          February
+           
+          2011
         </time>
       </div>
     </li>
@@ -309,9 +311,11 @@ exports[`<ReviewList /> render suit <ReviewList /> render list of reviews 1`] = 
         </p>
         <time
           className="reviews__time"
-          dateTime="2019-04-24"
+          dateTime="2011-02-15"
         >
-          April 2019
+          February
+           
+          2011
         </time>
       </div>
     </li>
