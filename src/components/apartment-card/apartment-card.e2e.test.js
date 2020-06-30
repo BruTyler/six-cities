@@ -20,6 +20,7 @@ describe(`<ApartmentCard /> e2e suite`, () => {
 
     const apartmentCardWrapper = shallow(
         <ApartmentCard
+          className="cities"
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={onApartmentCardHoverMock}
           onApartmentTitleClick={onApartmentTitleClickMock}

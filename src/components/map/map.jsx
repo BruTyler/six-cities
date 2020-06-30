@@ -94,6 +94,10 @@ class Map extends PureComponent {
   }
 }
 
+Map.defaultProps = {
+  className: ``,
+};
+
 Map.propTypes = {
   className: PropTypes.string,
   city: PropTypes.shape({
