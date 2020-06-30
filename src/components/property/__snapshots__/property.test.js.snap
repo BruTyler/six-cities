@@ -268,9 +268,11 @@ exports[`<Property /> render suit <Property /> render single apartment 1`] = `
                 </p>
                 <time
                   className="reviews__time"
-                  dateTime="2019-04-24"
+                  dateTime="2014-05-20"
                 >
-                  April 2019
+                  May
+                   
+                  2014
                 </time>
               </div>
             </li>
