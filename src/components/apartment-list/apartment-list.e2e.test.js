@@ -49,6 +49,7 @@ describe(`<ApartmentList /> e2e suite`, () => {
 
     const apartmentCardWrapper = mount(
         <ApartmentList
+          className="cities"
           apartmentList={APARTMENTS}
           onApartmentTitleClick={onApartmentTitleClickMock}
         />

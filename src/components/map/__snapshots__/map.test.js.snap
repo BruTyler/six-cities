@@ -1,11 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Map /> render suit <Map /> render pin list of apartments 1`] = `
-<div
-  className="cities__right-section"
->
-  <section
-    className="cities__map map"
-  />
-</div>
+<section
+  className=" map"
+/>
 `;

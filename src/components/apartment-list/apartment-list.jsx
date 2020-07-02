@@ -1,47 +1,32 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ApartmentCard from '../apartment-card/apartment-card.jsx';
 
-class ApartmentList extends PureComponent {
-  constructor(props) {
-    super(props);
+const ApartmentList = (props) => {
+  const {className, apartmentList, onApartmentTitleClick, onApartmentCardHover} = props;
 
-    this.state = {
-      selectedApartment: null
-    };
-
-    this.handleApartmentCardHover = this.handleApartmentCardHover.bind(this);
-  }
-
-  handleApartmentCardHover(apart) {
-    this.setState({
-      selectedApartmentCard: apart
-    });
-  }
-
-  render() {
-    const {apartmentList, onApartmentTitleClick} = this.props;
-
-    return <div className="cities__places-list places__list tabs__content">
-      {apartmentList.map((apartment) =>
-        <ApartmentCard
-          key={apartment.id}
-          apartment={apartment}
-          onApartmentCardHover={this.handleApartmentCardHover}
-          onApartmentTitleClick={onApartmentTitleClick}
-        />)
-      }
-    </div>;
-  }
-}
+  return <div className={`${className}__places-list ${className}__list places__list tabs__content`}>
+    {apartmentList.map((apartment) =>
+      <ApartmentCard
+        key={apartment.id}
+        className={className}
+        apartment={apartment}
+        onApartmentCardHover={onApartmentCardHover}
+        onApartmentTitleClick={onApartmentTitleClick}
+      />)
+    }
+  </div>;
+};
 
 ApartmentList.propTypes = {
+  className: PropTypes.string.isRequired,
   apartmentList: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired
       })
   ).isRequired,
-  onApartmentTitleClick: PropTypes.func.isRequired
+  onApartmentTitleClick: PropTypes.func.isRequired,
+  onApartmentCardHover: PropTypes.func,
 };
 
 export default ApartmentList;
