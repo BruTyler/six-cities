@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-
 const withActiveItem = (Component) => {
   class WithActiveItem extends PureComponent {
     constructor(props) {
@@ -15,8 +14,6 @@ const withActiveItem = (Component) => {
     }
 
     handleItemSelect(selectedItem) {
-
-
       this.setState({
         activeItem: selectedItem
       });
@@ -24,7 +21,6 @@ const withActiveItem = (Component) => {
       if (this.props.onItemSelect) {
         this.props.onItemSelect(selectedItem);
       }
-
     }
 
     render() {
