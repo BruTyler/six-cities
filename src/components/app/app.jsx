@@ -6,32 +6,27 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 import MainScreen from './../main-screen/main-screen.jsx';
 import Property from '../property/property.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
 class App extends PureComponent {
-  constructor() {
-    super();
-
-    this.state = {
-      clickedProperty: null
-    };
-
-    this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);
-  }
-
-  handleApartmentTitleClick(property) {
-    this.setState({clickedProperty: property});
-  }
 
   _renderScreen() {
-    const {apartmentList, cityList, activeCity, onCityTitleClick} = this.props;
-    const {clickedProperty} = this.state;
+    const {apartmentList, cityList, activeCity, onCityTitleClick,
+      activeItem: clickedProperty,
+      onItemSelect: onApartmentTitleClick
+    } = this.props;
 
     if (clickedProperty) {
+
+      // eslint-disable-next-line no-console
+      console.log(`clickedProperty` + clickedProperty);
+      // eslint-disable-next-line no-console
+      console.log(clickedProperty);
       return <Property
         apartment={clickedProperty}
         neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
         city={activeCity}
-        onApartmentTitleClick={this.handleApartmentTitleClick}
+        onApartmentTitleClick={onApartmentTitleClick}
       />;
     }
 
@@ -39,7 +34,7 @@ class App extends PureComponent {
       activeCity={activeCity}
       cityList={cityList}
       apartmentList={apartmentList}
-      onApartmentTitleClick={this.handleApartmentTitleClick}
+      onApartmentTitleClick={onApartmentTitleClick}
       onCityTitleClick={onCityTitleClick}
     />;
   }
@@ -60,6 +55,8 @@ App.propTypes = {
   cityList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   activeCity: PropTypes.shape().isRequired,
   onCityTitleClick: PropTypes.func.isRequired,
+  activeItem: PropTypes.shape(),
+  onItemSelect: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -77,4 +74,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(App));
