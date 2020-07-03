@@ -178,11 +178,12 @@ exports[`<App /> render suit <App /> render apartment list 1`] = `
             </ul>
           </form>
           <div
-            className="cities__places-list places__list tabs__content"
+            className="cities__places-list cities__list places__list tabs__content"
           >
             <article
-              className="cities__place-card place-card"
+              className="cities__place-card cities__card place-card"
               onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -292,13 +293,9 @@ exports[`<App /> render suit <App /> render apartment list 1`] = `
         <div
           className="cities__right-section"
         >
-          <div
-            className="cities__right-section"
-          >
-            <section
-              className="cities__map map"
-            />
-          </div>
+          <section
+            className="cities__map map"
+          />
         </div>
       </div>
     </div>

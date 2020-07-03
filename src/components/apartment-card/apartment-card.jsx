@@ -3,20 +3,18 @@ import PropTypes from 'prop-types';
 import {PlaceType} from '../../const';
 
 const ApartmentCard = (props) => {
-  const {apartment, onApartmentCardHover, onApartmentTitleClick} = props;
+  const {className, apartment, onApartmentCardHover, onApartmentTitleClick} = props;
   let percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
 
-  return <article className="cities__place-card place-card"
-    onMouseEnter={(event) => {
-      event.preventDefault();
-      onApartmentCardHover(apartment);
-    }}>
-    {apartment.isPremium ?
+  return <article className={`${className}__place-card ${className}__card place-card`}
+    onMouseEnter={() => onApartmentCardHover(apartment)}
+    onMouseLeave={() => onApartmentCardHover()}
+  >
+    {apartment.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
-      </div>
-      : ``}
-    <div className="cities__image-wrapper place-card__image-wrapper">
+      </div>}
+    <div className={`${className}__image-wrapper place-card__image-wrapper`}>
       <a href="#">
         <img className="place-card__image" src={apartment.photo} width="260" height="200" alt={apartment.description} />
       </a>
@@ -52,7 +50,12 @@ const ApartmentCard = (props) => {
   </article>;
 };
 
+ApartmentCard.defaultProps = {
+  onApartmentCardHover: () => {},
+};
+
 ApartmentCard.propTypes = {
+  className: PropTypes.string.isRequired,
   apartment: PropTypes.shape({
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.ROOM]).isRequired,

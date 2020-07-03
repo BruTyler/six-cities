@@ -18,6 +18,7 @@ describe(`<ApartmentCard /> render suit`, () => {
   it(`<ApartmentCard /> render single apartment`, () => {
     const generatedTree = renderer.create(
         <ApartmentCard
+          className="cities"
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={EMPTY_HANDLER}
           onApartmentTitleClick={EMPTY_HANDLER}

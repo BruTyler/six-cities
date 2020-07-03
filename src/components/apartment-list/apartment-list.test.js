@@ -30,6 +30,7 @@ describe(`<ApartmentList /> render suit`, () => {
   it(`<ApartmentList /> render apartment list`, () => {
     const generatedTree = renderer.create(
         <ApartmentList
+          className="cities"
           apartmentList={APARTMENTS}
           onApartmentTitleClick={EMPTY_HANDLER}
         />

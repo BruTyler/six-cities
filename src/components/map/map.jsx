@@ -15,8 +15,29 @@ class Map extends PureComponent {
     }
   }
 
+  _generateMarker(id, location, isActive) {
+    const defaultIcon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+
+    const activeIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+
+    const icon = isActive
+      ? activeIcon
+      : defaultIcon;
+
+    const marker = leaflet.marker(location, {icon});
+    marker.id = id;
+
+    return marker;
+  }
+
   _renderOffers(map) {
-    const {city, apartmentList} = this.props;
+    const {city, apartmentList, activeApartment} = this.props;
 
     const layerGroup = leaflet
       .layerGroup()
@@ -27,14 +48,11 @@ class Map extends PureComponent {
       duration: 2
     });
 
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
-
     apartmentList.map((pin) => {
-      leaflet
-        .marker(pin.location, {icon})
+      const isMarkerActive = activeApartment && activeApartment.id === pin.id;
+
+      this
+        ._generateMarker(pin.id, pin.location, isMarkerActive)
         .addTo(layerGroup);
     });
 
@@ -71,14 +89,17 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <div className="cities__right-section">
-      <section className="cities__map map" ref={this._mapRef}>
-      </section>
-    </div>;
+    const {className} = this.props;
+    return <section className={`${className} map`} ref={this._mapRef}></section>;
   }
 }
 
+Map.defaultProps = {
+  className: ``,
+};
+
 Map.propTypes = {
+  className: PropTypes.string,
   city: PropTypes.shape({
     defaultZoom: PropTypes.number.isRequired,
     location: PropTypes.arrayOf(PropTypes.number).isRequired
@@ -87,6 +108,10 @@ Map.propTypes = {
     id: PropTypes.number,
     location: PropTypes.arrayOf(PropTypes.number).isRequired
   })).isRequired,
+  activeApartment: PropTypes.shape({
+    id: PropTypes.number,
+    location: PropTypes.arrayOf(PropTypes.number).isRequired
+  })
 };
 
 export default Map;
