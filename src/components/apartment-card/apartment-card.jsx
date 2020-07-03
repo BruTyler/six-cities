@@ -4,7 +4,7 @@ import {PlaceType} from '../../const';
 
 const ApartmentCard = (props) => {
   const {className, apartment, onApartmentCardHover, onApartmentTitleClick} = props;
-  let percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
+  const percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
 
   return <article className={`${className}__place-card ${className}__card place-card`}
     onMouseEnter={() => onApartmentCardHover(apartment)}
