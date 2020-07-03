@@ -16,15 +16,15 @@ const withActiveItem = (Component) => {
 
     handleItemSelect(selectedItem) {
 
-      if (selectedItem) {
-        this.setState({
-          activeItem: selectedItem
-        });
 
-        if (this.props.onItemSelect) {
-          this.props.onItemSelect(selectedItem);
-        }
+      this.setState({
+        activeItem: selectedItem
+      });
+
+      if (this.props.onItemSelect) {
+        this.props.onItemSelect(selectedItem);
       }
+
     }
 
     render() {

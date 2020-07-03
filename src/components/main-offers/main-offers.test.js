@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MainOffers from './main-offers.jsx';
+import {MainOffers} from './main-offers.jsx';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -39,10 +39,10 @@ describe(`<MainOffers /> render suit`, () => {
     const generatedTree = renderer.create(
         <MainOffers
           activeCity={CITY}
-          cityList={[CITY]}
           apartmentList={APARTMENTS}
           onApartmentTitleClick={EMPTY_HANDLER}
-          onCityTitleClick={EMPTY_HANDLER}
+          activeItem={void 0}
+          onItemSelect={EMPTY_HANDLER}
         />,
         {
           createNodeMock: () => {
