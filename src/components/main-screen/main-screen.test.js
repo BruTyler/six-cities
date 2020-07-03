@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main.jsx';
+import MainScreen from './main-screen.jsx';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -9,6 +9,7 @@ const CITY = {
   location: [1, 1],
   defaultZoom: 1
 };
+const EMPTY_APARTMENTS = [];
 const APARTMENTS = [
   {
     id: 0,
@@ -34,10 +35,10 @@ const APARTMENTS = [
   }
 ];
 
-describe(`<Main /> render suit`, () => {
-  it(`<Main /> render apartment list case`, () => {
+describe(`<MainScreen /> render suit`, () => {
+  it(`<MainScreen /> render apartment list case`, () => {
     const generatedTree = renderer.create(
-        <Main
+        <MainScreen
           activeCity={CITY}
           cityList={[CITY]}
           apartmentList={APARTMENTS}
@@ -49,6 +50,20 @@ describe(`<Main /> render suit`, () => {
             return document.createElement(`div`);
           }
         }
+    ).toJSON();
+
+    expect(generatedTree).toMatchSnapshot();
+  });
+
+  it(`<MainScreen /> render zero apartment message`, () => {
+    const generatedTree = renderer.create(
+        <MainScreen
+          activeCity={CITY}
+          cityList={[CITY]}
+          apartmentList={EMPTY_APARTMENTS}
+          onApartmentTitleClick={EMPTY_HANDLER}
+          onCityTitleClick={EMPTY_HANDLER}
+        />
     ).toJSON();
 
     expect(generatedTree).toMatchSnapshot();

@@ -4,9 +4,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../reducer.js';
-import Main from './../main/main.jsx';
+import MainScreen from './../main-screen/main-screen.jsx';
 import Property from '../property/property.jsx';
-import MainEmpty from '../main-empty/main-empty.jsx';
 
 class App extends PureComponent {
   constructor() {
@@ -23,12 +22,9 @@ class App extends PureComponent {
     this.setState({clickedProperty: property});
   }
 
-  _renderMainScreen() {
+  _renderScreen() {
     const {apartmentList, cityList, activeCity, onCityTitleClick} = this.props;
     const {clickedProperty} = this.state;
-
-    // eslint-disable-next-line no-console
-    console.log(activeCity);
 
     if (clickedProperty) {
       return <Property
@@ -39,15 +35,7 @@ class App extends PureComponent {
       />;
     }
 
-    if (apartmentList.length === 0) {
-      return <MainEmpty
-        activeCity={activeCity}
-        cityList={cityList}
-        onCityTitleClick={onCityTitleClick}
-      />;
-    }
-
-    return <Main
+    return <MainScreen
       activeCity={activeCity}
       cityList={cityList}
       apartmentList={apartmentList}
@@ -60,7 +48,7 @@ class App extends PureComponent {
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {this._renderMainScreen()}
+          {this._renderScreen()}
         </Route>
       </Switch>
     </BrowserRouter>;
