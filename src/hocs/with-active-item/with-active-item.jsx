@@ -15,14 +15,15 @@ const withActiveItem = (Component) => {
     }
 
     handleItemSelect(selectedItem) {
-      const {onItemSelect} = this.props;
 
-      this.setState({
-        activeItem: selectedItem
-      });
+      if (selectedItem) {
+        this.setState({
+          activeItem: selectedItem
+        });
 
-      if (onItemSelect) {
-        onItemSelect(selectedItem);
+        if (this.props.onItemSelect) {
+          this.props.onItemSelect(selectedItem);
+        }
       }
     }
 

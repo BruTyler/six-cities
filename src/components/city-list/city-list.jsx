@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
-const CityList = ({cityList, activeCity, onCityTitleClick}) => {
+const CityList = (props) => {
+  const {cityList, activeItem: activeCity, onItemSelect: onCityTitleClick} = props;
+
   return <section className="locations container">
     <ul className="locations__list tabs__list">
       {cityList.map((item) => {
         return <li className="locations__item" key={`city-${item.id}`}>
           <a className={`locations__item-link tabs__item${item.id === activeCity.id ? ` tabs__item--active` : ``}`}
             href="#"
-            onClick={() => onCityTitleClick(item.id)}>
+            onClick={() => onCityTitleClick(item)}>
             <span>{item.title}</span>
           </a>
         </li>;
@@ -18,14 +21,15 @@ const CityList = ({cityList, activeCity, onCityTitleClick}) => {
 };
 
 CityList.propTypes = {
-  activeCity: PropTypes.shape({
+  activeItem: PropTypes.shape({
     id: PropTypes.number.isRequired,
   }).isRequired,
   cityList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   })).isRequired,
-  onCityTitleClick: PropTypes.func.isRequired,
+  onItemSelect: PropTypes.func.isRequired,
 };
 
-export default CityList;
+export {CityList};
+export default withActiveItem(CityList);

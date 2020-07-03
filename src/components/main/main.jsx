@@ -54,9 +54,9 @@ class Main extends PureComponent {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <CityList
-            activeCity={activeCity}
+            activeItem={activeCity}
             cityList={cityList}
-            onCityTitleClick={onCityTitleClick}
+            onItemSelect={onCityTitleClick}
           />
         </div>
         <div className="cities">

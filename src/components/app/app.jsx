@@ -27,6 +27,9 @@ class App extends PureComponent {
     const {apartmentList, cityList, activeCity, onCityTitleClick} = this.props;
     const {clickedProperty} = this.state;
 
+    // eslint-disable-next-line no-console
+    console.log(activeCity);
+
     if (clickedProperty) {
       return <Property
         apartment={clickedProperty}
@@ -80,8 +83,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onCityTitleClick(cityId) {
-    dispatch(ActionCreator.changeCity(cityId));
+  onCityTitleClick(city) {
+    dispatch(ActionCreator.changeCity(city.id));
   },
 });
 
