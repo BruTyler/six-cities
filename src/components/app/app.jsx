@@ -17,11 +17,6 @@ class App extends PureComponent {
     } = this.props;
 
     if (clickedProperty) {
-
-      // eslint-disable-next-line no-console
-      console.log(`clickedProperty` + clickedProperty);
-      // eslint-disable-next-line no-console
-      console.log(clickedProperty);
       return <Property
         apartment={clickedProperty}
         neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
