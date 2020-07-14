@@ -36,7 +36,7 @@ const withActiveItem = (Component) => {
 
   WithActiveItem.propTypes = {
     onItemSelect: PropTypes.func,
-    activeItem: PropTypes.shape(),
+    activeItem: PropTypes.oneOfType([PropTypes.shape(), PropTypes.bool]),
   };
 
   return WithActiveItem;

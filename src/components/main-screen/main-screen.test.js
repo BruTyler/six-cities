@@ -1,6 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MainScreen from './main-screen.jsx';
+import configureStore from 'redux-mock-store';
+import {SortType} from '../../const.js';
+import {Provider} from 'react-redux';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -34,17 +37,25 @@ const APARTMENTS = [
     location: [3, 4],
   }
 ];
+const mockStore = configureStore([]);
 
 describe(`<MainScreen /> render suit`, () => {
   it(`<MainScreen /> render apartment list case`, () => {
+    const store = mockStore({
+      apartmentList: APARTMENTS,
+      sortType: SortType.POPULAR,
+    });
+
     const generatedTree = renderer.create(
-        <MainScreen
-          activeCity={CITY}
-          cityList={[CITY]}
-          apartmentList={APARTMENTS}
-          onApartmentTitleClick={EMPTY_HANDLER}
-          onCityTitleClick={EMPTY_HANDLER}
-        />,
+        <Provider store={store}>
+          <MainScreen
+            activeCity={CITY}
+            cityList={[CITY]}
+            apartmentList={APARTMENTS}
+            onApartmentTitleClick={EMPTY_HANDLER}
+            onCityTitleClick={EMPTY_HANDLER}
+          />
+        </Provider>,
         {
           createNodeMock: () => {
             return document.createElement(`div`);
