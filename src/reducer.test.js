@@ -216,4 +216,60 @@ describe(`Reducer unit- suit`, () => {
       isServerOnline: false,
     });
   });
+
+  it(`Should sort offers by price from low`, () => {
+    const reducerState = reducer(
+        {
+          city: CITY,
+          apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
+          cityList: [],
+          sortType: SortType.POPULAR,
+        },
+        ActionCreator.changeSortType(SortType.PRICE_LOW)
+    );
+
+    const priceArray = APARTMENTS
+      .filter((x) => x.cityId === CITY.id)
+      .map((x) => x.price);
+    const expectedFirstPrice = Math.min(...priceArray);
+
+    expect(reducerState.apartmentList[0].price).toEqual(expectedFirstPrice);
+  });
+
+  it(`Should sort offers by price from high`, () => {
+    const reducerState = reducer(
+        {
+          city: CITY,
+          apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
+          cityList: [],
+          sortType: SortType.POPULAR,
+        },
+        ActionCreator.changeSortType(SortType.PRICE_HIGH)
+    );
+
+    const priceArray = APARTMENTS
+      .filter((x) => x.cityId === CITY.id)
+      .map((x) => x.price);
+    const expectedFirstPrice = Math.max(...priceArray);
+
+    expect(reducerState.apartmentList[0].price).toEqual(expectedFirstPrice);
+  });
+
+  it(`Should sort offers by rating`, () => {
+    const reducerState = reducer(
+        {
+          city: CITY,
+          apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
+          cityList: [],
+          sortType: SortType.POPULAR,
+        },
+        ActionCreator.changeSortType(SortType.TOP_RATED)
+    );
+
+    const ratingArray = APARTMENTS
+      .filter((x) => x.cityId === CITY.id)
+      .map((x) => x.rating);
+    const expectedTopRating = Math.max(...ratingArray);
+    expect(reducerState.apartmentList[0].rating).toEqual(expectedTopRating);
+  });
 });
