@@ -10,11 +10,13 @@ const initialState = {
   cityList: CitiesMock,
   apartmentList: ApartmentContentMock.filter((x) => x.cityId === DEFAULT_CITY_ID),
   sortType: SortType.POPULAR,
+  isServerOnline: true,
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
+  UPDATE_SERVER_STATUS: `UPDATE_SERVER_STATUS`,
 };
 
 const ActionCreator = {
@@ -28,6 +30,12 @@ const ActionCreator = {
     return {
       type: ActionType.CHANGE_SORT_TYPE,
       payload: selectedType,
+    };
+  },
+  updateServerStatus: (newStatus) => {
+    return {
+      type: ActionType.UPDATE_SERVER_STATUS,
+      payload: newStatus,
     };
   },
 };
@@ -59,6 +67,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         sortType: action.payload,
         apartmentList: filterPlaces(state.apartmentList, action.payload),
+      });
+    case ActionType.UPDATE_SERVER_STATUS:
+      return extend(state, {
+        isServerOnline: action.payload,
       });
   }
 

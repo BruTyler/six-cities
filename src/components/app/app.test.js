@@ -60,6 +60,7 @@ describe(`<App /> render suit`, () => {
             apartmentList={APARTMENTS}
             onCityTitleClick={EMPTY_HANDLER}
             onItemSelect={EMPTY_HANDLER}
+            isServerOnline={true}
           />
         </Provider>,
         {

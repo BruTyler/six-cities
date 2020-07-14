@@ -21,8 +21,7 @@ exports[`<MainEmpty /> render suit <MainEmpty /> render special empty screen 1`]
         <p
           className="cities__status-description"
         >
-          We could not find any property availbale at the moment in 
-          C
+          We could not find any property availbale at the moment in C
         </p>
       </div>
     </section>

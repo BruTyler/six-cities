@@ -21,7 +21,10 @@ const MainScreen = (props) => {
         />
       </div>
       {apartmentList.length === 0 ?
-        <MainEmpty activeCity={activeCity}/> :
+        <MainEmpty
+          detailMessage={`We could not find any property availbale at the moment in ${activeCity.title}`}
+        />
+        :
         <MainOffers
           activeCity={activeCity}
           cityList={cityList}

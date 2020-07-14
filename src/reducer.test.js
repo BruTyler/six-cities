@@ -119,6 +119,7 @@ const APARTMENTS = [
       isSuper: false,
     },
     location: [52.3809553943508, 4.939309666406198],
+    reviews: []
   },
 ];
 
@@ -129,12 +130,90 @@ describe(`Reducer unit- suit`, () => {
       apartmentList: [],
       cityList: [],
       sortType: SortType.POPULAR,
+      isServerOnline: true,
     }, ActionCreator.changeCity(CITY_ID))
     ).toEqual({
       city: CITY,
       apartmentList: APARTMENTS,
       cityList: [],
       sortType: SortType.POPULAR,
+      isServerOnline: true,
+    });
+  });
+
+  it(`Should sort offers by price from low`, () => {
+    const reducerState = reducer(
+        {
+          city: CITY,
+          apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
+          cityList: [],
+          sortType: SortType.POPULAR,
+          isServerOnline: true,
+        },
+        ActionCreator.changeSortType(SortType.PRICE_LOW)
+    );
+
+    const priceArray = APARTMENTS
+      .filter((x) => x.cityId === CITY.id)
+      .map((x) => x.price);
+    const expectedFirstPrice = Math.min(...priceArray);
+
+    expect(reducerState.apartmentList[0].price).toEqual(expectedFirstPrice);
+  });
+
+  it(`Should sort offers by price from high`, () => {
+    const reducerState = reducer(
+        {
+          city: CITY,
+          apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
+          cityList: [],
+          sortType: SortType.POPULAR,
+          isServerOnline: true,
+        },
+        ActionCreator.changeSortType(SortType.PRICE_HIGH)
+    );
+
+    const priceArray = APARTMENTS
+      .filter((x) => x.cityId === CITY.id)
+      .map((x) => x.price);
+    const expectedFirstPrice = Math.max(...priceArray);
+
+    expect(reducerState.apartmentList[0].price).toEqual(expectedFirstPrice);
+  });
+
+  it(`Should sort offers by rating`, () => {
+    const reducerState = reducer(
+        {
+          city: CITY,
+          apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
+          cityList: [],
+          sortType: SortType.POPULAR,
+          isServerOnline: true,
+        },
+        ActionCreator.changeSortType(SortType.TOP_RATED)
+    );
+
+    const ratingArray = APARTMENTS
+      .filter((x) => x.cityId === CITY.id)
+      .map((x) => x.rating);
+    const expectedTopRating = Math.max(...ratingArray);
+    expect(reducerState.apartmentList[0].rating).toEqual(expectedTopRating);
+  });
+
+  it(`Should change server status`, () => {
+    expect(reducer({
+      city: null,
+      apartmentList: [],
+      cityList: [],
+      sortType: SortType.POPULAR,
+      isServerOnline: true,
+    }, ActionCreator.updateServerStatus(false))
+    ).toEqual({
+      city: null,
+      apartmentList: [],
+      cityList: [],
+      sortType: SortType.POPULAR,
+      isServerOnline: false,
     });
   });
 
