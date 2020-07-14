@@ -13,6 +13,7 @@ const SINGLE_APARTMENT = {
   id: 1,
   type: `Private room`,
   description: `description1`,
+  fullDescription: `full description1`,
   rating: 1,
   price: 2,
   isPremium: false,

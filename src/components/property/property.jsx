@@ -8,7 +8,7 @@ import ApartmentList from '../apartment-list/apartment-list.jsx';
 const Property = (props) => {
   const {apartment: currentApartment, neighboorApartmentList, city, onApartmentTitleClick} = props;
   const {
-    type, description, rating, price, isPremium, isFavourite,
+    type, description, fullDescription, rating, price, isPremium, isFavourite,
     photoSet, bedrooms, adultsMax, goods, host, reviews
   } = currentApartment;
   const percentageRating = Math.round(Math.round(rating) / 5 * 100);
@@ -86,10 +86,7 @@ const Property = (props) => {
             </div>
             <div className="property__description">
               <p className="property__text">
-              A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-              </p>
-              <p className="property__text">
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                {fullDescription}
               </p>
             </div>
           </div>
@@ -124,6 +121,7 @@ Property.propTypes = {
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
     description: PropTypes.string.isRequired,
+    fullDescription: PropTypes.string,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
