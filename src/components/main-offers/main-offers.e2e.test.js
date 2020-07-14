@@ -1,6 +1,9 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {MainOffers} from './main-offers.jsx';
+import configureStore from 'redux-mock-store';
+import {SortType} from '../../const.js';
+import {Provider} from 'react-redux';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -34,19 +37,27 @@ const APARTMENTS = [
   }
 ];
 
+const mockStore = configureStore([]);
+
 describe(`<MainOffers /> e2e suite`, () => {
   it(`<MainOffers /> Apartment title is pressed`, () => {
+    const store = mockStore({
+      apartmentList: APARTMENTS,
+      sortType: SortType.POPULAR,
+    });
     const onApartmentTitleMock = jest.fn();
 
     const mainOffersWrapper = mount(
-        <MainOffers
-          activeCity={CITY}
-          cityList={[CITY]}
-          apartmentList={APARTMENTS}
-          onApartmentTitleClick={onApartmentTitleMock}
-          onCityTitleClick={EMPTY_HANDLER}
-          onItemSelect={EMPTY_HANDLER}
-        />
+        <Provider store={store}>
+          <MainOffers
+            activeCity={CITY}
+            cityList={[CITY]}
+            apartmentList={APARTMENTS}
+            onApartmentTitleClick={onApartmentTitleMock}
+            onCityTitleClick={EMPTY_HANDLER}
+            onItemSelect={EMPTY_HANDLER}
+          />
+        </Provider>
     );
 
     const apartmentButtons = mainOffersWrapper.find(`.place-card__name > a`);

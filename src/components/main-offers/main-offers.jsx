@@ -5,7 +5,6 @@ import ApartmentList from '../apartment-list/apartment-list.jsx';
 import Map from '../map/map.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import PlaceSorter from '../place-sorter/place-sorter.jsx';
-import {SortType} from '../../const.js';
 
 const MainOffers = (props) => {
   const {activeCity, apartmentList, onApartmentTitleClick,

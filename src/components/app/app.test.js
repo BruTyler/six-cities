@@ -1,6 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from './app.jsx';
+import configureStore from 'redux-mock-store';
+import {SortType} from '../../const.js';
+import {Provider} from 'react-redux';
 
 const EMPTY_HANDLER = () => {};
 const CITIES = [
@@ -40,16 +43,25 @@ const APARTMENTS = [
     location: [1, 2],
   },
 ];
+const mockStore = configureStore([]);
 
 describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
+    const store = mockStore({
+      apartmentList: APARTMENTS,
+      sortType: SortType.POPULAR,
+    });
+
     const generatedTree = renderer.create(
-        <App
-          cityList={CITIES}
-          activeCity={CITIES[0]}
-          apartmentList={APARTMENTS}
-          onCityTitleClick={EMPTY_HANDLER}
-        />,
+        <Provider store={store}>
+          <App
+            cityList={CITIES}
+            activeCity={CITIES[0]}
+            apartmentList={APARTMENTS}
+            onCityTitleClick={EMPTY_HANDLER}
+            onItemSelect={EMPTY_HANDLER}
+          />
+        </Provider>,
         {
           createNodeMock: () => {
             return document.createElement(`div`);
