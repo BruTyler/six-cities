@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Main from './main.jsx';
+import {MainOffers} from './main-offers.jsx';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -34,25 +34,26 @@ const APARTMENTS = [
   }
 ];
 
-describe(`<Main /> e2e suite`, () => {
-  it(`<Main /> Apartment title is pressed`, () => {
-    const onApartmentTitleHandler = jest.fn();
+describe(`<MainOffers /> e2e suite`, () => {
+  it(`<MainOffers /> Apartment title is pressed`, () => {
+    const onApartmentTitleMock = jest.fn();
 
-    const mainWrapper = mount(
-        <Main
+    const mainOffersWrapper = mount(
+        <MainOffers
           activeCity={CITY}
           cityList={[CITY]}
           apartmentList={APARTMENTS}
-          onApartmentTitleClick={onApartmentTitleHandler}
+          onApartmentTitleClick={onApartmentTitleMock}
           onCityTitleClick={EMPTY_HANDLER}
+          onItemSelect={EMPTY_HANDLER}
         />
     );
 
-    const apartmentButtons = mainWrapper.find(`.place-card__name > a`);
+    const apartmentButtons = mainOffersWrapper.find(`.place-card__name > a`);
     const eventMock = {preventDefault() {}};
     apartmentButtons.at(0).simulate(`click`, eventMock);
 
     expect(apartmentButtons.length).toBe(2);
-    expect(onApartmentTitleHandler.mock.calls.length).toBe(1);
+    expect(onApartmentTitleMock.mock.calls.length).toBe(1);
   });
 });

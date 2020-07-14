@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import CityList from './city-list.jsx';
+import {CityList} from './city-list.jsx';
 
 const EMPTY_HANDLER = () => {};
 const CITIES = [
@@ -23,8 +23,8 @@ describe(`<CityList /> render suit`, () => {
     const generatedTree = renderer.create(
         <CityList
           cityList={CITIES}
-          activeCity={CITIES[0]}
-          onCityTitleClick={EMPTY_HANDLER}
+          activeItem={CITIES[0]}
+          onItemSelect={EMPTY_HANDLER}
         />
     ).toJSON();
 
