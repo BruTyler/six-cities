@@ -17,10 +17,7 @@ const MainOffers = (props) => {
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{apartmentList.length} places to stay in {activeCity.title}</b>
-        <PlaceSorter
-          selectedSortType={SortType.POPULAR}
-          activeItem={false}
-        />
+        <PlaceSorter activeItem={false}/>
         <ApartmentList
           className="cities"
           apartmentList={apartmentList}

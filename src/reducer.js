@@ -40,7 +40,7 @@ const filterPlaces = (oldPlaces, sortType) => {
     case SortType.PRICE_HIGH:
       return places.sort((a, b) => b.price - a.price);
     case SortType.TOP_RATED:
-      return places.sort((a, b) => Number(b.rating) - Number(a.rating));
+      return places.sort((a, b) => b.rating - a.rating);
     default:
       return places.sort((a, b) => a.id - b.id);
   }
