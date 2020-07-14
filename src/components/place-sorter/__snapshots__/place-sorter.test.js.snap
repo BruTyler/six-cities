@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlaceSorter /> render suit <PlaceSorter /> without HOC render sorter 1`] = `
+<form
+  action="#"
+  className="places__sorting"
+  method="get"
+>
+  <span
+    className="places__sorting-caption"
+  >
+    Sort by
+  </span>
+  <span
+    className="places__sorting-type"
+    onClick={[Function]}
+    tabIndex="0"
+  >
+    Popular
+    <svg
+      className="places__sorting-arrow"
+      height="4"
+      width="7"
+    >
+      <use
+        xlinkHref="#icon-arrow-select"
+      />
+    </svg>
+  </span>
+  <ul
+    className="places__options places__options--custom"
+  >
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Popular
+    </li>
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Price: low to high
+    </li>
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Price: high to low
+    </li>
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Top rated first
+    </li>
+  </ul>
+</form>
+`;
+
+exports[`<PlaceSorter /> render suit <PlaceSorter /> wrapped by HOC withActiveItem render sorter 1`] = `
+<form
+  action="#"
+  className="places__sorting"
+  method="get"
+>
+  <span
+    className="places__sorting-caption"
+  >
+    Sort by
+  </span>
+  <span
+    className="places__sorting-type"
+    onClick={[Function]}
+    tabIndex="0"
+  >
+    Popular
+    <svg
+      className="places__sorting-arrow"
+      height="4"
+      width="7"
+    >
+      <use
+        xlinkHref="#icon-arrow-select"
+      />
+    </svg>
+  </span>
+  <ul
+    className="places__options places__options--custom"
+  >
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Popular
+    </li>
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Price: low to high
+    </li>
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Price: high to low
+    </li>
+    <li
+      className="places__option"
+      tabIndex="0"
+    >
+      Top rated first
+    </li>
+  </ul>
+</form>
+`;
