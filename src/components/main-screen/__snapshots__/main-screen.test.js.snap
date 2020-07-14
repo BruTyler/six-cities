@@ -505,8 +505,7 @@ exports[`<MainScreen /> render suit <MainScreen /> render zero apartment message
             <p
               className="cities__status-description"
             >
-              We could not find any property availbale at the moment in 
-              Amsterdam
+              We could not find any property availbale at the moment in Amsterdam
             </p>
           </div>
         </section>

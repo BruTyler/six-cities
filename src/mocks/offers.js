@@ -108,6 +108,7 @@ export default [
       isSuper: false,
     },
     location: [52.3809553943508, 4.939309666406198],
+    reviews: [],
   },
   {
     id: 5,

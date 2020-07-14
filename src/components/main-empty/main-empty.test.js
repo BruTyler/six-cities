@@ -10,7 +10,7 @@ describe(`<MainEmpty /> render suit`, () => {
   it(`<MainEmpty /> render special empty screen`, () => {
     const generatedTree = renderer.create(
         <MainEmpty
-          activeCity={CITY}
+          detailMessage={`We could not find any property availbale at the moment in ${CITY.title}`}
         />
     ).toJSON();
 

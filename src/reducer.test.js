@@ -119,6 +119,7 @@ const APARTMENTS = [
       isSuper: false,
     },
     location: [52.3809553943508, 4.939309666406198],
+    reviews: []
   },
 ];
 
@@ -129,12 +130,14 @@ describe(`Reducer unit- suit`, () => {
       apartmentList: [],
       cityList: [],
       sortType: SortType.POPULAR,
+      isServerOnline: true,
     }, ActionCreator.changeCity(CITY_ID))
     ).toEqual({
       city: CITY,
       apartmentList: APARTMENTS,
       cityList: [],
       sortType: SortType.POPULAR,
+      isServerOnline: true,
     });
   });
 
@@ -145,6 +148,7 @@ describe(`Reducer unit- suit`, () => {
           apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
           cityList: [],
           sortType: SortType.POPULAR,
+          isServerOnline: true,
         },
         ActionCreator.changeSortType(SortType.PRICE_LOW)
     );
@@ -164,6 +168,7 @@ describe(`Reducer unit- suit`, () => {
           apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
           cityList: [],
           sortType: SortType.POPULAR,
+          isServerOnline: true,
         },
         ActionCreator.changeSortType(SortType.PRICE_HIGH)
     );
@@ -183,6 +188,7 @@ describe(`Reducer unit- suit`, () => {
           apartmentList: APARTMENTS.filter((x) => x.cityId === CITY.id),
           cityList: [],
           sortType: SortType.POPULAR,
+          isServerOnline: true,
         },
         ActionCreator.changeSortType(SortType.TOP_RATED)
     );
@@ -192,5 +198,22 @@ describe(`Reducer unit- suit`, () => {
       .map((x) => x.rating);
     const expectedTopRating = Math.max(...ratingArray);
     expect(reducerState.apartmentList[0].rating).toEqual(expectedTopRating);
+  });
+
+  it(`Should change server status`, () => {
+    expect(reducer({
+      city: null,
+      apartmentList: [],
+      cityList: [],
+      sortType: SortType.POPULAR,
+      isServerOnline: true,
+    }, ActionCreator.updateServerStatus(false))
+    ).toEqual({
+      city: null,
+      apartmentList: [],
+      cityList: [],
+      sortType: SortType.POPULAR,
+      isServerOnline: false,
+    });
   });
 });
