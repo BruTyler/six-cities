@@ -7,14 +7,19 @@ import {ActionCreator} from '../../reducer.js';
 import MainScreen from './../main-screen/main-screen.jsx';
 import Property from '../property/property.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import OfflineScreen from '../offline-screen/offline-screen.jsx';
 
 class App extends PureComponent {
 
   _renderScreen() {
-    const {apartmentList, cityList, activeCity, onCityTitleClick,
+    const {apartmentList, cityList, activeCity, onCityTitleClick, isServerOnline,
       activeItem: clickedProperty,
       onItemSelect: onApartmentTitleClick
     } = this.props;
+
+    if (!isServerOnline) {
+      return <OfflineScreen />;
+    }
 
     if (clickedProperty) {
       return <Property
@@ -41,6 +46,11 @@ class App extends PureComponent {
           {this._renderScreen()}
         </Route>
       </Switch>
+      <Switch>
+        <Route exact path="/offline">
+          <OfflineScreen />
+        </Route>
+      </Switch>
     </BrowserRouter>;
   }
 }
@@ -52,6 +62,7 @@ App.propTypes = {
   onCityTitleClick: PropTypes.func.isRequired,
   activeItem: PropTypes.shape(),
   onItemSelect: PropTypes.func.isRequired,
+  isServerOnline: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -59,6 +70,7 @@ const mapStateToProps = (state) => {
     apartmentList: state.apartmentList,
     cityList: state.cityList,
     activeCity: state.city,
+    isServerOnline: state.isServerOnline,
   };
 };
 
