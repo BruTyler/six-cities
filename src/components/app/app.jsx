@@ -12,12 +12,12 @@ import OfflineScreen from '../offline-screen/offline-screen.jsx';
 class App extends PureComponent {
 
   _renderScreen() {
-    const {apartmentList, cityList, activeCity, onCityTitleClick, isServerOnline,
+    const {apartmentList, cityList, activeCity, onCityTitleClick,
       activeItem: clickedProperty,
       onItemSelect: onApartmentTitleClick
     } = this.props;
 
-    if (!isServerOnline) {
+    if (cityList === undefined || cityList.length === 0) {
       return <OfflineScreen />;
     }
 
@@ -62,15 +62,13 @@ App.propTypes = {
   onCityTitleClick: PropTypes.func.isRequired,
   activeItem: PropTypes.shape(),
   onItemSelect: PropTypes.func.isRequired,
-  isServerOnline: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    apartmentList: state.apartmentList,
+    apartmentList: state.filteredApartmentList,
     cityList: state.cityList,
     activeCity: state.city,
-    isServerOnline: state.isServerOnline,
   };
 };
 

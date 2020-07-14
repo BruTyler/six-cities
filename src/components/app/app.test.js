@@ -46,7 +46,7 @@ const mockStore = configureStore([]);
 describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
     const store = mockStore({
-      apartmentList: APARTMENTS,
+      filteredApartmentList: APARTMENTS,
       sortType: SortType.POPULAR,
     });
 
@@ -58,7 +58,6 @@ describe(`<App /> render suit`, () => {
             apartmentList={APARTMENTS}
             onCityTitleClick={EMPTY_HANDLER}
             onItemSelect={EMPTY_HANDLER}
-            isServerOnline={true}
           />
         </Provider>,
         {
