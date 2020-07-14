@@ -3,7 +3,7 @@ import ApartmentContentMock from './mocks/offers.js';
 import {extend, getItemById} from './utils.js';
 import {SortType} from './const.js';
 
-const DEFAULT_CITY_ID = 0;
+const DEFAULT_CITY_ID = `Amsterdam`;
 
 const initialState = {
   city: getItemById(CitiesMock, DEFAULT_CITY_ID),

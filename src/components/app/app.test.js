@@ -8,14 +8,12 @@ import {Provider} from 'react-redux';
 const EMPTY_HANDLER = () => {};
 const CITIES = [
   {
-    id: 0,
-    title: `A`,
+    id: `A`,
     location: [1, 2],
     defaultZoom: 1
   },
   {
-    id: 1,
-    title: `B`,
+    id: `B`,
     location: [3, 4],
     defaultZoom: 2
   },

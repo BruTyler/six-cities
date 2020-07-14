@@ -4,8 +4,7 @@ import Property from './property.jsx';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
-  id: 0,
-  title: `Amsterdam`,
+  id: `Amsterdam`,
   location: [1, 1],
   defaultZoom: 1,
 };

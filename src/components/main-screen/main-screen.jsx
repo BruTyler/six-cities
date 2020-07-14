@@ -22,7 +22,7 @@ const MainScreen = (props) => {
       </div>
       {apartmentList.length === 0 ?
         <MainEmpty
-          detailMessage={`We could not find any property availbale at the moment in ${activeCity.title}`}
+          detailMessage={`We could not find any property availbale at the moment in ${activeCity.id}`}
         />
         :
         <MainOffers
@@ -38,13 +38,11 @@ const MainScreen = (props) => {
 
 MainScreen.propTypes = {
   activeCity: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   cityList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   })).isRequired,
   onApartmentTitleClick: PropTypes.func.isRequired,
   onCityTitleClick: PropTypes.func.isRequired,

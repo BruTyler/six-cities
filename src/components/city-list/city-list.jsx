@@ -12,7 +12,7 @@ const CityList = (props) => {
           <a className={`locations__item-link tabs__item${item.id === activeCity.id ? ` tabs__item--active` : ``}`}
             href="#"
             onClick={() => onCityTitleClick(item)}>
-            <span>{item.title}</span>
+            <span>{item.id}</span>
           </a>
         </li>;
       })}
@@ -22,11 +22,10 @@ const CityList = (props) => {
 
 CityList.propTypes = {
   activeItem: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
   cityList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   })).isRequired,
   onItemSelect: PropTypes.func.isRequired,
 };

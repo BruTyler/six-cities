@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Apartment`,
     description: `Beautiful & luxurious apartment at great location`,
     rating: 4.1,
@@ -38,7 +38,7 @@ export default [
   },
   {
     id: 2,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Apartment`,
     description: `Canal View Prinsengracht`,
     rating: 3.7,
@@ -63,7 +63,7 @@ export default [
   },
   {
     id: 3,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Private room`,
     description: `Wood and stone place`,
     rating: 5,
@@ -88,7 +88,7 @@ export default [
   },
   {
     id: 4,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Apartment`,
     description: `Nice, cozy, warm big bed apartment`,
     rating: 4.7,
@@ -112,7 +112,7 @@ export default [
   },
   {
     id: 5,
-    cityId: 1,
+    cityId: `Cologne`,
     type: `Apartment`,
     description: `Best basement`,
     rating: 5.0,

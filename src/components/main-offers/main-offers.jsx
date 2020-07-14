@@ -15,7 +15,7 @@ const MainOffers = (props) => {
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{apartmentList.length} places to stay in {activeCity.title}</b>
+        <b className="places__found">{apartmentList.length} places to stay in {activeCity.id}</b>
         <PlaceSorter activeItem={false}/>
         <ApartmentList
           className="cities"
@@ -38,7 +38,7 @@ const MainOffers = (props) => {
 
 MainOffers.propTypes = {
   activeCity: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   onApartmentTitleClick: PropTypes.func.isRequired,

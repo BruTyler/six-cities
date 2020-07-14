@@ -1,10 +1,9 @@
 import {reducer, ActionCreator} from "./reducer.js";
 import {SortType} from "./const.js";
 
-const CITY_ID = 0;
+const CITY_ID = `Amsterdam`;
 const CITY = {
-  id: 0,
-  title: `Amsterdam`,
+  id: `Amsterdam`,
   location: [52.38333, 4.9],
   defaultZoom: 12
 };
@@ -12,7 +11,7 @@ const CITY = {
 const APARTMENTS = [
   {
     id: 1,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Apartment`,
     description: `Beautiful & luxurious apartment at great location`,
     rating: 4.1,
@@ -49,7 +48,7 @@ const APARTMENTS = [
   },
   {
     id: 2,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Apartment`,
     description: `Canal View Prinsengracht`,
     rating: 3.7,
@@ -74,7 +73,7 @@ const APARTMENTS = [
   },
   {
     id: 3,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Private room`,
     description: `Wood and stone place`,
     rating: 5,
@@ -99,7 +98,7 @@ const APARTMENTS = [
   },
   {
     id: 4,
-    cityId: 0,
+    cityId: `Amsterdam`,
     type: `Apartment`,
     description: `Nice, cozy, warm big bed apartment`,
     rating: 4.7,

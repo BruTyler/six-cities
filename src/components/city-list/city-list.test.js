@@ -5,14 +5,12 @@ import {CityList} from './city-list.jsx';
 const EMPTY_HANDLER = () => {};
 const CITIES = [
   {
-    id: 0,
-    title: `A`,
+    id: `A`,
     location: [1, 2],
     defaultZoom: 12
   },
   {
-    id: 1,
-    title: `C`,
+    id: `C`,
     location: [2, 3],
     defaultZoom: 12
   },

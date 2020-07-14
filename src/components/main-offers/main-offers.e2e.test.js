@@ -7,8 +7,7 @@ import {Provider} from 'react-redux';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
-  id: 0,
-  title: `Amsterdam`,
+  id: `Amsterdam`,
   location: [1, 1],
   defaultZoom: 1,
 };
