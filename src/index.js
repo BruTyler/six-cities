@@ -5,13 +5,13 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
 import App from './components/app/app.jsx';
-import {reducer} from './reducer.js';
+import reducer from './reducer/reducer.js';
 import {createAPI} from './api.js';
+import {Operation} from './reducer/data/data.js';
 
 const onUnauthorized = () => {};
-const onServerError = () => {};
 
-const api = createAPI(onUnauthorized, onServerError);
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -30,4 +30,6 @@ const init = () => {
   );
 };
 
-init();
+store.dispatch(Operation.loadCitiesWithApartments())
+  .then(() => init())
+  .catch(() => init());

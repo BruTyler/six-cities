@@ -7,5 +7,6 @@ export const createReview = (fetchedData) => {
     rating: comment.rating,
     opinion: comment.comment,
     publishDate: comment.date,
+    publishSec: new Date(comment.date).getTime()
   };
 };

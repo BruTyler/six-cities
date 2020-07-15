@@ -2,7 +2,8 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import ReviewItem from '../review-item/review-item.jsx';
 import {connect} from 'react-redux';
-import {Operation} from '../../reducer.js';
+import {Operation} from '../../reducer/data/data.js';
+import {getReviews} from '../../reducer/data/selectors.js';
 
 class ReviewList extends PureComponent {
   constructor(props) {
@@ -96,7 +97,7 @@ ReviewList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    reviewList: state.reviewList,
+    reviewList: getReviews(state),
   };
 };
 

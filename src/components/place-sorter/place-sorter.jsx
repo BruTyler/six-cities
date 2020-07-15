@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 
 import {SortType} from '../../const.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducer/application/application.js';
+import {getSortType} from '../../reducer/application/selectors.js';
 
 const PlaceSorter = (props) => {
   const {selectedSortValue, handleSorterItemClick,
@@ -50,7 +51,7 @@ PlaceSorter.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    selectedSortValue: state.sortType,
+    selectedSortValue: getSortType(state),
   };
 };
 

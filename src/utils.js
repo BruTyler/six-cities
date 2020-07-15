@@ -18,3 +18,13 @@ export const getShortDate = (objDate) => {
   }
   return `${objDate.getFullYear()}-${month}-${objDate.getDate()}`;
 };
+
+export const comparator = (a, b, propKey) => {
+  if (a[propKey] < b[propKey]) {
+    return -1;
+  }
+  if (a[propKey] > b[propKey]) {
+    return 1;
+  }
+  return 0;
+};
