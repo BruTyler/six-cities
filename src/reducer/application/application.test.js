@@ -1,13 +1,13 @@
 import {reducer, ActionCreator} from "./application.js";
-import {SortType} from "./const.js";
+import {SortType} from "../../const.js";
 
 describe(`Reducer unit- suit`, () => {
   it(`Should change city`, () => {
     expect(reducer({
-      city: null,
+      cityId: null,
     }, ActionCreator.changeCity(`someCityId`))
     ).toEqual({
-      city: `someCityId`,
+      cityId: `someCityId`,
     });
   });
 

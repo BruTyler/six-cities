@@ -4,6 +4,7 @@ import {App} from './app.jsx';
 import configureStore from 'redux-mock-store';
 import {SortType} from '../../const.js';
 import {Provider} from 'react-redux';
+import NameSpace from '../../reducer/name-space.js';
 
 const EMPTY_HANDLER = () => {};
 const CITIES = [
@@ -46,8 +47,12 @@ const mockStore = configureStore();
 describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
     const store = mockStore({
-      filteredApartmentList: APARTMENTS,
-      sortType: SortType.POPULAR,
+      [NameSpace.DATA]: {
+        apartmentList: APARTMENTS,
+      },
+      [NameSpace.APPLICATION]: {
+        sortType: SortType.POPULAR,
+      },
     });
 
     const generatedTree = renderer.create(
@@ -58,7 +63,7 @@ describe(`<App /> render suit`, () => {
             apartmentList={APARTMENTS}
             onCityTitleClick={EMPTY_HANDLER}
             onItemSelect={EMPTY_HANDLER}
-            handleLoadCitiesWithApartments={EMPTY_HANDLER}
+            handleFirstCityLoad={EMPTY_HANDLER}
           />
         </Provider>,
         {

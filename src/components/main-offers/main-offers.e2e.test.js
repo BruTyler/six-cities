@@ -4,6 +4,7 @@ import {MainOffers} from './main-offers.jsx';
 import configureStore from 'redux-mock-store';
 import {SortType} from '../../const.js';
 import {Provider} from 'react-redux';
+import NameSpace from '../../reducer/name-space.js';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -36,13 +37,19 @@ const APARTMENTS = [
   }
 ];
 
-const mockStore = configureStore([]);
+const mockStore = configureStore();
 
 describe(`<MainOffers /> e2e suite`, () => {
   it(`<MainOffers /> Apartment title is pressed`, () => {
     const store = mockStore({
-      apartmentList: APARTMENTS,
-      sortType: SortType.POPULAR,
+      [NameSpace.DATA]: {
+        apartmentList: APARTMENTS,
+        cityList: [CITY],
+      },
+      [NameSpace.APPLICATION]: {
+        sortType: SortType.POPULAR,
+        cityId: CITY.id,
+      },
     });
     const onApartmentTitleMock = jest.fn();
 

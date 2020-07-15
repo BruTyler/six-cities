@@ -17,9 +17,9 @@ class App extends PureComponent {
   }
 
   _init() {
-    const {handleFirstCity, cityList} = this.props;
+    const {handleFirstCityLoad, cityList} = this.props;
     if (cityList && cityList.length > 0) {
-      handleFirstCity(cityList[0]);
+      handleFirstCityLoad(cityList[0]);
     }
   }
 
@@ -74,7 +74,7 @@ App.propTypes = {
   onCityTitleClick: PropTypes.func.isRequired,
   activeItem: PropTypes.shape(),
   onItemSelect: PropTypes.func.isRequired,
-  handleFirstCity: PropTypes.func.isRequired,
+  handleFirstCityLoad: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch) => ({
   onCityTitleClick(city) {
     dispatch(ActionCreator.changeCity(city.id));
   },
-  handleFirstCity(city) {
+  handleFirstCityLoad(city) {
     dispatch(ActionCreator.changeCity(city.id));
   },
 });
