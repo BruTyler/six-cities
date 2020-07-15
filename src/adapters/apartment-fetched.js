@@ -1,9 +1,13 @@
 export const createApartment = (fetchedData) => {
   const hotel = fetchedData;
+  const fixedType = hotel.type === `room`
+    ? `Private ${hotel.type}`
+    : hotel.type.substring(0, 1).toUpperCase() + hotel.type.substring(1);
+
   return {
     id: hotel.id,
     cityId: hotel.city.name,
-    type: hotel.type.substring(0, 1).toUpperCase() + hotel.type.substring(1),
+    type: fixedType,
     description: hotel.title,
     fullDescription: hotel.description,
     rating: hotel.rating,
@@ -22,8 +26,8 @@ export const createApartment = (fetchedData) => {
       isSuper: hotel.host.is_pro,
     },
     location: [
-      hotel.host.latitude,
-      hotel.host.longitude,
+      hotel.location.latitude,
+      hotel.location.longitude,
     ],
   };
 };

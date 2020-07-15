@@ -4,7 +4,8 @@ export const createCity = (fetchedData) => {
     id: city.name,
     location: [
       city.location.latitude,
-      city.location.longitude],
+      city.location.longitude
+    ],
     defaultZoom: city.location.zoom,
   };
 };

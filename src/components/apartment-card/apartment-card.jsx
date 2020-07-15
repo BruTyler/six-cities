@@ -58,7 +58,7 @@ ApartmentCard.propTypes = {
   className: PropTypes.string.isRequired,
   apartment: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([PlaceType.APARTMENT, PlaceType.ROOM]).isRequired,
+    type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,

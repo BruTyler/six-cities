@@ -1,6 +1,6 @@
 import {createApartment} from './apartment-fetched.js';
 import {createCity} from './city-fetched.js';
-import {createReview} from './city-fetched.js';
+import {createReview} from './review-fetched.js';
 
 export const transformToCities = (fetchedData) => {
   const cities = [];

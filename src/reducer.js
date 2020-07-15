@@ -60,6 +60,7 @@ const Operation = {
         dispatch(ActionCreator.loadCities(cities));
         const apartments = transformToApartments(response.data);
         dispatch(ActionCreator.loadApartments(apartments));
+        dispatch(ActionCreator.changeCity(cities[0].id));
       });
   },
   loadReviews: () => (dispatch, getState, api) => {
@@ -101,8 +102,8 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.LOAD_CITIES:
       return extend(state, {
-        cities: action.payload,
-        cityList: action.payload[0]
+        cityList: action.payload,
+        city: action.payload[0],
       });
     case ActionType.LOAD_APARTMENTS:
       return extend(state, {

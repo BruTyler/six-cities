@@ -30,7 +30,7 @@ const APARTMENTS = [
   {
     id: 3,
     cityId: `Amsterdam`,
-    type: `Private room`,
+    type: `Room`,
     description: `Wood and stone place`,
     rating: 5,
     price: 132.0,

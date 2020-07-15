@@ -41,7 +41,7 @@ const APARTMENTS = [
     location: [1, 2],
   },
 ];
-const mockStore = configureStore([]);
+const mockStore = configureStore();
 
 describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
@@ -58,6 +58,7 @@ describe(`<App /> render suit`, () => {
             apartmentList={APARTMENTS}
             onCityTitleClick={EMPTY_HANDLER}
             onItemSelect={EMPTY_HANDLER}
+            handleLoadCitiesWithApartments={EMPTY_HANDLER}
           />
         </Provider>,
         {
