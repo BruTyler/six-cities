@@ -8,7 +8,7 @@ const SINGLE_REVIEW = {
   authorAvatar: `img.jpg`,
   rating: 4,
   opinion: `nice`,
-  publishDate: `2011-02-15`,
+  publishDate: `2011-02-15T10:54:44.805Z`,
 };
 
 describe(`<ReviewItem /> render suit`, () => {

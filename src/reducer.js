@@ -63,11 +63,11 @@ const Operation = {
         dispatch(ActionCreator.changeCity(cities[0].id));
       });
   },
-  loadReviews: () => (dispatch, getState, api) => {
-    return api.get(`/comments`)
+  loadReviews: (apartmentId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${apartmentId}`)
       .then((response) => {
         const reviews = transformToReviews(response.data);
-        dispatch(ActionCreator.loadCities(reviews));
+        dispatch(ActionCreator.loadReviews(reviews));
       });
   },
 };

@@ -10,3 +10,11 @@ const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
   `July`, `August`, `September`, `October`, `November`, `December`];
 
 export const getMonthName = (monthNumber) => monthNames[monthNumber];
+
+export const getShortDate = (objDate) => {
+  let month = objDate.getMonth() + 1;
+  if (month < 10) {
+    month = `0` + month;
+  }
+  return `${objDate.getFullYear()}-${month}-${objDate.getDate()}`;
+};

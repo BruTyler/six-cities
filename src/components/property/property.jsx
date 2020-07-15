@@ -9,7 +9,7 @@ const Property = (props) => {
   const {apartment: currentApartment, neighboorApartmentList, city, onApartmentTitleClick} = props;
   const {
     type, description, fullDescription, rating, price, isPremium, isFavourite,
-    photoSet, bedrooms, adultsMax, goods, host, reviews
+    photoSet, bedrooms, adultsMax, goods, host
   } = currentApartment;
   const percentageRating = Math.round(Math.round(rating) / 5 * 100);
   const apartmentListForMap = [...neighboorApartmentList, currentApartment];
@@ -59,7 +59,7 @@ const Property = (props) => {
               {bedrooms} Bedrooms
             </li>
             <li className="property__feature property__feature--adults">
-            Max {adultsMax} adults
+                Max {adultsMax} adults
             </li>
           </ul>
           <div className="property__price">
@@ -69,7 +69,7 @@ const Property = (props) => {
           <div className="property__inside">
             <h2 className="property__inside-title">What&apos;s inside</h2>
             <ul className="property__inside-list">
-              { goods.map((good) =>
+              {goods.map((good) =>
                 <li className="property__inside-item" key={good}>{good}</li>
               )}
             </ul>
@@ -90,7 +90,7 @@ const Property = (props) => {
               </p>
             </div>
           </div>
-          <ReviewList reviewList={reviews} />
+          <ReviewList apartmentId={currentApartment.id} />
         </div>
       </div>
       <Map
@@ -135,7 +135,6 @@ Property.propTypes = {
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }),
-    reviews: PropTypes.array.isRequired,
   }),
 };
 

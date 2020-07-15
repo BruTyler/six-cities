@@ -16,3 +16,8 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
   AUTH: `AUTH`,
 };
+
+export const BuisnessRequirements = {
+  MAX_PHOTOS_PER_APARTMENT: 6,
+  MAX_REVIEWS_PER_APARTMENT: 10,
+};

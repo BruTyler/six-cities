@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ReviewList from './review-list.jsx';
+import {ReviewList} from './review-list.jsx';
 
+const EMPTY_HANDLER = () => {};
 const REVIEWS = [
   {
     id: 1,
@@ -9,7 +10,7 @@ const REVIEWS = [
     authorAvatar: `img1.jpg`,
     rating: 4,
     opinion: `Ok`,
-    publishDate: `2011-02-17`,
+    publishDate: `2011-02-17T10:54:44.805Z`,
   },
   {
     id: 2,
@@ -17,7 +18,7 @@ const REVIEWS = [
     authorAvatar: `img2.jpg`,
     rating: 5,
     opinion: `Good`,
-    publishDate: `2011-02-15`,
+    publishDate: `2011-02-15T10:54:44.805Z`,
   },
 ];
 
@@ -26,6 +27,8 @@ describe(`<ReviewList /> render suit`, () => {
     const generatedTree = renderer.create(
         <ReviewList
           reviewList={REVIEWS}
+          apartmentId={0}
+          handleLoadReviews={EMPTY_HANDLER}
         />
     ).toJSON();
 
@@ -36,6 +39,8 @@ describe(`<ReviewList /> render suit`, () => {
     const generatedTree = renderer.create(
         <ReviewList
           reviewList={[]}
+          apartmentId={0}
+          handleLoadReviews={EMPTY_HANDLER}
         />
     ).toJSON();
 

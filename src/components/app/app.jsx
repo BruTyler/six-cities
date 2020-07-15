@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleLoadCitiesWithApartments() {
     dispatch(Operation.loadCitiesWithApartments());
-  }
+  },
 });
 
 export {App};
