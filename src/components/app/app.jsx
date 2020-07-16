@@ -11,6 +11,7 @@ import Property from '../property/property.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import OfflineScreen from '../offline-screen/offline-screen.jsx';
 import {Operation} from '../../reducer/data/data.js';
+import AuthScreen from '../auth-screen/auth-screen.jsx';
 
 class App extends PureComponent {
   constructor(props) {
@@ -72,6 +73,11 @@ class App extends PureComponent {
       <Switch>
         <Route exact path="/offline">
           <OfflineScreen />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/login">
+          <AuthScreen />
         </Route>
       </Switch>
     </BrowserRouter>;
