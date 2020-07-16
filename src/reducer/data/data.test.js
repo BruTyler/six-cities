@@ -33,7 +33,9 @@ describe(`Data reducer unit-test`, () => {
       apartmentList: [],
     }, {
       type: ActionType.LOAD_HOTELS,
-      payload: {CitiesMock, ApartmentsMock},
+      payload: {
+        cities: CitiesMock,
+        apartments: ApartmentsMock},
     })).toEqual({
       cityList: CitiesMock,
       apartmentList: ApartmentsMock,

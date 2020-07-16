@@ -64,6 +64,9 @@ describe(`<App /> render suit`, () => {
             onCityTitleClick={EMPTY_HANDLER}
             onItemSelect={EMPTY_HANDLER}
             handleFirstCityLoad={EMPTY_HANDLER}
+            handleFetchingHotels={EMPTY_HANDLER}
+            handleFinishLoading={EMPTY_HANDLER}
+            isLoading={false}
           />
         </Provider>,
         {
