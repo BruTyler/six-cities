@@ -5,10 +5,12 @@ import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../reducer/application/application.js';
 import {getCity, getApartmentList, getCities} from '../../reducer/data/selectors.js';
+import {getLoadingStatus} from '../../reducer/application/selectors.js';
 import MainScreen from './../main-screen/main-screen.jsx';
 import Property from '../property/property.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import OfflineScreen from '../offline-screen/offline-screen.jsx';
+import {Operation} from '../../reducer/data/data.js';
 
 class App extends PureComponent {
   constructor(props) {
@@ -17,19 +19,28 @@ class App extends PureComponent {
   }
 
   _init() {
-    const {handleFirstCityLoad, cityList} = this.props;
-    if (cityList && cityList.length > 0) {
+    const {handleFetchingHotels, handleFinishLoading, isLoading} = this.props;
+    handleFetchingHotels(() => handleFinishLoading(isLoading));
+  }
+
+  componentDidUpdate() {
+    const {handleFirstCityLoad, cityList, handleFinishLoading, isLoading} = this.props;
+    if (isLoading && cityList && cityList.length > 0) {
       handleFirstCityLoad(cityList[0]);
     }
+    handleFinishLoading(isLoading);
   }
 
   _renderScreen() {
-    const {apartmentList, cityList, activeCity, onCityTitleClick,
+    const {apartmentList, cityList, activeCity, onCityTitleClick, isLoading,
       activeItem: clickedProperty,
       onItemSelect: onApartmentTitleClick
     } = this.props;
 
     if (activeCity === undefined || cityList === undefined || cityList.length === 0) {
+      if (isLoading) {
+        return null;
+      }
       return <OfflineScreen />;
     }
 
@@ -75,6 +86,9 @@ App.propTypes = {
   activeItem: PropTypes.shape(),
   onItemSelect: PropTypes.func.isRequired,
   handleFirstCityLoad: PropTypes.func.isRequired,
+  handleFetchingHotels: PropTypes.func.isRequired,
+  handleFinishLoading: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -82,6 +96,7 @@ const mapStateToProps = (state) => {
     apartmentList: getApartmentList(state),
     cityList: getCities(state),
     activeCity: getCity(state),
+    isLoading: getLoadingStatus(state),
   };
 };
 
@@ -92,6 +107,15 @@ const mapDispatchToProps = (dispatch) => ({
   handleFirstCityLoad(city) {
     dispatch(ActionCreator.changeCity(city.id));
   },
+  handleFetchingHotels(onErrorCatch) {
+    dispatch(Operation.loadCitiesWithApartments())
+      .catch(onErrorCatch);
+  },
+  handleFinishLoading(currentLoadingStatus) {
+    if (currentLoadingStatus) {
+      dispatch(ActionCreator.changeLoadingStatus(false));
+    }
+  }
 });
 
 export {App};

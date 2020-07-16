@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 import App from './components/app/app.jsx';
 import reducer from './reducer/reducer.js';
 import {createAPI} from './api.js';
-import {Operation} from './reducer/data/data.js';
 
 const onUnauthorized = () => {};
 
@@ -30,6 +29,4 @@ const init = () => {
   );
 };
 
-store.dispatch(Operation.loadCitiesWithApartments())
-  .then(() => init())
-  .catch(() => init());
+init();

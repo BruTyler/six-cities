@@ -38,10 +38,12 @@ const Operation = {
   loadCitiesWithApartments: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
         .then((response) => {
-          const cities = transformToCities(response.data);
-          dispatch(ActionCreator.loadCities(cities));
-          const apartments = transformToApartments(response.data);
-          dispatch(ActionCreator.loadApartments(apartments));
+          if (response && response.data) {
+            const cities = transformToCities(response.data);
+            dispatch(ActionCreator.loadCities(cities));
+            const apartments = transformToApartments(response.data);
+            dispatch(ActionCreator.loadApartments(apartments));
+          }
         });
   },
   loadReviews: (apartmentId) => (dispatch, getState, api) => {
