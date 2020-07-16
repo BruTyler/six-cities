@@ -4,18 +4,17 @@ import {App} from './app.jsx';
 import configureStore from 'redux-mock-store';
 import {SortType} from '../../const.js';
 import {Provider} from 'react-redux';
+import NameSpace from '../../reducer/name-space.js';
 
 const EMPTY_HANDLER = () => {};
 const CITIES = [
   {
-    id: 0,
-    title: `A`,
+    id: `A`,
     location: [1, 2],
     defaultZoom: 1
   },
   {
-    id: 1,
-    title: `B`,
+    id: `B`,
     location: [3, 4],
     defaultZoom: 2
   },
@@ -43,13 +42,17 @@ const APARTMENTS = [
     location: [1, 2],
   },
 ];
-const mockStore = configureStore([]);
+const mockStore = configureStore();
 
 describe(`<App /> render suit`, () => {
   it(`<App /> render apartment list`, () => {
     const store = mockStore({
-      apartmentList: APARTMENTS,
-      sortType: SortType.POPULAR,
+      [NameSpace.DATA]: {
+        apartmentList: APARTMENTS,
+      },
+      [NameSpace.APPLICATION]: {
+        sortType: SortType.POPULAR,
+      },
     });
 
     const generatedTree = renderer.create(
@@ -60,7 +63,10 @@ describe(`<App /> render suit`, () => {
             apartmentList={APARTMENTS}
             onCityTitleClick={EMPTY_HANDLER}
             onItemSelect={EMPTY_HANDLER}
-            isServerOnline={true}
+            handleFirstCityLoad={EMPTY_HANDLER}
+            handleFetchingHotels={EMPTY_HANDLER}
+            handleFinishLoading={EMPTY_HANDLER}
+            isLoading={false}
           />
         </Provider>,
         {

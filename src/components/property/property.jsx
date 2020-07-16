@@ -8,8 +8,8 @@ import ApartmentList from '../apartment-list/apartment-list.jsx';
 const Property = (props) => {
   const {apartment: currentApartment, neighboorApartmentList, city, onApartmentTitleClick} = props;
   const {
-    type, description, rating, price, isPremium, isFavourite,
-    photoSet, bedrooms, adultsMax, goods, host, reviews
+    type, description, fullDescription, rating, price, isPremium, isFavourite,
+    photoSet, bedrooms, adultsMax, goods, host
   } = currentApartment;
   const percentageRating = Math.round(Math.round(rating) / 5 * 100);
   const apartmentListForMap = [...neighboorApartmentList, currentApartment];
@@ -59,7 +59,7 @@ const Property = (props) => {
               {bedrooms} Bedrooms
             </li>
             <li className="property__feature property__feature--adults">
-            Max {adultsMax} adults
+                Max {adultsMax} adults
             </li>
           </ul>
           <div className="property__price">
@@ -69,7 +69,7 @@ const Property = (props) => {
           <div className="property__inside">
             <h2 className="property__inside-title">What&apos;s inside</h2>
             <ul className="property__inside-list">
-              { goods.map((good) =>
+              {goods.map((good) =>
                 <li className="property__inside-item" key={good}>{good}</li>
               )}
             </ul>
@@ -86,14 +86,11 @@ const Property = (props) => {
             </div>
             <div className="property__description">
               <p className="property__text">
-              A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-              </p>
-              <p className="property__text">
-              An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                {fullDescription}
               </p>
             </div>
           </div>
-          <ReviewList reviewList={reviews} />
+          <ReviewList apartmentId={currentApartment.id} />
         </div>
       </div>
       <Map
@@ -124,6 +121,7 @@ Property.propTypes = {
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
     description: PropTypes.string.isRequired,
+    fullDescription: PropTypes.string,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
@@ -137,7 +135,6 @@ Property.propTypes = {
       name: PropTypes.string.isRequired,
       isSuper: PropTypes.bool.isRequired,
     }),
-    reviews: PropTypes.array.isRequired,
   }),
 };
 
