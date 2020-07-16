@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Header = () => {
+const Header = ({authInfo}) => {
   return <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -15,7 +16,9 @@ const Header = () => {
               <a className="header__nav-link header__nav-link--profile" href="#">
                 <div className="header__avatar-wrapper user__avatar-wrapper">
                 </div>
-                <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                <span className="header__user-name user__name">
+                  {authInfo ? authInfo.email : `Sign In`}
+                </span>
               </a>
             </li>
           </ul>
@@ -24,4 +27,11 @@ const Header = () => {
     </div>
   </header>;
 };
+
+Header.propTypes = {
+  authInfo: PropTypes.shape({
+    email: PropTypes.string.isRequired
+  }),
+};
+
 export default Header;
