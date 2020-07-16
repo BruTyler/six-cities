@@ -1,10 +1,12 @@
 import {reducer, ActionCreator, ActionType} from './user.js';
 import {AuthorizationStatus} from '../../const.js';
+import AuthInfoMock from '../../mocks/authInfo.js';
 
 describe(`User reducer unit-tests`, () => {
   it(`User reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      authInfo: null,
     });
   });
 
@@ -55,6 +57,17 @@ describe(`User reducer unit-tests`, () => {
     expect(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH,
+    });
+  });
+
+  it(`User reducer should set authentication info`, () => {
+    expect(reducer({
+      authInfo: null,
+    }, {
+      type: ActionType.SET_AUTH_INFO,
+      payload: AuthInfoMock,
+    })).toEqual({
+      authInfo: AuthInfoMock,
     });
   });
 });

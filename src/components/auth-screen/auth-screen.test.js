@@ -8,6 +8,7 @@ describe(`<AuthScreen /> render suit`, () => {
     const generatedTree = renderer.create(
         <AuthScreen
           authStatus={AuthorizationStatus.NO_AUTH}
+          onLoginSubmit={()=>{}}
         />
     ).toJSON();
 

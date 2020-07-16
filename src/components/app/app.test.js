@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from './app.jsx';
 import configureStore from 'redux-mock-store';
-import {SortType} from '../../const.js';
+import {SortType, AuthorizationStatus} from '../../const.js';
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space.js';
 
@@ -67,6 +67,8 @@ describe(`<App /> render suit`, () => {
             handleFetchingHotels={EMPTY_HANDLER}
             handleFinishLoading={EMPTY_HANDLER}
             isLoading={false}
+            onLoginSubmit={EMPTY_HANDLER}
+            authStatus={AuthorizationStatus.NO_AUTH}
           />
         </Provider>,
         {
