@@ -8,22 +8,15 @@ const initialState = {
 };
 
 const ActionType = {
-  LOAD_CITIES: `LOAD_CITIES`,
-  LOAD_APARTMENTS: `LOAD_APARTMENTS`,
+  LOAD_HOTELS: `LOAD_HOTELS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
 };
 
 const ActionCreator = {
-  loadCities: (cities) => {
+  loadHotels: (cities, apartments) => {
     return {
-      type: ActionType.LOAD_CITIES,
-      payload: cities,
-    };
-  },
-  loadApartments: (apartments) => {
-    return {
-      type: ActionType.LOAD_APARTMENTS,
-      payload: apartments,
+      type: ActionType.LOAD_HOTELS,
+      payload: {cities, apartments},
     };
   },
   loadReviews: (reviews) => {
@@ -40,9 +33,8 @@ const Operation = {
         .then((response) => {
           if (response && response.data) {
             const cities = transformToCities(response.data);
-            dispatch(ActionCreator.loadCities(cities));
             const apartments = transformToApartments(response.data);
-            dispatch(ActionCreator.loadApartments(apartments));
+            dispatch(ActionCreator.loadHotels(cities, apartments));
           }
         });
   },
@@ -57,13 +49,10 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.LOAD_CITIES:
+    case ActionType.LOAD_HOTELS:
       return extend(state, {
-        cityList: action.payload,
-      });
-    case ActionType.LOAD_APARTMENTS:
-      return extend(state, {
-        apartmentList: action.payload,
+        cityList: action.payload.cities,
+        apartmentList: action.payload.apartments,
       });
     case ActionType.LOAD_REVIEWS:
       return extend(state, {

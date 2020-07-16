@@ -27,24 +27,15 @@ describe(`Data reducer unit-test`, () => {
     });
   });
 
-  it(`Data reducer should load cities`, () => {
+  it(`Data reducer should load hotels`, () => {
     expect(reducer({
       cityList: [],
-    }, {
-      type: ActionType.LOAD_CITIES,
-      payload: CitiesMock,
-    })).toEqual({
-      cityList: CitiesMock,
-    });
-  });
-
-  it(`Data reducer should load apartments`, () => {
-    expect(reducer({
       apartmentList: [],
     }, {
-      type: ActionType.LOAD_APARTMENTS,
-      payload: ApartmentsMock,
+      type: ActionType.LOAD_HOTELS,
+      payload: {CitiesMock, ApartmentsMock},
     })).toEqual({
+      cityList: CitiesMock,
       apartmentList: ApartmentsMock,
     });
   });
@@ -60,7 +51,7 @@ describe(`Data reducer unit-test`, () => {
 
     return hotelLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(1);
       });
   });
 });
