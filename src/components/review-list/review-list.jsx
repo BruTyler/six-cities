@@ -22,7 +22,7 @@ class ReviewList extends PureComponent {
   }
 
   render() {
-    const {reviewList, authStatus, apartmentId} = this.props;
+    const {reviewList, authStatus, apartmentId, handleSendReview} = this.props;
 
     return <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewList.length}</span></h2>
@@ -41,9 +41,7 @@ class ReviewList extends PureComponent {
       { authStatus === AuthorizationStatus.AUTH &&
        <ReviewForm
          apartmentId={apartmentId}
-         onSubmitForm={() => ({
-           success: true
-         })}/>
+         onSubmitForm={handleSendReview}/>
       }
     </section>;
   }
@@ -59,6 +57,7 @@ ReviewList.propTypes = {
   handleLoadReviews: PropTypes.func.isRequired,
   apartmentId: PropTypes.number.isRequired,
   authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
+  handleSendReview: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -71,6 +70,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   handleLoadReviews(apartmentId) {
     dispatch(Operation.loadReviews(apartmentId));
+  },
+  handleSendReview(comment) {
+    return dispatch(Operation.sendReview(comment));
   },
 });
 

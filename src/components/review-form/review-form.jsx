@@ -50,17 +50,19 @@ class ReviewForm extends PureComponent {
     evt.preventDefault();
 
     const comment = this.textRef.current.value;
-    const rating = Number(this.starRefs.find((x) => x.current.checked === true).value);
-    const submitResult = onSubmitForm({comment, rating, apartmentId});
+    const checkedStarRef = this.starRefs.find((x) => x.current.checked === true);
+    const rating = Number(checkedStarRef.current.value);
 
-    if (submitResult.success === true) {
-      this.handleFreezeForm(false);
-      this.handleInitForm();
-    } else {
-      this.errorMsg = submitResult.errorMsg;
-      this.forceUpdate();
-      this.handleFreezeForm(false);
-    }
+    onSubmitForm({comment, rating, apartmentId})
+        .then(() => {
+          this.handleFreezeForm(false);
+          this.handleInitForm();
+        })
+        .catch(() => {
+          this.errorMsg = `Failed request to server`;
+          this.forceUpdate();
+          this.handleFreezeForm(false);
+        });
   }
 
   handleUnblockSubmitButton() {

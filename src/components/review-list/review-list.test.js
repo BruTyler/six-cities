@@ -31,6 +31,7 @@ describe(`<ReviewList /> render suit`, () => {
           apartmentId={0}
           handleLoadReviews={EMPTY_HANDLER}
           authStatus={AuthorizationStatus.AUTH}
+          handleSendReview={EMPTY_HANDLER}
         />, {
           createNodeMock: () => {
             return {};
@@ -47,6 +48,7 @@ describe(`<ReviewList /> render suit`, () => {
           apartmentId={0}
           handleLoadReviews={EMPTY_HANDLER}
           authStatus={AuthorizationStatus.NO_AUTH}
+          handleSendReview={EMPTY_HANDLER}
         />, {
           createNodeMock: () => {
             return {};
