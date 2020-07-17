@@ -44,14 +44,14 @@ class ReviewForm extends PureComponent {
   }
 
   handleSubmitForm(evt) {
-    const {onSubmitForm} = this.props;
+    const {onSubmitForm, apartmentId} = this.props;
 
     this.handleFreezeForm(true);
     evt.preventDefault();
 
     const comment = this.textRef.current.value;
     const rating = Number(this.starRefs.find((x) => x.current.checked === true).value);
-    const submitResult = onSubmitForm({comment, rating});
+    const submitResult = onSubmitForm({comment, rating, apartmentId});
 
     if (submitResult.success === true) {
       this.handleFreezeForm(false);
@@ -165,6 +165,7 @@ ReviewForm.propTypes = {
   activeItem: PropTypes.bool,
   onItemSelect: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
+  apartmentId: PropTypes.number.isRequired,
 };
 
 export {ReviewForm};

@@ -45,6 +45,16 @@ const Operation = {
           dispatch(ActionCreator.loadReviews(reviews));
         });
   },
+  sendReview: (commentPost) => (dispatch, getState, api) => {
+    return api.post(`/comments/${commentPost.apartmentId}`, {
+      comment: commentPost.comment,
+      rating: commentPost.rating,
+    })
+    .then((response) => {
+      const reviews = transformToReviews(response.data);
+      dispatch(ActionCreator.loadReviews(reviews));
+    });
+  },
 };
 
 const reducer = (state = initialState, action) => {

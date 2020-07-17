@@ -22,7 +22,7 @@ class ReviewList extends PureComponent {
   }
 
   render() {
-    const {reviewList, authStatus} = this.props;
+    const {reviewList, authStatus, apartmentId} = this.props;
 
     return <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewList.length}</span></h2>
@@ -40,6 +40,7 @@ class ReviewList extends PureComponent {
       </ul>
       { authStatus === AuthorizationStatus.AUTH &&
        <ReviewForm
+         apartmentId={apartmentId}
          onSubmitForm={() => ({
            success: true
          })}/>

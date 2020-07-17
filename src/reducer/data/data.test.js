@@ -4,6 +4,7 @@ import {reducer, ActionType, Operation} from './data.js';
 import ApartmentsMock from '../../mocks/offers.js';
 import CitiesMock from '../../mocks/cities.js';
 import ReviewsMock from '../../mocks/reviews.js';
+import {transformToReviews} from '../../adapters/fetch-manager.js';
 
 const api = createAPI(() => {});
 
@@ -54,6 +55,40 @@ describe(`Data reducer unit-test`, () => {
     return hotelLoader(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
+      });
+  });
+
+  it(`Data reducer should post a review to /comments/:hotelId and load reviews from response`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const commentPost = {
+      apartmentId: 1,
+      comment: `good hotel`,
+      rating: 4
+    };
+    const reviewSender = Operation.sendReview(commentPost);
+
+    const fakeResponseReviews = [
+      {
+        "id": 1,
+        "user": {"id": 13, "is_pro": false, "name": `Zak`, "avatar_url": `avatar_url`},
+        "rating": commentPost.rating,
+        "comment": commentPost.comment,
+        "date": `2020-07-17T08:50:12.875Z`
+      },
+    ];
+
+    apiMock
+      .onPost(`/comments/${commentPost.apartmentId}`)
+      .reply(200, fakeResponseReviews);
+
+    return reviewSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
+          payload: transformToReviews(fakeResponseReviews),
+        });
       });
   });
 });
