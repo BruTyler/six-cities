@@ -6,6 +6,8 @@ import {Operation} from '../../reducer/data/data.js';
 import {getReviews} from '../../reducer/data/selectors.js';
 import ReviewItem from '../review-item/review-item.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
+import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../const.js';
 
 class ReviewList extends PureComponent {
   constructor(props) {
@@ -20,7 +22,7 @@ class ReviewList extends PureComponent {
   }
 
   render() {
-    const {reviewList} = this.props;
+    const {reviewList, authStatus} = this.props;
 
     return <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewList.length}</span></h2>
@@ -36,7 +38,12 @@ class ReviewList extends PureComponent {
           />)
         }
       </ul>
-      <ReviewForm activeItem={``}/>
+      { authStatus === AuthorizationStatus.AUTH &&
+       <ReviewForm
+         onSubmitForm={() => ({
+           success: true
+         })}/>
+      }
     </section>;
   }
 }
@@ -50,11 +57,13 @@ ReviewList.propTypes = {
   })).isRequired,
   handleLoadReviews: PropTypes.func.isRequired,
   apartmentId: PropTypes.number.isRequired,
+  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     reviewList: getReviews(state),
+    authStatus: getAuthorizationStatus(state),
   };
 };
 

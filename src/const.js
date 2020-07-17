@@ -20,4 +20,6 @@ export const AuthorizationStatus = {
 export const BuisnessRequirements = {
   MAX_PHOTOS_PER_APARTMENT: 6,
   MAX_REVIEWS_PER_APARTMENT: 10,
+  MIN_REVIEW_TEXT_LENGTH: 50,
+  MAX_REVIEW_TEXT_LENGTH: 300,
 };

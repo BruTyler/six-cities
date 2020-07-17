@@ -8,6 +8,7 @@ import MockAdapter from 'axios-mock-adapter';
 import Property from './property.jsx';
 import NameSpace from '../../reducer/name-space.js';
 import {createAPI} from '../../api.js';
+import {AuthorizationStatus} from '../../const.js';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -64,6 +65,9 @@ describe(`<Property /> render suit`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {
         reviewList: REVIEWS,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
       },
     });
 
