@@ -10,7 +10,11 @@ import MainScreen from './../main-screen/main-screen.jsx';
 import Property from '../property/property.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import OfflineScreen from '../offline-screen/offline-screen.jsx';
-import {Operation} from '../../reducer/data/data.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {Operation as UserOperation} from '../../reducer/user/user.js';
+import AuthScreen from '../auth-screen/auth-screen.jsx';
+import {getAuthorizationStatus, getAuthInfo} from '../../reducer/user/selectors.js';
+import {AuthorizationStatus} from '../../const.js';
 
 class App extends PureComponent {
   constructor(props) {
@@ -32,7 +36,9 @@ class App extends PureComponent {
   }
 
   _renderScreen() {
-    const {apartmentList, cityList, activeCity, onCityTitleClick, isLoading,
+    const {isLoading,
+      apartmentList, cityList, activeCity, onCityTitleClick,
+      authInfo, authStatus,
       activeItem: clickedProperty,
       onItemSelect: onApartmentTitleClick
     } = this.props;
@@ -50,6 +56,8 @@ class App extends PureComponent {
         neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
         city={activeCity}
         onApartmentTitleClick={onApartmentTitleClick}
+        authInfo={authInfo}
+        authStatus={authStatus}
       />;
     }
 
@@ -59,10 +67,14 @@ class App extends PureComponent {
       apartmentList={apartmentList}
       onApartmentTitleClick={onApartmentTitleClick}
       onCityTitleClick={onCityTitleClick}
+      authInfo={authInfo}
+      authStatus={authStatus}
     />;
   }
 
   render() {
+    const {authInfo, authStatus, onLoginSubmit, activeCity} = this.props;
+
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
@@ -72,6 +84,16 @@ class App extends PureComponent {
       <Switch>
         <Route exact path="/offline">
           <OfflineScreen />
+        </Route>
+      </Switch>
+      <Switch>
+        <Route exact path="/login">
+          <AuthScreen
+            authInfo={authInfo}
+            authStatus={authStatus}
+            onLoginSubmit={onLoginSubmit}
+            activeCity={activeCity}
+          />
         </Route>
       </Switch>
     </BrowserRouter>;
@@ -89,6 +111,9 @@ App.propTypes = {
   handleFetchingHotels: PropTypes.func.isRequired,
   handleFinishLoading: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
+  onLoginSubmit: PropTypes.func.isRequired,
+  authInfo: PropTypes.shape(),
 };
 
 const mapStateToProps = (state) => {
@@ -97,10 +122,15 @@ const mapStateToProps = (state) => {
     cityList: getCities(state),
     activeCity: getCity(state),
     isLoading: getLoadingStatus(state),
+    authStatus: getAuthorizationStatus(state),
+    authInfo: getAuthInfo(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  onLoginSubmit(authData) {
+    dispatch(UserOperation.makeAuthorization(authData));
+  },
   onCityTitleClick(city) {
     dispatch(ActionCreator.changeCity(city.id));
   },
@@ -108,7 +138,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCity(city.id));
   },
   handleFetchingHotels(onErrorCatch) {
-    dispatch(Operation.loadCitiesWithApartments())
+    dispatch(DataOperation.loadCitiesWithApartments())
       .catch(onErrorCatch);
   },
   handleFinishLoading(currentLoadingStatus) {
