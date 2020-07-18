@@ -1,9 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 import {ReviewList} from './review-list.jsx';
-import NameSpace from '../../reducer/name-space.js';
-import {Provider} from 'react-redux';
+import {AuthorizationStatus} from '../../const.js';
 
 const EMPTY_HANDLER = () => {};
 const REVIEWS = [
@@ -24,43 +22,38 @@ const REVIEWS = [
     publishDate: `2011-02-15T10:54:44.805Z`,
   },
 ];
-const mockStore = configureStore();
 
 describe(`<ReviewList /> render suit`, () => {
   it(`<ReviewList /> render list of reviews`, () => {
-    const store = mockStore({
-      [NameSpace.DATA]: {
-        reviewList: REVIEWS,
-      },
-    });
     const generatedTree = renderer.create(
-        <Provider store={store}>
-          <ReviewList
-            reviewList={REVIEWS}
-            apartmentId={0}
-            handleLoadReviews={EMPTY_HANDLER}
-          />
-        </Provider>
-    ).toJSON();
+        <ReviewList
+          reviewList={REVIEWS}
+          apartmentId={0}
+          handleLoadReviews={EMPTY_HANDLER}
+          authStatus={AuthorizationStatus.AUTH}
+          handleSendReview={EMPTY_HANDLER}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }).toJSON();
 
     expect(generatedTree).toMatchSnapshot();
   });
 
   it(`<ReviewList /> render empty list of reviews`, () => {
-    const store = mockStore({
-      [NameSpace.DATA]: {
-        reviewList: [],
-      },
-    });
     const generatedTree = renderer.create(
-        <Provider store={store}>
-          <ReviewList
-            reviewList={[]}
-            apartmentId={0}
-            handleLoadReviews={EMPTY_HANDLER}
-          />
-        </Provider>
-    ).toJSON();
+        <ReviewList
+          reviewList={[]}
+          apartmentId={0}
+          handleLoadReviews={EMPTY_HANDLER}
+          authStatus={AuthorizationStatus.NO_AUTH}
+          handleSendReview={EMPTY_HANDLER}
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }).toJSON();
 
     expect(generatedTree).toMatchSnapshot();
   });
