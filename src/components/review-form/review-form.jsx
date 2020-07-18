@@ -8,7 +8,6 @@ class ReviewForm extends PureComponent {
     super(props);
 
     this.textRef = createRef();
-    this.messageRef = createRef();
     this.starRefs = new Array(5);
     for (let i = 0; i < this.starRefs.length; i++) {
       this.starRefs[i] = createRef();
@@ -27,7 +26,6 @@ class ReviewForm extends PureComponent {
   handleInitForm() {
     const {onItemSelect: setButtonDisabled} = this.props;
     setButtonDisabled(true);
-    this.errorMsg = ``;
     this.textRef.current.value = ``;
     this.starRefs.forEach((x) => {
       x.current.checked = false;
@@ -59,8 +57,6 @@ class ReviewForm extends PureComponent {
           this.handleInitForm();
         })
         .catch(() => {
-          this.errorMsg = `Failed request to server`;
-          this.forceUpdate();
           this.handleFreezeForm(false);
         });
   }
@@ -81,7 +77,7 @@ class ReviewForm extends PureComponent {
   }
 
   render() {
-    const {activeItem: isSubmitButtonDisabled} = this.props;
+    const {activeItem: isSubmitButtonDisabled, errorMsg} = this.props;
 
     return <form
       className="reviews__form form"
@@ -147,7 +143,7 @@ class ReviewForm extends PureComponent {
         ref={this.textRef}
       >
       </textarea>
-      <span style={{color: `red`}}>{this.errorMsg}</span>
+      <span style={{color: `red`}}>{errorMsg}</span>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{BuisnessRequirements.MIN_REVIEW_TEXT_LENGTH} characters</b>.
@@ -168,6 +164,7 @@ ReviewForm.propTypes = {
   onItemSelect: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   apartmentId: PropTypes.number.isRequired,
+  errorMsg: PropTypes.string,
 };
 
 export {ReviewForm};

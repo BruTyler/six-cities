@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {Operation} from '../../reducer/data/data.js';
-import {getReviews} from '../../reducer/data/selectors.js';
+import {getReviews, getApiError} from '../../reducer/data/selectors.js';
 import ReviewItem from '../review-item/review-item.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
@@ -22,7 +22,7 @@ class ReviewList extends PureComponent {
   }
 
   render() {
-    const {reviewList, authStatus, apartmentId, handleSendReview} = this.props;
+    const {reviewList, authStatus, apartmentId, handleSendReview, errorSubmitMsg} = this.props;
 
     return <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewList.length}</span></h2>
@@ -41,7 +41,9 @@ class ReviewList extends PureComponent {
       { authStatus === AuthorizationStatus.AUTH &&
        <ReviewForm
          apartmentId={apartmentId}
-         onSubmitForm={handleSendReview}/>
+         onSubmitForm={handleSendReview}
+         errorMsg={errorSubmitMsg}
+       />
       }
     </section>;
   }
@@ -58,12 +60,14 @@ ReviewList.propTypes = {
   apartmentId: PropTypes.number.isRequired,
   authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
   handleSendReview: PropTypes.func.isRequired,
+  errorSubmitMsg: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
   return {
     reviewList: getReviews(state),
     authStatus: getAuthorizationStatus(state),
+    errorSubmitMsg: getApiError(state),
   };
 };
 

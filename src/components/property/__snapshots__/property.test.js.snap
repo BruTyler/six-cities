@@ -469,9 +469,7 @@ exports[`<Property /> render suit <Property /> render single apartment 1`] = `
                     "color": "red",
                   }
                 }
-              >
-                
-              </span>
+              />
               <div
                 className="reviews__button-wrapper"
               >

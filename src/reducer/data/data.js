@@ -5,11 +5,13 @@ const initialState = {
   cityList: [],
   apartmentList: [],
   reviewList: [],
+  apiError: null,
 };
 
 const ActionType = {
   LOAD_HOTELS: `LOAD_HOTELS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  SET_API_ERROR: `SET_API_ERROR`,
 };
 
 const ActionCreator = {
@@ -23,6 +25,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_REVIEWS,
       payload: reviews,
+    };
+  },
+  setApiError: (errorMsg = null) => {
+    return {
+      type: ActionType.SET_API_ERROR,
+      payload: errorMsg,
     };
   },
 };
@@ -67,6 +75,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
         reviewList: action.payload,
+      });
+    case ActionType.SET_API_ERROR:
+      return extend(state, {
+        apiError: action.payload,
       });
   }
 

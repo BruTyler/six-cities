@@ -4,7 +4,7 @@ const Error = {
   UNAUTHORIZED: 401
 };
 
-export const createAPI = (onUnauthorized) => {
+export const createAPI = (onUnauthorized, onUpdateLastApiError) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/six-cities`,
     timeout: 1000 * 5,
@@ -12,6 +12,7 @@ export const createAPI = (onUnauthorized) => {
   });
 
   const onSuccess = (response) => {
+    onUpdateLastApiError(null);
     return response;
   };
 
@@ -22,6 +23,8 @@ export const createAPI = (onUnauthorized) => {
       onUnauthorized();
     }
 
+    const errorDetailed = response.data && response.data.error ? response.data.error : ``;
+    onUpdateLastApiError(`${response.statusText}: ${errorDetailed}`);
     throw err;
   };
 

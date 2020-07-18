@@ -1,12 +1,12 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../api.js';
-import {reducer, ActionType, Operation} from './data.js';
+import {reducer, ActionType, Operation, ActionCreator} from './data.js';
 import ApartmentsMock from '../../mocks/offers.js';
 import CitiesMock from '../../mocks/cities.js';
 import ReviewsMock from '../../mocks/reviews.js';
 import {transformToReviews} from '../../adapters/fetch-manager.js';
 
-const api = createAPI(() => {});
+const api = createAPI(() => {}, () => {});
 
 describe(`Data reducer unit-test`, () => {
   it(`Data reducer should return initial state`, () => {
@@ -14,6 +14,7 @@ describe(`Data reducer unit-test`, () => {
       cityList: [],
       apartmentList: [],
       reviewList: [],
+      apiError: null,
     });
   });
 
@@ -40,6 +41,26 @@ describe(`Data reducer unit-test`, () => {
     })).toEqual({
       cityList: CitiesMock,
       apartmentList: ApartmentsMock,
+    });
+  });
+
+  it(`Data reducer should set correct Error message`, () => {
+    expect(reducer({
+      apiError: null,
+    }, {
+      type: ActionType.SET_API_ERROR,
+      payload: `404`,
+    })).toEqual({
+      apiError: `404`,
+    });
+  });
+
+  it(`Data reducer should erase Error message`, () => {
+    expect(reducer({
+      apiError: `401`,
+    }, ActionCreator.setApiError()
+    )).toEqual({
+      apiError: null,
     });
   });
 
