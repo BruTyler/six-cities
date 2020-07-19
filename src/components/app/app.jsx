@@ -5,12 +5,9 @@ import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../reducer/application/application.js';
 import {getCity, getApartmentList, getCities} from '../../reducer/data/selectors.js';
-import {getLoadingStatus} from '../../reducer/application/selectors.js';
 import MainScreen from './../main-screen/main-screen.jsx';
 import Property from '../property/property.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import OfflineScreen from '../offline-screen/offline-screen.jsx';
-import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import AuthScreen from '../auth-screen/auth-screen.jsx';
 import {getAuthorizationStatus, getAuthInfo} from '../../reducer/user/selectors.js';
@@ -20,37 +17,15 @@ import history from '../../history.js';
 class App extends PureComponent {
   constructor(props) {
     super(props);
-    this._init();
-  }
-
-  _init() {
-    const {handleFetchingHotels, handleFinishLoading, isLoading, checkAuth} = this.props;
-    handleFetchingHotels(() => handleFinishLoading(isLoading));
-    checkAuth();
-  }
-
-  componentDidUpdate() {
-    const {handleFirstCityLoad, cityList, handleFinishLoading, isLoading} = this.props;
-    if (isLoading && cityList && cityList.length > 0) {
-      handleFirstCityLoad(cityList[0]);
-    }
-    handleFinishLoading(isLoading);
   }
 
   _renderScreen() {
-    const {isLoading,
-      apartmentList, cityList, activeCity, onCityTitleClick,
+    const {
+      apartmentList, cityList, activeCity, handleChangeCity,
       authInfo, authStatus,
       activeItem: clickedProperty,
       onItemSelect: onApartmentTitleClick
     } = this.props;
-
-    if (activeCity === undefined || cityList === undefined || cityList.length === 0) {
-      if (isLoading) {
-        return null;
-      }
-      return history.push(AppRoute.OFFLINE);
-    }
 
     if (clickedProperty) {
       return <Property
@@ -68,25 +43,19 @@ class App extends PureComponent {
       cityList={cityList}
       apartmentList={apartmentList}
       onApartmentTitleClick={onApartmentTitleClick}
-      onCityTitleClick={onCityTitleClick}
+      onCityTitleClick={handleChangeCity}
       authInfo={authInfo}
       authStatus={authStatus}
     />;
   }
 
   render() {
-    const {authInfo, authStatus, onLoginSubmit, activeCity,
-    } = this.props;
+    const {authInfo, authStatus, onLoginSubmit, activeCity} = this.props;
 
     return <Router history={history}>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
           {this._renderScreen()}
-        </Route>
-      </Switch>
-      <Switch>
-        <Route exact path={AppRoute.OFFLINE}>
-          <OfflineScreen />
         </Route>
       </Switch>
       <Switch>
@@ -106,18 +75,13 @@ class App extends PureComponent {
 App.propTypes = {
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   cityList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  activeCity: PropTypes.shape(),
-  onCityTitleClick: PropTypes.func.isRequired,
+  activeCity: PropTypes.shape().isRequired,
+  handleChangeCity: PropTypes.func.isRequired,
   activeItem: PropTypes.shape(),
   onItemSelect: PropTypes.func.isRequired,
-  handleFirstCityLoad: PropTypes.func.isRequired,
-  handleFetchingHotels: PropTypes.func.isRequired,
-  handleFinishLoading: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
   authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
   onLoginSubmit: PropTypes.func.isRequired,
   authInfo: PropTypes.shape(),
-  checkAuth: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -125,7 +89,6 @@ const mapStateToProps = (state) => {
     apartmentList: getApartmentList(state),
     cityList: getCities(state),
     activeCity: getCity(state),
-    isLoading: getLoadingStatus(state),
     authStatus: getAuthorizationStatus(state),
     authInfo: getAuthInfo(state),
   };
@@ -135,23 +98,8 @@ const mapDispatchToProps = (dispatch) => ({
   onLoginSubmit(authData) {
     return dispatch(UserOperation.makeAuthorization(authData));
   },
-  onCityTitleClick(city) {
+  handleChangeCity(city) {
     dispatch(ActionCreator.changeCity(city.id));
-  },
-  handleFirstCityLoad(city) {
-    dispatch(ActionCreator.changeCity(city.id));
-  },
-  handleFetchingHotels(onErrorCatch) {
-    dispatch(DataOperation.loadCitiesWithApartments())
-      .catch(onErrorCatch);
-  },
-  handleFinishLoading(currentLoadingStatus) {
-    if (currentLoadingStatus) {
-      dispatch(ActionCreator.changeLoadingStatus(false));
-    }
-  },
-  checkAuth() {
-    dispatch(UserOperation.checkAuthorization());
   },
 });
 

@@ -5,12 +5,14 @@ const initialState = {
   cityId: null,
   sortType: SortType.POPULAR,
   isLoading: true,
+  isOffline: false,
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
   CHANGE_LOADING_STATUS: `CHANGE_LOADING_STATUS`,
+  CHANGE_OFFLINE_STATUS: `CHANGE_OFFLINE_STATUS`,
 };
 
 const ActionCreator = {
@@ -32,6 +34,12 @@ const ActionCreator = {
       payload: newStatus,
     };
   },
+  setOffline: () => {
+    return {
+      type: ActionType.CHANGE_OFFLINE_STATUS,
+      payload: true,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +55,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_LOADING_STATUS:
       return extend(state, {
         isLoading: action.payload,
+      });
+    case ActionType.CHANGE_OFFLINE_STATUS:
+      return extend(state, {
+        isOffline: action.payload,
       });
   }
 

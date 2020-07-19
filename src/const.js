@@ -28,6 +28,5 @@ export const AppRoute = {
   AUTH: `/login`,
   ROOT: `/`,
   FAVORITES: `/favorites`,
-  OFFLINE: `/offline`,
   PROPERTY: `/offer`,
 };

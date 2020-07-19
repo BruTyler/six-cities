@@ -31,9 +31,7 @@ export const getApartmentList = createSelector(
 export const getCity = createSelector(
     getCities,
     cityIdSelector,
-    (cities, cityId) => {
-      return getItemById(cities, cityId);
-    }
+    (cities, cityId) => getItemById(cities, cityId)
 );
 
 const sortPlaces = (oldPlaces, sortType) => {
