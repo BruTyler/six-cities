@@ -2,7 +2,8 @@ import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../header/header.jsx';
-import {AuthorizationStatus} from '../../const.js';
+import {AuthorizationStatus, AppRoute} from '../../const.js';
+import history from '../../history.js';
 
 class AuthScreen extends PureComponent {
   constructor(props) {
@@ -19,7 +20,8 @@ class AuthScreen extends PureComponent {
     evt.preventDefault();
     const login = this.loginRef.current.value;
     const password = this.passwordRef.current.value;
-    onLoginSubmit({login, password});
+    onLoginSubmit({login, password})
+      .then(history.push(AppRoute.ROOT));
   }
 
   render() {

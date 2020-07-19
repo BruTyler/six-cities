@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import MainScreen from './main-screen.jsx';
 import configureStore from 'redux-mock-store';
-import {SortType} from '../../const.js';
+import {SortType, AuthorizationStatus} from '../../const.js';
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space.js';
 
@@ -36,7 +36,7 @@ const APARTMENTS = [
     location: [3, 4],
   }
 ];
-const mockStore = configureStore([]);
+const mockStore = configureStore();
 
 describe(`<MainScreen /> render suit`, () => {
   it(`<MainScreen /> render apartment list case`, () => {
@@ -59,6 +59,7 @@ describe(`<MainScreen /> render suit`, () => {
             apartmentList={APARTMENTS}
             onApartmentTitleClick={EMPTY_HANDLER}
             onCityTitleClick={EMPTY_HANDLER}
+            authStatus={AuthorizationStatus.NO_AUTH}
           />
         </Provider>,
         {
@@ -79,6 +80,7 @@ describe(`<MainScreen /> render suit`, () => {
           apartmentList={[]}
           onApartmentTitleClick={EMPTY_HANDLER}
           onCityTitleClick={EMPTY_HANDLER}
+          authStatus={AuthorizationStatus.NO_AUTH}
         />
     ).toJSON();
 

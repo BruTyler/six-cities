@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Route, Switch, Router} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../reducer/application/application.js';
@@ -14,7 +14,8 @@ import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import AuthScreen from '../auth-screen/auth-screen.jsx';
 import {getAuthorizationStatus, getAuthInfo} from '../../reducer/user/selectors.js';
-import {AuthorizationStatus} from '../../const.js';
+import {AuthorizationStatus, AppRoute} from '../../const.js';
+import history from '../../history.js';
 
 class App extends PureComponent {
   constructor(props) {
@@ -47,10 +48,11 @@ class App extends PureComponent {
       if (isLoading) {
         return null;
       }
-      return <OfflineScreen />;
+      return history.push(AppRoute.OFFLINE);
     }
 
     if (clickedProperty) {
+      // return history.push(`${AppRoute.PROPERTY}/${clickedProperty.id}`);
       return <Property
         apartment={clickedProperty}
         neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
@@ -73,21 +75,25 @@ class App extends PureComponent {
   }
 
   render() {
-    const {authInfo, authStatus, onLoginSubmit, activeCity} = this.props;
+    const {authInfo, authStatus, onLoginSubmit, activeCity,
+      // apartmentList,
+      // onItemSelect: onApartmentTitleClick,
+      // activeItem: clickedProperty
+    } = this.props;
 
-    return <BrowserRouter>
+    return <Router history={history}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           {this._renderScreen()}
         </Route>
       </Switch>
       <Switch>
-        <Route exact path="/offline">
+        <Route exact path={AppRoute.OFFLINE}>
           <OfflineScreen />
         </Route>
       </Switch>
       <Switch>
-        <Route exact path="/login">
+        <Route exact path={AppRoute.AUTH}>
           <AuthScreen
             authInfo={authInfo}
             authStatus={authStatus}
@@ -96,7 +102,19 @@ class App extends PureComponent {
           />
         </Route>
       </Switch>
-    </BrowserRouter>;
+      {/* <Switch>
+        <Route exact path={`${AppRoute.PROPERTY}/:id`}>
+          <Property
+            apartment={clickedProperty}
+            neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
+            city={activeCity}
+            onApartmentTitleClick={onApartmentTitleClick}
+            authInfo={authInfo}
+            authStatus={authStatus}
+          />
+        </Route>
+      </Switch> */}
+    </Router>;
   }
 }
 
@@ -129,7 +147,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onLoginSubmit(authData) {
-    dispatch(UserOperation.makeAuthorization(authData));
+    return dispatch(UserOperation.makeAuthorization(authData));
   },
   onCityTitleClick(city) {
     dispatch(ActionCreator.changeCity(city.id));

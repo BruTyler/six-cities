@@ -53,7 +53,7 @@ const REVIEWS = [
   },
 ];
 
-const api = createAPI(() => {});
+const api = createAPI(() => {}, () => {});
 const apiMock = new MockAdapter(api);
 apiMock
   .onAny()

@@ -23,3 +23,11 @@ export const BuisnessRequirements = {
   MIN_REVIEW_TEXT_LENGTH: 50,
   MAX_REVIEW_TEXT_LENGTH: 300,
 };
+
+export const AppRoute = {
+  AUTH: `/login`,
+  ROOT: `/`,
+  FAVORITES: `/favorites`,
+  OFFLINE: `/offline`,
+  PROPERTY: `/offer`,
+};

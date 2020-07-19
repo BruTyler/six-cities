@@ -5,12 +5,16 @@ import CityList from '../city-list/city-list.jsx';
 import Header from '../header/header.jsx';
 import MainEmpty from '../main-empty/main-empty.jsx';
 import MainOffers from '../main-offers/main-offers.jsx';
+import {AuthorizationStatus} from '../../const.js';
 
 const MainScreen = (props) => {
-  const {activeCity, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick} = props;
+  const {activeCity, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick, authStatus, authInfo} = props;
 
   return <div className="page page--gray page--main">
-    <Header />
+    <Header
+      authStatus={authStatus}
+      authInfo={authInfo}
+    />
     <main className={`page__main page__main--index${apartmentList.length === 0 ? ` page__main--index-empty` : ``}`}>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
@@ -46,6 +50,8 @@ MainScreen.propTypes = {
   })).isRequired,
   onApartmentTitleClick: PropTypes.func.isRequired,
   onCityTitleClick: PropTypes.func.isRequired,
+  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
+  authInfo: PropTypes.shape(),
 };
 
 export default MainScreen;
