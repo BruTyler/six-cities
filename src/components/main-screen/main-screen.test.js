@@ -1,10 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MainScreen from './main-screen.jsx';
 import configureStore from 'redux-mock-store';
-import {SortType, AuthorizationStatus} from '../../const.js';
+import {Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
+
+import MainScreen from './main-screen.jsx';
+import {SortType, AuthorizationStatus} from '../../const.js';
 import NameSpace from '../../reducer/name-space.js';
+import history from '../../history.js';
+
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -53,14 +57,16 @@ describe(`<MainScreen /> render suit`, () => {
 
     const generatedTree = renderer.create(
         <Provider store={store}>
-          <MainScreen
-            activeCity={CITY}
-            cityList={[CITY]}
-            apartmentList={APARTMENTS}
-            onApartmentTitleClick={EMPTY_HANDLER}
-            onCityTitleClick={EMPTY_HANDLER}
-            authStatus={AuthorizationStatus.NO_AUTH}
-          />
+          <Router history={history}>
+            <MainScreen
+              activeCity={CITY}
+              cityList={[CITY]}
+              apartmentList={APARTMENTS}
+              onApartmentTitleClick={EMPTY_HANDLER}
+              onCityTitleClick={EMPTY_HANDLER}
+              authStatus={AuthorizationStatus.NO_AUTH}
+            />
+          </Router>
         </Provider>,
         {
           createNodeMock: () => {
@@ -74,14 +80,16 @@ describe(`<MainScreen /> render suit`, () => {
 
   it(`<MainScreen /> render zero apartment message`, () => {
     const generatedTree = renderer.create(
-        <MainScreen
-          activeCity={CITY}
-          cityList={[CITY]}
-          apartmentList={[]}
-          onApartmentTitleClick={EMPTY_HANDLER}
-          onCityTitleClick={EMPTY_HANDLER}
-          authStatus={AuthorizationStatus.NO_AUTH}
-        />
+        <Router history={history}>
+          <MainScreen
+            activeCity={CITY}
+            cityList={[CITY]}
+            apartmentList={[]}
+            onApartmentTitleClick={EMPTY_HANDLER}
+            onCityTitleClick={EMPTY_HANDLER}
+            authStatus={AuthorizationStatus.NO_AUTH}
+          />
+        </Router>
     ).toJSON();
 
     expect(generatedTree).toMatchSnapshot();

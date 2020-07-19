@@ -4,11 +4,13 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
+import {Router} from 'react-router-dom';
 
 import Property from './property.jsx';
 import NameSpace from '../../reducer/name-space.js';
 import {createAPI} from '../../api.js';
 import {AuthorizationStatus} from '../../const.js';
+import history from '../../history.js';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -73,12 +75,14 @@ describe(`<Property /> render suit`, () => {
 
     const generatedTree = renderer.create(
         <Provider store={store}>
-          <Property
-            city={CITY}
-            onApartmentTitleClick={EMPTY_HANDLER}
-            neighboorApartmentList={[SINGLE_APARTMENT]}
-            apartment={SINGLE_APARTMENT}
-          />
+          <Router history={history}>
+            <Property
+              city={CITY}
+              onApartmentTitleClick={EMPTY_HANDLER}
+              neighboorApartmentList={[SINGLE_APARTMENT]}
+              apartment={SINGLE_APARTMENT}
+            />
+          </Router>
         </Provider>,
         {
           createNodeMock: () => {

@@ -24,8 +24,9 @@ class App extends PureComponent {
   }
 
   _init() {
-    const {handleFetchingHotels, handleFinishLoading, isLoading} = this.props;
+    const {handleFetchingHotels, handleFinishLoading, isLoading, checkAuth} = this.props;
     handleFetchingHotels(() => handleFinishLoading(isLoading));
+    checkAuth();
   }
 
   componentDidUpdate() {
@@ -52,7 +53,6 @@ class App extends PureComponent {
     }
 
     if (clickedProperty) {
-      // return history.push(`${AppRoute.PROPERTY}/${clickedProperty.id}`);
       return <Property
         apartment={clickedProperty}
         neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
@@ -76,9 +76,6 @@ class App extends PureComponent {
 
   render() {
     const {authInfo, authStatus, onLoginSubmit, activeCity,
-      // apartmentList,
-      // onItemSelect: onApartmentTitleClick,
-      // activeItem: clickedProperty
     } = this.props;
 
     return <Router history={history}>
@@ -102,18 +99,6 @@ class App extends PureComponent {
           />
         </Route>
       </Switch>
-      {/* <Switch>
-        <Route exact path={`${AppRoute.PROPERTY}/:id`}>
-          <Property
-            apartment={clickedProperty}
-            neighboorApartmentList={apartmentList.filter((el) => el.id !== clickedProperty.id).slice(0, 3)}
-            city={activeCity}
-            onApartmentTitleClick={onApartmentTitleClick}
-            authInfo={authInfo}
-            authStatus={authStatus}
-          />
-        </Route>
-      </Switch> */}
     </Router>;
   }
 }
@@ -132,6 +117,7 @@ App.propTypes = {
   authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
   onLoginSubmit: PropTypes.func.isRequired,
   authInfo: PropTypes.shape(),
+  checkAuth: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -163,7 +149,10 @@ const mapDispatchToProps = (dispatch) => ({
     if (currentLoadingStatus) {
       dispatch(ActionCreator.changeLoadingStatus(false));
     }
-  }
+  },
+  checkAuth() {
+    dispatch(UserOperation.checkAuthorization());
+  },
 });
 
 export {App};

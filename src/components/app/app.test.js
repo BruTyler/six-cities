@@ -69,6 +69,7 @@ describe(`<App /> render suit`, () => {
             isLoading={false}
             onLoginSubmit={EMPTY_HANDLER}
             authStatus={AuthorizationStatus.NO_AUTH}
+            checkAuth={EMPTY_HANDLER}
           />
         </Provider>,
         {

@@ -1,5 +1,6 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 import Header from '../header/header.jsx';
 import {AuthorizationStatus, AppRoute} from '../../const.js';
@@ -20,6 +21,7 @@ class AuthScreen extends PureComponent {
     evt.preventDefault();
     const login = this.loginRef.current.value;
     const password = this.passwordRef.current.value;
+
     onLoginSubmit({login, password})
       .then(history.push(AppRoute.ROOT));
   }
@@ -54,9 +56,12 @@ class AuthScreen extends PureComponent {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link
+                className="locations__item-link"
+                to={AppRoute.ROOT}
+              >
                 <span>{activeCity ? activeCity.id : `Amsterdam`}</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
