@@ -62,7 +62,6 @@ describe(`<MainScreen /> render suit`, () => {
               activeCity={CITY}
               cityList={[CITY]}
               apartmentList={APARTMENTS}
-              onApartmentTitleClick={EMPTY_HANDLER}
               onCityTitleClick={EMPTY_HANDLER}
               authStatus={AuthorizationStatus.NO_AUTH}
             />
@@ -85,7 +84,6 @@ describe(`<MainScreen /> render suit`, () => {
             activeCity={CITY}
             cityList={[CITY]}
             apartmentList={[]}
-            onApartmentTitleClick={EMPTY_HANDLER}
             onCityTitleClick={EMPTY_HANDLER}
             authStatus={AuthorizationStatus.NO_AUTH}
           />

@@ -5,6 +5,7 @@ describe(`Application reducer unit- suit`, () => {
   it(`Should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       cityId: null,
+      apartmentId: null,
       sortType: SortType.POPULAR,
       isLoading: true,
       isOffline: false,
@@ -44,6 +45,15 @@ describe(`Application reducer unit- suit`, () => {
     }, ActionCreator.changeLoadingStatus(false)
     )).toEqual({
       isLoading: false,
+    });
+  });
+
+  it(`Should change apartment`, () => {
+    expect(reducer({
+      apartmentId: null,
+    }, ActionCreator.changeApartment(1))
+    ).toEqual({
+      apartmentId: 1,
     });
   });
 });

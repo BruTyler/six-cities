@@ -16,20 +16,17 @@ const SINGLE_APARTMENT = {
 describe(`<ApartmentCard /> e2e suite`, () => {
   it(`<ApartmentCard /> Card send apartment info on mouse enter`, () => {
     const onApartmentCardHoverMock = jest.fn();
-    const onApartmentTitleClickMock = jest.fn();
 
     const apartmentCardWrapper = shallow(
         <ApartmentCard
           className="cities"
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={onApartmentCardHoverMock}
-          onApartmentTitleClick={onApartmentTitleClickMock}
         />
     );
 
     const apartmentButton = apartmentCardWrapper.find(`.place-card`);
-    const eventMock = {preventDefault() {}};
-    apartmentButton.simulate(`mouseEnter`, eventMock);
+    apartmentButton.simulate(`mouseEnter`);
 
     expect(onApartmentCardHoverMock).toHaveBeenCalledTimes(1);
     expect(onApartmentCardHoverMock.mock.calls[0][0]).toMatchObject(SINGLE_APARTMENT);

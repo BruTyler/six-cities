@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import {MainOffers} from './main-offers.jsx';
+import MainOffers from './main-offers.jsx';
 import configureStore from 'redux-mock-store';
 import {SortType} from '../../const.js';
 import {Provider} from 'react-redux';
@@ -51,7 +51,7 @@ describe(`<MainOffers /> e2e suite`, () => {
         cityId: CITY.id,
       },
     });
-    const onApartmentTitleMock = jest.fn();
+    const onApartmentHoverMock = jest.fn();
 
     const mainOffersWrapper = mount(
         <Provider store={store}>
@@ -59,18 +59,17 @@ describe(`<MainOffers /> e2e suite`, () => {
             activeCity={CITY}
             cityList={[CITY]}
             apartmentList={APARTMENTS}
-            onApartmentTitleClick={onApartmentTitleMock}
             onCityTitleClick={EMPTY_HANDLER}
-            onItemSelect={EMPTY_HANDLER}
+            onItemSelect={onApartmentHoverMock}
           />
         </Provider>
     );
 
-    const apartmentButtons = mainOffersWrapper.find(`.place-card__name > a`);
+    const apartmentsElems = mainOffersWrapper.find(`.place-card`);
     const eventMock = {preventDefault() {}};
-    apartmentButtons.at(0).simulate(`click`, eventMock);
+    apartmentsElems.at(0).simulate(`mouseEnter`, eventMock);
 
-    expect(apartmentButtons.length).toBe(2);
-    expect(onApartmentTitleMock.mock.calls.length).toBe(1);
+    expect(apartmentsElems.length).toBe(2);
+    expect(onApartmentHoverMock.mock.calls.length).toBe(1);
   });
 });

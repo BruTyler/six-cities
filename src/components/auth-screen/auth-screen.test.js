@@ -15,6 +15,7 @@ describe(`<AuthScreen /> render suit`, () => {
             authStatus={AuthorizationStatus.NO_AUTH}
             onLoginSubmit={()=>{}}
             authInfo={AuthInfoMock}
+            activeCity={{id: `Amsterdam`}}
           />
         </Router>
     ).toJSON();

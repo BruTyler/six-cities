@@ -7,7 +7,7 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import PlaceSorter from '../place-sorter/place-sorter.jsx';
 
 const MainOffers = (props) => {
-  const {activeCity, apartmentList, onApartmentTitleClick,
+  const {activeCity, apartmentList,
     activeItem: hoveredApartment,
     onItemSelect: onApartmentCardHover} = props;
 
@@ -20,7 +20,6 @@ const MainOffers = (props) => {
         <ApartmentList
           className="cities"
           apartmentList={apartmentList}
-          onApartmentTitleClick={onApartmentTitleClick}
           onApartmentCardHover={onApartmentCardHover}
         />
       </section>
@@ -41,7 +40,6 @@ MainOffers.propTypes = {
     id: PropTypes.string.isRequired,
   }).isRequired,
   apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  onApartmentTitleClick: PropTypes.func.isRequired,
   activeItem: PropTypes.shape(),
   onItemSelect: PropTypes.func.isRequired,
 };

@@ -63,7 +63,6 @@ describe(`<App /> render suit`, () => {
             activeCity={CITIES[0]}
             apartmentList={APARTMENTS}
             handleChangeCity={EMPTY_HANDLER}
-            onItemSelect={EMPTY_HANDLER}
             handleFirstCityLoad={EMPTY_HANDLER}
             handleFetchingHotels={EMPTY_HANDLER}
             handleFinishLoading={EMPTY_HANDLER}

@@ -1,54 +1,67 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {PlaceType} from '../../const';
+import {PlaceType, AppRoute} from '../../const';
+import history from '../../history.js';
 
-const ApartmentCard = (props) => {
-  const {className, apartment, onApartmentCardHover, onApartmentTitleClick} = props;
-  const percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
+class ApartmentCard extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);
+  }
 
-  return <article className={`${className}__place-card ${className}__card place-card`}
-    onMouseEnter={() => onApartmentCardHover(apartment)}
-    onMouseLeave={() => onApartmentCardHover()}
-  >
-    {apartment.isPremium &&
+  handleApartmentTitleClick(id) {
+    const newLocation = AppRoute.PROPERTY_WITH_ID.replace(`:id`, id);
+    history.push(newLocation);
+  }
+
+  render() {
+    const {className, apartment, onApartmentCardHover} = this.props;
+    const percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
+
+    return <article className={`${className}__place-card ${className}__card place-card`}
+      onMouseEnter={() => onApartmentCardHover(apartment)}
+      onMouseLeave={() => onApartmentCardHover()}
+    >
+      {apartment.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-    <div className={`${className}__image-wrapper place-card__image-wrapper`}>
-      <a href="#">
-        <img className="place-card__image" src={apartment.photo} width="260" height="200" alt={apartment.description} />
-      </a>
-    </div>
-    <div className="place-card__info">
-      <div className="place-card__price-wrapper">
-        <div className="place-card__price">
-          <b className="place-card__price-value">&euro;{apartment.price}</b>
-          <span className="place-card__price-text">&#47;&nbsp;night</span>
-        </div>
-        <button className={
-          `place-card__bookmark-button 
+      <div className={`${className}__image-wrapper place-card__image-wrapper`}>
+        <a href="#">
+          <img className="place-card__image" src={apartment.photo} width="260" height="200" alt={apartment.description} />
+        </a>
+      </div>
+      <div className="place-card__info">
+        <div className="place-card__price-wrapper">
+          <div className="place-card__price">
+            <b className="place-card__price-value">&euro;{apartment.price}</b>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
+          </div>
+          <button className={
+            `place-card__bookmark-button 
           ${apartment.isFavourite ? `` : `place-card__bookmark-button--active `}
           button`
-        } type="button">
-          <svg className="place-card__bookmark-icon" width="18" height="19">
-            <use xlinkHref="#icon-bookmark"></use>
-          </svg>
-          <span className="visually-hidden">{apartment.isFavourite ? `In` : `To`} bookmarks</span>
-        </button>
-      </div>
-      <div className="place-card__rating rating">
-        <div className="place-card__stars rating__stars">
-          <span style={{width: `${percentageRating}%`}}></span>
-          <span className="visually-hidden">Rating</span>
+          } type="button">
+            <svg className="place-card__bookmark-icon" width="18" height="19">
+              <use xlinkHref="#icon-bookmark"></use>
+            </svg>
+            <span className="visually-hidden">{apartment.isFavourite ? `In` : `To`} bookmarks</span>
+          </button>
         </div>
+        <div className="place-card__rating rating">
+          <div className="place-card__stars rating__stars">
+            <span style={{width: `${percentageRating}%`}}></span>
+            <span className="visually-hidden">Rating</span>
+          </div>
+        </div>
+        <h2 className="place-card__name">
+          <a href="#" onClick={() => this.handleApartmentTitleClick(apartment.id)}>{apartment.description}</a>
+        </h2>
+        <p className="place-card__type">{apartment.type}</p>
       </div>
-      <h2 className="place-card__name">
-        <a href="#" onClick={() => onApartmentTitleClick(apartment)}>{apartment.description}</a>
-      </h2>
-      <p className="place-card__type">{apartment.type}</p>
-    </div>
-  </article>;
-};
+    </article>;
+  }
+}
 
 ApartmentCard.defaultProps = {
   onApartmentCardHover: () => {},
@@ -67,7 +80,6 @@ ApartmentCard.propTypes = {
     photo: PropTypes.string.isRequired
   }).isRequired,
   onApartmentCardHover: PropTypes.func.isRequired,
-  onApartmentTitleClick: PropTypes.func.isRequired,
 };
 
 export default ApartmentCard;

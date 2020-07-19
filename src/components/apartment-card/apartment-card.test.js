@@ -21,7 +21,6 @@ describe(`<ApartmentCard /> render suit`, () => {
           className="cities"
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={EMPTY_HANDLER}
-          onApartmentTitleClick={EMPTY_HANDLER}
         />
     ).toJSON();
 

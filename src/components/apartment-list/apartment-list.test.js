@@ -2,7 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ApartmentList from './apartment-list.jsx';
 
-const EMPTY_HANDLER = () => {};
 const APARTMENTS = [
   {
     id: 0,
@@ -32,7 +31,6 @@ describe(`<ApartmentList /> render suit`, () => {
         <ApartmentList
           className="cities"
           apartmentList={APARTMENTS}
-          onApartmentTitleClick={EMPTY_HANDLER}
         />
     ).toJSON();
 

@@ -28,5 +28,5 @@ export const AppRoute = {
   AUTH: `/login`,
   ROOT: `/`,
   FAVORITES: `/favorites`,
-  PROPERTY: `/offer`,
+  PROPERTY_WITH_ID: `/offer/:id`,
 };

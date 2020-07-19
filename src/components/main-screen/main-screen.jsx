@@ -8,7 +8,7 @@ import MainOffers from '../main-offers/main-offers.jsx';
 import {AuthorizationStatus} from '../../const.js';
 
 const MainScreen = (props) => {
-  const {activeCity, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick, authStatus, authInfo} = props;
+  const {activeCity, cityList, apartmentList, onCityTitleClick, authStatus, authInfo} = props;
 
   return <div className="page page--gray page--main">
     <Header
@@ -33,7 +33,6 @@ const MainScreen = (props) => {
           activeCity={activeCity}
           cityList={cityList}
           apartmentList={apartmentList}
-          onApartmentTitleClick={onApartmentTitleClick}
           onCityTitleClick={onCityTitleClick}
         />}
     </main>
@@ -48,7 +47,6 @@ MainScreen.propTypes = {
   cityList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
-  onApartmentTitleClick: PropTypes.func.isRequired,
   onCityTitleClick: PropTypes.func.isRequired,
   authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
   authInfo: PropTypes.shape(),

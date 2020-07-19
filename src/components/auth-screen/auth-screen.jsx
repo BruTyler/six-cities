@@ -60,7 +60,7 @@ class AuthScreen extends PureComponent {
                 className="locations__item-link"
                 to={AppRoute.ROOT}
               >
-                <span>{activeCity ? activeCity.id : `Amsterdam`}</span>
+                <span>{activeCity.id}</span>
               </Link>
             </div>
           </section>
@@ -76,7 +76,7 @@ AuthScreen.propTypes = {
   onLoginSubmit: PropTypes.func.isRequired,
   activeCity: PropTypes.shape({
     id: PropTypes.string.isRequired
-  }),
+  }).isRequired,
 };
 
 export default AuthScreen;
