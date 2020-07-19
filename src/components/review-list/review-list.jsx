@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import {Operation} from '../../reducer/data/data.js';
 import {getReviews, getApiError} from '../../reducer/data/selectors.js';
+import {getApartmentId} from '../../reducer/application/selectors.js';
 import ReviewItem from '../review-item/review-item.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
@@ -19,6 +20,13 @@ class ReviewList extends PureComponent {
   _init() {
     const {handleLoadReviews, apartmentId} = this.props;
     handleLoadReviews(apartmentId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {handleLoadReviews, apartmentId} = this.props;
+    if (apartmentId !== prevProps.apartmentId) {
+      handleLoadReviews(apartmentId);
+    }
   }
 
   render() {
@@ -65,6 +73,7 @@ ReviewList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    apartmentId: getApartmentId(state),
     reviewList: getReviews(state),
     authStatus: getAuthorizationStatus(state),
     errorSubmitMsg: getApiError(state),

@@ -72,6 +72,9 @@ describe(`<Property /> render suit`, () => {
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
       },
+      [NameSpace.APPLICATION]: {
+        apartmentId: 1,
+      },
     });
 
     const generatedTree = renderer.create(

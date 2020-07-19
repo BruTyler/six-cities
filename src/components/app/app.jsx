@@ -20,7 +20,7 @@ const App = (props) => {
 
   return <Router history={history}>
     <Switch>
-      <Route strict path={AppRoute.ROOT}>
+      <Route exact path={AppRoute.ROOT}>
         <MainScreen
           activeCity={activeCity}
           cityList={cityList}
@@ -30,7 +30,7 @@ const App = (props) => {
           authStatus={authStatus}
         />;
       </Route>
-      <Route strict path={AppRoute.AUTH}>
+      <Route exact path={AppRoute.AUTH}>
         <AuthScreen
           authInfo={authInfo}
           authStatus={authStatus}
@@ -41,7 +41,7 @@ const App = (props) => {
       <Route
         path={AppRoute.PROPERTY_WITH_ID}
         render={({match}) => <Property id={match.params.id} />}
-        strict
+        exact
       />
     </Switch>
   </Router>;

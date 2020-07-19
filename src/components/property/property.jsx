@@ -24,6 +24,13 @@ class Property extends PureComponent {
     handleUpdateApartment(id);
   }
 
+  componentDidUpdate(prevProps) {
+    const {id, handleUpdateApartment} = this.props;
+    if (id !== prevProps.id) {
+      handleUpdateApartment(this.props.id);
+    }
+  }
+
   render() {
     if (this.props.apartment === undefined) {
       return null;
@@ -115,7 +122,7 @@ class Property extends PureComponent {
                   </p>
                 </div>
               </div>
-              <ReviewList apartmentId={currentApartment.id} />
+              <ReviewList />
             </div>
           </div>
           <Map

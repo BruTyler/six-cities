@@ -11,6 +11,13 @@ module.exports = {
     open: true,
     port: 1337,
     historyApiFallback: true,
+    publicPath: `/`,
+    proxy: {
+      '/offer': {
+        target: `http://localhost:1337/`,
+        pathRewrite: {'^/offer': ``},
+      },
+    },
   },
   module: {
     rules: [

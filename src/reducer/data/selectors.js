@@ -12,8 +12,6 @@ export const getReviews = (state) => {
 
 export const getCities = (state) => state[NameSpace.DATA].cityList;
 export const getApiError = (state) => state[NameSpace.DATA].apiError;
-export const getNeighboorApartments = (state) =>
-  state[NameSpace.DATA].apartmentList.slice(0, 3);
 
 const _sortTypeSelector = (state) => state[NameSpace.APPLICATION].sortType;
 const _cityIdSelector = (state) => state[NameSpace.APPLICATION].cityId;
@@ -30,6 +28,13 @@ export const getApartmentList = createSelector(
       return filteredApartList;
     }
 );
+
+export const getNeighboorApartments = createSelector(
+    _cityIdSelector,
+    _allApartmentsSelector,
+    (cityId, allApartments) => allApartments.filter((x) => x.cityId === cityId).slice(0, 3)
+);
+
 
 export const getCity = createSelector(
     getCities,
