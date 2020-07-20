@@ -6,6 +6,15 @@ export const getItemById = (array, id) => {
   return array.find((x) => x.id === id);
 };
 
+export const replaceItemById = (array, item) => {
+  const newArray = array.slice(0);
+  const replacedIndex = newArray.findIndex((x) => x.id === item.id);
+  if (replacedIndex !== -1) {
+    newArray[replacedIndex] = item;
+  }
+  return newArray;
+};
+
 const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
   `July`, `August`, `September`, `October`, `November`, `December`];
 

@@ -18,6 +18,8 @@ exports[`<MainScreen /> render suit <MainScreen /> render apartment list case 1`
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -39,7 +41,8 @@ exports[`<MainScreen /> render suit <MainScreen /> render apartment list case 1`
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -221,9 +224,8 @@ exports[`<MainScreen /> render suit <MainScreen /> render apartment list case 1`
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button 
-          
-          button"
+                    className="place-card__bookmark-button button "
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -322,9 +324,8 @@ exports[`<MainScreen /> render suit <MainScreen /> render apartment list case 1`
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button 
-          place-card__bookmark-button--active 
-          button"
+                    className="place-card__bookmark-button button  place-card__bookmark-button--active"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -414,6 +415,8 @@ exports[`<MainScreen /> render suit <MainScreen /> render zero apartment message
         >
           <a
             className="header__logo-link header__logo-link--active"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -435,7 +438,8 @@ exports[`<MainScreen /> render suit <MainScreen /> render zero apartment message
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"

@@ -4,7 +4,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
-import App from './components/app/app.jsx';
+import AppPreloader from './components/app-preloader/app-preloader.jsx';
 import reducer from './reducer/reducer.js';
 import {createAPI} from './api.js';
 import {ActionCreator as UserActionCreator} from './reducer/user/user.js';
@@ -32,7 +32,7 @@ const store = createStore(
 const init = () => {
   ReactDOM.render(
       <Provider store={store}>
-        <App />
+        <AppPreloader />
       </Provider>,
       document.querySelector(`#root`)
   );

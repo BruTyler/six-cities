@@ -7,10 +7,10 @@ import MainEmpty from '../main-empty/main-empty.jsx';
 import MainOffers from '../main-offers/main-offers.jsx';
 
 const MainScreen = (props) => {
-  const {activeCity, cityList, apartmentList, onApartmentTitleClick, onCityTitleClick} = props;
+  const {activeCity, cityList, apartmentList, onCityTitleClick, authInfo} = props;
 
   return <div className="page page--gray page--main">
-    <Header />
+    <Header authInfo={authInfo} />
     <main className={`page__main page__main--index${apartmentList.length === 0 ? ` page__main--index-empty` : ``}`}>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
@@ -29,7 +29,6 @@ const MainScreen = (props) => {
           activeCity={activeCity}
           cityList={cityList}
           apartmentList={apartmentList}
-          onApartmentTitleClick={onApartmentTitleClick}
           onCityTitleClick={onCityTitleClick}
         />}
     </main>
@@ -44,8 +43,8 @@ MainScreen.propTypes = {
   cityList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
   })).isRequired,
-  onApartmentTitleClick: PropTypes.func.isRequired,
   onCityTitleClick: PropTypes.func.isRequired,
+  authInfo: PropTypes.shape(),
 };
 
 export default MainScreen;

@@ -1,8 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
 import ApartmentList from './apartment-list.jsx';
+import NameSpace from '../../reducer/name-space.js';
+import {AuthorizationStatus} from '../../const.js';
 
-const EMPTY_HANDLER = () => {};
 const APARTMENTS = [
   {
     id: 0,
@@ -25,15 +28,22 @@ const APARTMENTS = [
     photo: `img1.jpg`
   }
 ];
+const mockStore = configureStore();
 
 describe(`<ApartmentList /> render suit`, () => {
   it(`<ApartmentList /> render apartment list`, () => {
+    const store = mockStore({
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
+    });
     const generatedTree = renderer.create(
-        <ApartmentList
-          className="cities"
-          apartmentList={APARTMENTS}
-          onApartmentTitleClick={EMPTY_HANDLER}
-        />
+        <Provider store={store}>
+          <ApartmentList
+            className="cities"
+            apartmentList={APARTMENTS}
+          />
+        </Provider>
     ).toJSON();
 
     expect(generatedTree).toMatchSnapshot();

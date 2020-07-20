@@ -13,14 +13,15 @@ export const getReviews = (state) => {
 export const getCities = (state) => state[NameSpace.DATA].cityList;
 export const getApiError = (state) => state[NameSpace.DATA].apiError;
 
-const sortTypeSelector = (state) => state[NameSpace.APPLICATION].sortType;
-const cityIdSelector = (state) => state[NameSpace.APPLICATION].cityId;
-const allApartmentsSelector = (state) => state[NameSpace.DATA].apartmentList;
+const _sortTypeSelector = (state) => state[NameSpace.APPLICATION].sortType;
+const _cityIdSelector = (state) => state[NameSpace.APPLICATION].cityId;
+const _apartmentIdSelector = (state) => state[NameSpace.APPLICATION].apartmentId;
+const _allApartmentsSelector = (state) => state[NameSpace.DATA].apartmentList;
 
 export const getApartmentList = createSelector(
-    sortTypeSelector,
-    cityIdSelector,
-    allApartmentsSelector,
+    _sortTypeSelector,
+    _cityIdSelector,
+    _allApartmentsSelector,
     (sortType, cityId, allApartments) => {
       let filteredApartList = allApartments.filter((x) => x.cityId === cityId);
       filteredApartList = sortPlaces(filteredApartList, sortType);
@@ -28,12 +29,23 @@ export const getApartmentList = createSelector(
     }
 );
 
+export const getNeighboorApartments = createSelector(
+    _cityIdSelector,
+    _allApartmentsSelector,
+    (cityId, allApartments) => allApartments.filter((x) => x.cityId === cityId).slice(0, 3)
+);
+
+
 export const getCity = createSelector(
     getCities,
-    cityIdSelector,
-    (cities, cityId) => {
-      return getItemById(cities, cityId);
-    }
+    _cityIdSelector,
+    (cities, cityId) => getItemById(cities, cityId)
+);
+
+export const getApartment = createSelector(
+    _allApartmentsSelector,
+    _apartmentIdSelector,
+    (apartments, apartmentId) => getItemById(apartments, apartmentId)
 );
 
 const sortPlaces = (oldPlaces, sortType) => {

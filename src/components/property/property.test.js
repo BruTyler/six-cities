@@ -4,11 +4,13 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
+import {Router} from 'react-router-dom';
 
-import Property from './property.jsx';
+import {Property} from './property.jsx';
 import NameSpace from '../../reducer/name-space.js';
 import {createAPI} from '../../api.js';
 import {AuthorizationStatus} from '../../const.js';
+import history from '../../history.js';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {
@@ -53,11 +55,12 @@ const REVIEWS = [
   },
 ];
 
-const api = createAPI(() => {});
+const api = createAPI(() => {}, () => {});
 const apiMock = new MockAdapter(api);
 apiMock
   .onAny()
   .reply(200, []);
+
 const mockStore = configureStore([thunk.withExtraArgument(api)]);
 
 describe(`<Property /> render suit`, () => {
@@ -69,16 +72,23 @@ describe(`<Property /> render suit`, () => {
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
       },
+      [NameSpace.APPLICATION]: {
+        apartmentId: 1,
+      },
     });
 
     const generatedTree = renderer.create(
         <Provider store={store}>
-          <Property
-            city={CITY}
-            onApartmentTitleClick={EMPTY_HANDLER}
-            neighboorApartmentList={[SINGLE_APARTMENT]}
-            apartment={SINGLE_APARTMENT}
-          />
+          <Router history={history}>
+            <Property
+              id={SINGLE_APARTMENT.id}
+              activeCity={CITY}
+              onApartmentTitleClick={EMPTY_HANDLER}
+              neighboorApartmentList={[SINGLE_APARTMENT]}
+              apartment={SINGLE_APARTMENT}
+              handleChangeApartment={EMPTY_HANDLER}
+            />
+          </Router>
         </Provider>,
         {
           createNodeMock: () => {

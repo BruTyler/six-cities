@@ -1,8 +1,10 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 import Header from '../header/header.jsx';
-import {AuthorizationStatus} from '../../const.js';
+import {AppRoute} from '../../const.js';
+import history from '../../history.js';
 
 class AuthScreen extends PureComponent {
   constructor(props) {
@@ -19,15 +21,16 @@ class AuthScreen extends PureComponent {
     evt.preventDefault();
     const login = this.loginRef.current.value;
     const password = this.passwordRef.current.value;
-    onLoginSubmit({login, password});
+
+    onLoginSubmit({login, password})
+      .then(history.push(AppRoute.ROOT));
   }
 
   render() {
-    const {authStatus, authInfo, activeCity} = this.props;
+    const {authInfo, activeCity} = this.props;
 
     return <div className="page page--gray page--login">
       <Header
-        authStatus={authStatus}
         authInfo={authInfo}
       />
       <main className="page__main page__main--login">
@@ -52,9 +55,12 @@ class AuthScreen extends PureComponent {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>{activeCity ? activeCity.id : `Amsterdam`}</span>
-              </a>
+              <Link
+                className="locations__item-link"
+                to={AppRoute.ROOT}
+              >
+                <span>{activeCity.id}</span>
+              </Link>
             </div>
           </section>
         </div>
@@ -64,12 +70,11 @@ class AuthScreen extends PureComponent {
 }
 
 AuthScreen.propTypes = {
-  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
   authInfo: PropTypes.shape(),
   onLoginSubmit: PropTypes.func.isRequired,
   activeCity: PropTypes.shape({
     id: PropTypes.string.isRequired
-  }),
+  }).isRequired,
 };
 
 export default AuthScreen;

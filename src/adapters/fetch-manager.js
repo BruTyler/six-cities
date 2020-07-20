@@ -24,6 +24,10 @@ export const transformToApartments = (fetchedData) => {
   return apartments;
 };
 
+export const transformToApartment = (fetchedData) => {
+  return createApartment(fetchedData);
+};
+
 export const transformToReviews = (fetchedData) => {
   const reviews = [];
   fetchedData.map((comment) => {

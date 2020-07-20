@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ApartmentCard from './apartment-card.jsx';
+import {ApartmentCard} from './apartment-card.jsx';
+import {AuthorizationStatus} from '../../const.js';
 
 const SINGLE_APARTMENT = {
   id: 0,
@@ -16,20 +17,19 @@ const SINGLE_APARTMENT = {
 describe(`<ApartmentCard /> e2e suite`, () => {
   it(`<ApartmentCard /> Card send apartment info on mouse enter`, () => {
     const onApartmentCardHoverMock = jest.fn();
-    const onApartmentTitleClickMock = jest.fn();
 
     const apartmentCardWrapper = shallow(
         <ApartmentCard
           className="cities"
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={onApartmentCardHoverMock}
-          onApartmentTitleClick={onApartmentTitleClickMock}
+          authStatus={AuthorizationStatus.AUTH}
+          handleFavoriteStatusChange={() => {}}
         />
     );
 
     const apartmentButton = apartmentCardWrapper.find(`.place-card`);
-    const eventMock = {preventDefault() {}};
-    apartmentButton.simulate(`mouseEnter`, eventMock);
+    apartmentButton.simulate(`mouseEnter`);
 
     expect(onApartmentCardHoverMock).toHaveBeenCalledTimes(1);
     expect(onApartmentCardHoverMock.mock.calls[0][0]).toMatchObject(SINGLE_APARTMENT);

@@ -1,9 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {App} from './app.jsx';
 import configureStore from 'redux-mock-store';
-import {SortType, AuthorizationStatus} from '../../const.js';
 import {Provider} from 'react-redux';
+
+import {App} from './app.jsx';
+import {SortType, AuthorizationStatus} from '../../const.js';
 import NameSpace from '../../reducer/name-space.js';
 
 const EMPTY_HANDLER = () => {};
@@ -53,6 +54,9 @@ describe(`<App /> render suit`, () => {
       [NameSpace.APPLICATION]: {
         sortType: SortType.POPULAR,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
     });
 
     const generatedTree = renderer.create(
@@ -61,14 +65,11 @@ describe(`<App /> render suit`, () => {
             cityList={CITIES}
             activeCity={CITIES[0]}
             apartmentList={APARTMENTS}
-            onCityTitleClick={EMPTY_HANDLER}
-            onItemSelect={EMPTY_HANDLER}
+            handleChangeCity={EMPTY_HANDLER}
             handleFirstCityLoad={EMPTY_HANDLER}
             handleFetchingHotels={EMPTY_HANDLER}
             handleFinishLoading={EMPTY_HANDLER}
-            isLoading={false}
             onLoginSubmit={EMPTY_HANDLER}
-            authStatus={AuthorizationStatus.NO_AUTH}
           />
         </Provider>,
         {

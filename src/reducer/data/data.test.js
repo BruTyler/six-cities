@@ -64,6 +64,23 @@ describe(`Data reducer unit-test`, () => {
     });
   });
 
+  it(`Data reducer should substitute old hotel to new one`, () => {
+    expect(reducer({
+      apartmentList: [
+        {id: 1, isFavorite: true},
+        {id: 2, isFavorite: true},
+        {id: 3, isFavorite: true},
+      ],
+    }, ActionCreator.replaceHotel({id: 2, isFavorite: false})
+    )).toEqual({
+      apartmentList: [
+        {id: 1, isFavorite: true},
+        {id: 2, isFavorite: false},
+        {id: 3, isFavorite: true},
+      ],
+    });
+  });
+
   it(`Data reducer should make a correct API call to /hotels`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
