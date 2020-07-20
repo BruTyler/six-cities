@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {PlaceType, AppRoute, AuthorizationStatus} from '../../const.js';
 import history from '../../history.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 
 class ApartmentCard extends PureComponent {
   constructor(props) {
@@ -103,8 +104,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   handleFavoriteStatusChange(apartment) {
-    // eslint-disable-next-line no-console
-    console.log(apartment, dispatch);
+    dispatch(DataOperation.updateFavoriteStatus(apartment));
   },
 });
 

@@ -1,5 +1,5 @@
-import {extend} from '../../utils.js';
-import {transformToCities, transformToApartments, transformToReviews} from '../../adapters/fetch-manager.js';
+import {extend, replaceItemById} from '../../utils.js';
+import {transformToCities, transformToApartments, transformToReviews, transformToApartment} from '../../adapters/fetch-manager.js';
 
 const initialState = {
   cityList: [],
@@ -12,6 +12,7 @@ const ActionType = {
   LOAD_HOTELS: `LOAD_HOTELS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   SET_API_ERROR: `SET_API_ERROR`,
+  REPLACE_HOTEL: `REPLACE_HOTEL`,
 };
 
 const ActionCreator = {
@@ -31,6 +32,12 @@ const ActionCreator = {
     return {
       type: ActionType.SET_API_ERROR,
       payload: errorMsg,
+    };
+  },
+  replaceHotel: (apartment) => {
+    return {
+      type: ActionType.REPLACE_HOTEL,
+      payload: apartment,
     };
   },
 };
@@ -63,6 +70,17 @@ const Operation = {
       dispatch(ActionCreator.loadReviews(reviews));
     });
   },
+  updateFavoriteStatus: (apartment) => (dispatch, getState, api) => {
+    const {id, isFavourite} = apartment;
+    const newStatus = isFavourite ? 0 : 1;
+    return api.post(`/favorite/${id}/${newStatus}`)
+        .then((response) => {
+          if (response && response.data) {
+            const newApartment = transformToApartment(response.data);
+            dispatch(ActionCreator.replaceHotel(newApartment));
+          }
+        });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -79,6 +97,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_API_ERROR:
       return extend(state, {
         apiError: action.payload,
+      });
+    case ActionType.REPLACE_HOTEL:
+      return extend(state, {
+        apartmentList: replaceItemById(state.apartmentList, action.payload),
       });
   }
 
