@@ -6,10 +6,12 @@ const initialState = {
   apartmentList: [],
   reviewList: [],
   apiError: null,
+  neighboorApartmentList: [],
 };
 
 const ActionType = {
   LOAD_HOTELS: `LOAD_HOTELS`,
+  LOAD_NEARBY_HOTELS: `LOAD_NEARBY_HOTELS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   SET_API_ERROR: `SET_API_ERROR`,
   REPLACE_HOTEL: `REPLACE_HOTEL`,
@@ -38,6 +40,12 @@ const ActionCreator = {
     return {
       type: ActionType.REPLACE_HOTEL,
       payload: apartment,
+    };
+  },
+  loadNeighboorHotels: (apartments) => {
+    return {
+      type: ActionType.LOAD_NEARBY_HOTELS,
+      payload: apartments,
     };
   },
 };
@@ -81,6 +89,15 @@ const Operation = {
           }
         });
   },
+  loadNeighboorApartments: (apartmentId) => (dispatch, getState, api) => {
+    return api.get(`/hotels/${apartmentId}/nearby`)
+        .then((response) => {
+          if (response && response.data) {
+            const neighboorApartments = transformToApartments(response.data);
+            dispatch(ActionCreator.loadNeighboorHotels(neighboorApartments));
+          }
+        });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -101,6 +118,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.REPLACE_HOTEL:
       return extend(state, {
         apartmentList: replaceItemById(state.apartmentList, action.payload),
+      });
+    case ActionType.LOAD_NEARBY_HOTELS:
+      return extend(state, {
+        neighboorApartmentList: action.payload,
       });
   }
 

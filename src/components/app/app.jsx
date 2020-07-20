@@ -38,7 +38,10 @@ const App = (props) => {
       </Route>
       <Route
         path={AppRoute.PROPERTY_WITH_ID}
-        render={({match}) => <Property id={Number(match.params.id)} />}
+        render={({match}) =>
+          <Property
+            id={Number(match.params.id)}
+          />}
         exact
       />
     </Switch>

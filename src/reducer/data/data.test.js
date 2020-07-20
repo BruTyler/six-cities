@@ -15,6 +15,7 @@ describe(`Data reducer unit-test`, () => {
       apartmentList: [],
       reviewList: [],
       apiError: null,
+      neighboorApartmentList: [],
     });
   });
 
@@ -78,6 +79,17 @@ describe(`Data reducer unit-test`, () => {
         {id: 2, isFavorite: false},
         {id: 3, isFavorite: true},
       ],
+    });
+  });
+
+  it(`Data reducer should load nearby hotels`, () => {
+    const neighboorApartments = ApartmentsMock.slice(0, 3);
+
+    expect(reducer({
+      neighboorApartmentList: [],
+    }, ActionCreator.loadNeighboorHotels(neighboorApartments)
+    )).toEqual({
+      neighboorApartmentList: neighboorApartments,
     });
   });
 

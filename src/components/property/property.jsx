@@ -10,6 +10,7 @@ import Map from '../map/map.jsx';
 import {getCity, getApartmentList, getCities, getNeighboorApartments, getApartment} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getAuthInfo} from '../../reducer/user/selectors.js';
 import {ActionCreator} from '../../reducer/application/application.js';
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 
 class Property extends PureComponent {
 
@@ -185,8 +186,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleChangeApartment(id) {
-    dispatch(ActionCreator.changeApartment(id));
+  handleChangeApartment(apartmentId) {
+    dispatch(ActionCreator.changeApartment(apartmentId));
+    dispatch(DataOperation.loadNeighboorApartments(apartmentId));
   },
 });
 
