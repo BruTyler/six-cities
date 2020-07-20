@@ -2,7 +2,7 @@ import React from 'react';
 import {mount} from 'enzyme';
 import MainOffers from './main-offers.jsx';
 import configureStore from 'redux-mock-store';
-import {SortType} from '../../const.js';
+import {SortType, AuthorizationStatus} from '../../const.js';
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space.js';
 
@@ -49,6 +49,9 @@ describe(`<MainOffers /> e2e suite`, () => {
       [NameSpace.APPLICATION]: {
         sortType: SortType.POPULAR,
         cityId: CITY.id,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
       },
     });
     const onApartmentHoverMock = jest.fn();

@@ -53,6 +53,9 @@ describe(`<MainScreen /> render suit`, () => {
         sortType: SortType.POPULAR,
         cityId: CITY.id,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
     });
 
     const generatedTree = renderer.create(
@@ -63,7 +66,6 @@ describe(`<MainScreen /> render suit`, () => {
               cityList={[CITY]}
               apartmentList={APARTMENTS}
               onCityTitleClick={EMPTY_HANDLER}
-              authStatus={AuthorizationStatus.NO_AUTH}
             />
           </Router>
         </Provider>,
@@ -85,7 +87,6 @@ describe(`<MainScreen /> render suit`, () => {
             cityList={[CITY]}
             apartmentList={[]}
             onCityTitleClick={EMPTY_HANDLER}
-            authStatus={AuthorizationStatus.NO_AUTH}
           />
         </Router>
     ).toJSON();

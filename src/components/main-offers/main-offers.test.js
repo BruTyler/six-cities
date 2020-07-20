@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {MainOffers} from './main-offers.jsx';
 import configureStore from 'redux-mock-store';
-import {SortType} from '../../const.js';
+import {SortType, AuthorizationStatus} from '../../const.js';
 import {Provider} from 'react-redux';
 import NameSpace from '../../reducer/name-space.js';
 
@@ -49,6 +49,9 @@ describe(`<MainOffers /> render suit`, () => {
       [NameSpace.APPLICATION]: {
         sortType: SortType.POPULAR,
         cityId: CITY.id,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
       },
     });
     const generatedTree = renderer.create(

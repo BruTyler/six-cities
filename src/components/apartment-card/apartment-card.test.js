@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ApartmentCard from './apartment-card.jsx';
+import {ApartmentCard} from './apartment-card.jsx';
+import {AuthorizationStatus} from '../../const.js';
 
 const EMPTY_HANDLER = () => {};
 const SINGLE_APARTMENT = {
@@ -21,6 +22,8 @@ describe(`<ApartmentCard /> render suit`, () => {
           className="cities"
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={EMPTY_HANDLER}
+          authStatus={AuthorizationStatus.AUTH}
+          handleFavoriteStatusChange={EMPTY_HANDLER}
         />
     ).toJSON();
 

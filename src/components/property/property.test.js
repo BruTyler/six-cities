@@ -81,12 +81,12 @@ describe(`<Property /> render suit`, () => {
         <Provider store={store}>
           <Router history={history}>
             <Property
-              id={SINGLE_APARTMENT.id.toString()}
+              id={SINGLE_APARTMENT.id}
               activeCity={CITY}
               onApartmentTitleClick={EMPTY_HANDLER}
               neighboorApartmentList={[SINGLE_APARTMENT]}
               apartment={SINGLE_APARTMENT}
-              handleUpdateApartment={EMPTY_HANDLER}
+              handleChangeApartment={EMPTY_HANDLER}
             />
           </Router>
         </Provider>,

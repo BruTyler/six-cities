@@ -54,6 +54,9 @@ describe(`<App /> render suit`, () => {
       [NameSpace.APPLICATION]: {
         sortType: SortType.POPULAR,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      },
     });
 
     const generatedTree = renderer.create(
@@ -67,7 +70,6 @@ describe(`<App /> render suit`, () => {
             handleFetchingHotels={EMPTY_HANDLER}
             handleFinishLoading={EMPTY_HANDLER}
             onLoginSubmit={EMPTY_HANDLER}
-            authStatus={AuthorizationStatus.NO_AUTH}
           />
         </Provider>,
         {

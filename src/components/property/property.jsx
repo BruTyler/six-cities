@@ -15,19 +15,18 @@ class Property extends PureComponent {
 
   constructor(props) {
     super(props);
-
     this._init();
   }
 
   _init() {
-    const {id, handleUpdateApartment} = this.props;
-    handleUpdateApartment(id);
+    const {id, handleChangeApartment} = this.props;
+    handleChangeApartment(id);
   }
 
   componentDidUpdate(prevProps) {
-    const {id, handleUpdateApartment} = this.props;
+    const {id, handleChangeApartment} = this.props;
     if (id !== prevProps.id) {
-      handleUpdateApartment(this.props.id);
+      handleChangeApartment(id);
     }
   }
 
@@ -169,8 +168,8 @@ Property.propTypes = {
     }),
   }),
   authInfo: PropTypes.shape(),
-  id: PropTypes.string.isRequired,
-  handleUpdateApartment: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  handleChangeApartment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -186,8 +185,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleUpdateApartment(id) {
-    dispatch(ActionCreator.changeApartment(Number(id)));
+  handleChangeApartment(id) {
+    dispatch(ActionCreator.changeApartment(id));
   },
 });
 

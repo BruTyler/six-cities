@@ -133,9 +133,8 @@ exports[`<MainOffers /> render suit <MainOffers /> render apartment list case 1`
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button 
-          
-          button"
+                className="place-card__bookmark-button button "
+                onClick={[Function]}
                 type="button"
               >
                 <svg
@@ -234,9 +233,8 @@ exports[`<MainOffers /> render suit <MainOffers /> render apartment list case 1`
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button 
-          place-card__bookmark-button--active 
-          button"
+                className="place-card__bookmark-button button  place-card__bookmark-button--active"
+                onClick={[Function]}
                 type="button"
               >
                 <svg

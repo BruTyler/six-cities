@@ -1,12 +1,16 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {PlaceType, AppRoute} from '../../const';
+import {connect} from 'react-redux';
+
+import {PlaceType, AppRoute, AuthorizationStatus} from '../../const.js';
 import history from '../../history.js';
+import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 
 class ApartmentCard extends PureComponent {
   constructor(props) {
     super(props);
     this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);
+    this.handleFavoriteClickNotLogged = this.handleFavoriteClickNotLogged.bind(this);
   }
 
   handleApartmentTitleClick(id) {
@@ -14,8 +18,13 @@ class ApartmentCard extends PureComponent {
     history.push(newLocation);
   }
 
+  handleFavoriteClickNotLogged() {
+    const newLocation = AppRoute.AUTH;
+    history.push(newLocation);
+  }
+
   render() {
-    const {className, apartment, onApartmentCardHover} = this.props;
+    const {className, apartment, onApartmentCardHover, authStatus, handleFavoriteStatusChange} = this.props;
     const percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
 
     return <article className={`${className}__place-card ${className}__card place-card`}
@@ -37,11 +46,13 @@ class ApartmentCard extends PureComponent {
             <b className="place-card__price-value">&euro;{apartment.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={
-            `place-card__bookmark-button 
-          ${apartment.isFavourite ? `` : `place-card__bookmark-button--active `}
-          button`
-          } type="button">
+          <button
+            type="button"
+            className={`place-card__bookmark-button button ${apartment.isFavourite ? `` : ` place-card__bookmark-button--active`}`}
+            onClick={authStatus === AuthorizationStatus.AUTH
+              ? () => handleFavoriteStatusChange(apartment)
+              : () => this.handleFavoriteClickNotLogged()}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -80,6 +91,22 @@ ApartmentCard.propTypes = {
     photo: PropTypes.string.isRequired
   }).isRequired,
   onApartmentCardHover: PropTypes.func.isRequired,
+  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)),
+  handleFavoriteStatusChange: PropTypes.func.isRequired,
 };
 
-export default ApartmentCard;
+const mapStateToProps = (state) => {
+  return {
+    authStatus: getAuthorizationStatus(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  handleFavoriteStatusChange(apartment) {
+    // eslint-disable-next-line no-console
+    console.log(apartment, dispatch);
+  },
+});
+
+export {ApartmentCard};
+export default connect(mapStateToProps, mapDispatchToProps)(ApartmentCard);

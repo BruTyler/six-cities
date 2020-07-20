@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ApartmentCard from './apartment-card.jsx';
+import {ApartmentCard} from './apartment-card.jsx';
+import {AuthorizationStatus} from '../../const.js';
 
 const SINGLE_APARTMENT = {
   id: 0,
@@ -22,6 +23,8 @@ describe(`<ApartmentCard /> e2e suite`, () => {
           className="cities"
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={onApartmentCardHoverMock}
+          authStatus={AuthorizationStatus.AUTH}
+          handleFavoriteStatusChange={() => {}}
         />
     );
 

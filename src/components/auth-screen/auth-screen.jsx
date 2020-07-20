@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import Header from '../header/header.jsx';
-import {AuthorizationStatus, AppRoute} from '../../const.js';
+import {AppRoute} from '../../const.js';
 import history from '../../history.js';
 
 class AuthScreen extends PureComponent {
@@ -27,11 +27,10 @@ class AuthScreen extends PureComponent {
   }
 
   render() {
-    const {authStatus, authInfo, activeCity} = this.props;
+    const {authInfo, activeCity} = this.props;
 
     return <div className="page page--gray page--login">
       <Header
-        authStatus={authStatus}
         authInfo={authInfo}
       />
       <main className="page__main page__main--login">
@@ -71,7 +70,6 @@ class AuthScreen extends PureComponent {
 }
 
 AuthScreen.propTypes = {
-  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
   authInfo: PropTypes.shape(),
   onLoginSubmit: PropTypes.func.isRequired,
   activeCity: PropTypes.shape({
