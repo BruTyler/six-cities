@@ -30,3 +30,14 @@ export const AppRoute = {
   FAVORITES: `/favorites`,
   PROPERTY_WITH_ID: `/offer/:id`,
 };
+
+export const ApartmentEnvironment = {
+  FAVORITE: `favorites`,
+  NEARBY_PLACES: `near-places`,
+  MAIN_WINDOW: `cities`
+};
+
+export const MapEnvironment = {
+  NEARBY_PLACES: `property__map`,
+  MAIN_WINDOW: `cities__map`
+};

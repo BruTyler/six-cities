@@ -15,21 +15,8 @@ import {ActionCreator} from '../../reducer/application/application.js';
 class FavoriteScreen extends PureComponent {
   constructor(props) {
     super(props);
-
-    this._init();
+    props.handleLoadFavorites();
   }
-
-  _init() {
-    const {handleLoadFavorites} = this.props;
-    handleLoadFavorites();
-  }
-
-  //   componentDidUpdate(prevProps) {
-  //     const {handleLoadReviews, apartmentId} = this.props;
-  //     if (apartmentId !== prevProps.apartmentId) {
-  //       handleLoadReviews(apartmentId);
-  //     }
-  //   }
 
   render() {
     const {favoriteCities, favoriteApartments, handleChangeCity, authInfo} = this.props;

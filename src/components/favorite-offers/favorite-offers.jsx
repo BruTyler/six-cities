@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ApartmentCard from '../apartment-card/apartment-card.jsx';
 import history from '../../history.js';
-import {AppRoute} from '../../const.js';
+import {AppRoute, ApartmentEnvironment} from '../../const.js';
 
 const FavoriteOffers = (props) => {
   const {favoriteApartments, favoriteCities, onCityTitleClick} = props;
@@ -33,7 +33,7 @@ const FavoriteOffers = (props) => {
                 .map((apartment) =>
                   <ApartmentCard
                     key={apartment.id}
-                    className="favorites"
+                    parentBox={ApartmentEnvironment.FAVORITE}
                     apartment={apartment}
                   />
                 )

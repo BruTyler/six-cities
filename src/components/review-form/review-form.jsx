@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import {BuisnessRequirements} from '../../const';
+import {BuisnessRequirements} from '../../const.js';
 
 class ReviewForm extends PureComponent {
   constructor(props) {
@@ -13,17 +13,17 @@ class ReviewForm extends PureComponent {
       this.starRefs[i] = createRef();
     }
 
-    this.handleUnblockSubmitButton = this.handleUnblockSubmitButton.bind(this);
-    this.handleSubmitForm = this.handleSubmitForm.bind(this);
-    this.handleInitForm = this.handleInitForm.bind(this);
-    this.handleFreezeForm = this.handleFreezeForm.bind(this);
+    this.handleButtonUnlock = this.handleButtonUnlock.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleFormInit = this.handleFormInit.bind(this);
+    this.handleFormFreeze = this.handleFormFreeze.bind(this);
   }
 
   componentDidMount() {
-    this.handleInitForm();
+    this.handleFormInit();
   }
 
-  handleInitForm() {
+  handleFormInit() {
     const {onItemSelect: setButtonDisabled} = this.props;
     setButtonDisabled(true);
     this.textRef.current.value = ``;
@@ -32,7 +32,7 @@ class ReviewForm extends PureComponent {
     });
   }
 
-  handleFreezeForm(isDisabled) {
+  handleFormFreeze(isDisabled) {
     const {onItemSelect: setButtonDisabled} = this.props;
     setButtonDisabled(isDisabled);
     this.textRef.current.disabled = isDisabled;
@@ -41,27 +41,27 @@ class ReviewForm extends PureComponent {
     });
   }
 
-  handleSubmitForm(evt) {
-    const {onSubmitForm, apartmentId} = this.props;
+  handleFormSubmit(evt) {
+    const {onFormSubmit, apartmentId} = this.props;
 
-    this.handleFreezeForm(true);
+    this.handleFormFreeze(true);
     evt.preventDefault();
 
     const comment = this.textRef.current.value;
     const checkedStarRef = this.starRefs.find((x) => x.current.checked === true);
     const rating = Number(checkedStarRef.current.value);
 
-    onSubmitForm({comment, rating, apartmentId})
+    onFormSubmit({comment, rating, apartmentId})
         .then(() => {
-          this.handleFreezeForm(false);
-          this.handleInitForm();
+          this.handleFormFreeze(false);
+          this.handleFormInit();
         })
         .catch(() => {
-          this.handleFreezeForm(false);
+          this.handleFormFreeze(false);
         });
   }
 
-  handleUnblockSubmitButton() {
+  handleButtonUnlock() {
     const {onItemSelect: setButtonDisabled} = this.props;
 
     const text = this.textRef.current.value;
@@ -82,13 +82,13 @@ class ReviewForm extends PureComponent {
     return <form
       className="reviews__form form"
       action=""
-      onSubmit={this.handleSubmitForm}
+      onSubmit={this.handleFormSubmit}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"
           ref={this.starRefs[4]}
-          onClick={this.handleUnblockSubmitButton}
+          onClick={this.handleButtonUnlock}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width="37" height="33">
@@ -98,7 +98,7 @@ class ReviewForm extends PureComponent {
 
         <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"
           ref={this.starRefs[3]}
-          onClick={this.handleUnblockSubmitButton}
+          onClick={this.handleButtonUnlock}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
           <svg className="form__star-image" width="37" height="33">
@@ -108,7 +108,7 @@ class ReviewForm extends PureComponent {
 
         <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"
           ref={this.starRefs[2]}
-          onClick={this.handleUnblockSubmitButton}
+          onClick={this.handleButtonUnlock}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
           <svg className="form__star-image" width="37" height="33">
@@ -118,7 +118,7 @@ class ReviewForm extends PureComponent {
 
         <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"
           ref={this.starRefs[1]}
-          onClick={this.handleUnblockSubmitButton}
+          onClick={this.handleButtonUnlock}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
           <svg className="form__star-image" width="37" height="33">
@@ -128,7 +128,7 @@ class ReviewForm extends PureComponent {
 
         <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"
           ref={this.starRefs[0]}
-          onClick={this.handleUnblockSubmitButton}
+          onClick={this.handleButtonUnlock}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
@@ -139,7 +139,7 @@ class ReviewForm extends PureComponent {
       <textarea
         className="reviews__textarea form__textarea" id="review" name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={this.handleUnblockSubmitButton}
+        onChange={this.handleButtonUnlock}
         ref={this.textRef}
       >
       </textarea>
@@ -162,7 +162,7 @@ class ReviewForm extends PureComponent {
 ReviewForm.propTypes = {
   activeItem: PropTypes.bool,
   onItemSelect: PropTypes.func.isRequired,
-  onSubmitForm: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
   apartmentId: PropTypes.number.isRequired,
   errorMsg: PropTypes.string,
 };

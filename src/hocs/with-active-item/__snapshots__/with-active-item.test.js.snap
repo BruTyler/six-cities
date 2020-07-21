@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withActiveItem render suit withActiveItem is rendered correctly 1`] = `
+<div
+  onClick={[Function]}
+>
+  1
+</div>
+`;

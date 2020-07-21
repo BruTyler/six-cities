@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ApartmentList from '../apartment-list/apartment-list.jsx';
 import {connect} from 'react-redux';
 
-import {PlaceType} from '../../const.js';
+import {PlaceType, ApartmentEnvironment, BuisnessRequirements, MapEnvironment} from '../../const.js';
 import ReviewList from '../review-list/review-list.jsx';
 import Header from '../header/header.jsx';
 import Map from '../map/map.jsx';
@@ -16,18 +16,13 @@ class Property extends PureComponent {
 
   constructor(props) {
     super(props);
-    this._init();
-  }
-
-  _init() {
-    const {id, handleChangeApartment} = this.props;
-    handleChangeApartment(id);
+    props.handleApartmentChange(props.id);
   }
 
   componentDidUpdate(prevProps) {
-    const {id, handleChangeApartment} = this.props;
+    const {id, handleApartmentChange} = this.props;
     if (id !== prevProps.id) {
-      handleChangeApartment(id);
+      handleApartmentChange(id);
     }
   }
 
@@ -36,13 +31,14 @@ class Property extends PureComponent {
       return null;
     }
 
-    const {apartment: currentApartment, neighboorApartmentList, activeCity, authInfo} = this.props;
+    const {apartment: currentApartment, neighboorApartmentList, activeCity, authInfo, handleFavoriteStatusChange} = this.props;
     const {
       type, description, fullDescription, rating, price, isPremium, isFavourite,
       photoSet, bedrooms, adultsMax, goods, host
     } = currentApartment;
     const percentageRating = Math.round(Math.round(rating) / 5 * 100);
     const apartmentListForMap = [...neighboorApartmentList, currentApartment];
+    const limitedPhotoSet = photoSet.slice(0, BuisnessRequirements.MAX_PHOTOS_PER_APARTMENT);
 
     return <div className="page">
       <Header authInfo={authInfo}/>
@@ -50,7 +46,7 @@ class Property extends PureComponent {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {photoSet.map((photo) => {
+              {limitedPhotoSet.map((photo) => {
                 return <div className="property__image-wrapper" key={photo}>
                   <img className="property__image" src={photo} alt={description} />
                 </div>;
@@ -69,7 +65,7 @@ class Property extends PureComponent {
                 <button
                   className={`property__bookmark-button button ${isFavourite ? `property__bookmark-button--active` : ``}`}
                   type="button"
-                  onClick={() => {}}
+                  onClick={() => handleFavoriteStatusChange(currentApartment)}
                 >
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
@@ -127,7 +123,7 @@ class Property extends PureComponent {
             </div>
           </div>
           <Map
-            className="property__map"
+            parentBox={MapEnvironment.NEARBY_PLACES}
             apartmentList={apartmentListForMap}
             city={activeCity}
             activeApartment={currentApartment}
@@ -137,7 +133,7 @@ class Property extends PureComponent {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <ApartmentList
-              className="near-places"
+              parentBox={ApartmentEnvironment.NEARBY_PLACES}
               apartmentList={neighboorApartmentList}
             />
           </section>
@@ -171,7 +167,8 @@ Property.propTypes = {
   }),
   authInfo: PropTypes.shape(),
   id: PropTypes.number.isRequired,
-  handleChangeApartment: PropTypes.func.isRequired,
+  handleApartmentChange: PropTypes.func.isRequired,
+  handleFavoriteStatusChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -187,9 +184,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleChangeApartment(apartmentId) {
+  handleApartmentChange(apartmentId) {
     dispatch(ActionCreator.changeApartment(apartmentId));
     dispatch(DataOperation.loadNeighboorApartments(apartmentId));
+  },
+  handleFavoriteStatusChange(apartment) {
+    dispatch(DataOperation.updateFavoriteStatus(apartment));
   },
 });
 

@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import ApartmentList from './apartment-list.jsx';
 import NameSpace from '../../reducer/name-space.js';
-import {AuthorizationStatus} from '../../const.js';
+import {AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
 
 const APARTMENTS = [
   {
@@ -40,7 +40,7 @@ describe(`<ApartmentList /> render suit`, () => {
     const generatedTree = renderer.create(
         <Provider store={store}>
           <ApartmentList
-            className="cities"
+            parentBox={ApartmentEnvironment.MAIN_WINDOW}
             apartmentList={APARTMENTS}
           />
         </Provider>

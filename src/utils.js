@@ -19,10 +19,10 @@ export const removeItemById = (array, item) => {
   return array.filter((x) => x.id !== item.id);
 };
 
-const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
+const _monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
   `July`, `August`, `September`, `October`, `November`, `December`];
 
-export const getMonthName = (monthNumber) => monthNames[monthNumber];
+export const getMonthName = (monthNumber) => _monthNames[monthNumber];
 
 export const getShortDate = (objDate) => {
   let month = objDate.getMonth() + 1;
@@ -32,7 +32,7 @@ export const getShortDate = (objDate) => {
   return `${objDate.getFullYear()}-${month}-${objDate.getDate()}`;
 };
 
-export const comparator = (a, b, propKey) => {
+export const compare = (a, b, propKey) => {
   if (a[propKey] < b[propKey]) {
     return -1;
   }

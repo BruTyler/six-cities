@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {PlaceType, AppRoute, AuthorizationStatus} from '../../const.js';
+import {PlaceType, AppRoute, AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
 import history from '../../history.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
@@ -10,6 +10,7 @@ import {Operation as DataOperation} from '../../reducer/data/data.js';
 class ApartmentCard extends PureComponent {
   constructor(props) {
     super(props);
+
     this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);
     this.handleFavoriteClickNotLogged = this.handleFavoriteClickNotLogged.bind(this);
   }
@@ -25,24 +26,25 @@ class ApartmentCard extends PureComponent {
   }
 
   render() {
-    const {className, apartment, onApartmentCardHover, authStatus, handleFavoriteStatusChange} = this.props;
+    const {parentBox, apartment, onApartmentCardHover, authStatus, handleFavoriteStatusChange} = this.props;
     const percentageRating = Math.round(Math.round(apartment.rating) / 5 * 100);
 
-    return <article className={`${className}__place-card ${className}__card place-card`}
+    return <article className={`${parentBox}__place-card ${parentBox}__card place-card`}
       onMouseEnter={() => onApartmentCardHover(apartment)}
       onMouseLeave={() => onApartmentCardHover()}
     >
       {apartment.isPremium &&
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>}
-      <div className={`${className}__image-wrapper place-card__image-wrapper`}>
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      }
+      <div className={`${parentBox}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img
             className="place-card__image"
             src={apartment.photo}
-            width={className === `favorites` ? `150` : `260`}
-            height={className === `favorites` ? `110` : `200`}
+            width={parentBox === ApartmentEnvironment.FAVORITE ? `150` : `260`}
+            height={parentBox === ApartmentEnvironment.FAVORITE ? `110` : `200`}
             alt={apartment.description}
           />
         </a>
@@ -57,7 +59,7 @@ class ApartmentCard extends PureComponent {
             type="button"
             className={`place-card__bookmark-button button ${apartment.isFavourite ? ` place-card__bookmark-button--active` : ``}`}
             onClick={authStatus === AuthorizationStatus.AUTH
-              ? () => handleFavoriteStatusChange(apartment, className)
+              ? () => handleFavoriteStatusChange(apartment, parentBox)
               : () => this.handleFavoriteClickNotLogged()}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -86,7 +88,7 @@ ApartmentCard.defaultProps = {
 };
 
 ApartmentCard.propTypes = {
-  className: PropTypes.string.isRequired,
+  parentBox: PropTypes.oneOf(Object.values(ApartmentEnvironment)).isRequired,
   apartment: PropTypes.shape({
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
@@ -109,8 +111,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleFavoriteStatusChange(apartment, className) {
-    if (className === `favorites`) {
+  handleFavoriteStatusChange(apartment, parentBox) {
+    if (parentBox === ApartmentEnvironment.FAVORITE) {
       dispatch(DataOperation.removeFavorite(apartment));
     } else {
       dispatch(DataOperation.updateFavoriteStatus(apartment));

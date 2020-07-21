@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Map from './map.jsx';
+import {MapEnvironment} from '../../const.js';
 
 const CITY = {
   defaultZoom: 1,
@@ -25,6 +26,7 @@ describe(`<Map /> render suit`, () => {
         <Map
           apartmentList={APARTMENTS}
           city={CITY}
+          parentBox={MapEnvironment.MAIN_WINDOW}
         />,
         {
           createNodeMock: () => {

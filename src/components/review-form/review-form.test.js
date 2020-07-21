@@ -8,7 +8,7 @@ describe(`<ReviewForm /> render suit`, () => {
         <ReviewForm
           activeItem={true}
           onItemSelect={() => {}}
-          onSubmitForm={() => {}}
+          onFormSubmit={() => {}}
           apartmentId={1}
         />, {
           createNodeMock: () => {

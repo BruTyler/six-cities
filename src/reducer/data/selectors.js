@@ -1,12 +1,12 @@
 import {createSelector} from 'reselect';
 import NameSpace from '../name-space.js';
 import {SortType, BuisnessRequirements} from '../../const.js';
-import {getItemById, comparator} from '../../utils.js';
+import {getItemById, compare} from '../../utils.js';
 
 export const getReviews = (state) => {
   return state[NameSpace.DATA]
     .reviewList
-    .sort((a, z) => comparator(z, a, `publishDate`))
+    .sort((a, z) => compare(z, a, `publishDate`))
     .slice(0, BuisnessRequirements.MAX_REVIEWS_PER_APARTMENT);
 };
 
@@ -48,12 +48,12 @@ const sortPlaces = (oldPlaces, sortType) => {
   const places = oldPlaces.slice(0);
   switch (sortType) {
     case SortType.PRICE_LOW:
-      return places.sort((a, z) => comparator(a, z, `price`));
+      return places.sort((a, z) => compare(a, z, `price`));
     case SortType.PRICE_HIGH:
-      return places.sort((a, z) => comparator(z, a, `price`));
+      return places.sort((a, z) => compare(z, a, `price`));
     case SortType.TOP_RATED:
-      return places.sort((a, z) => comparator(z, a, `rating`));
+      return places.sort((a, z) => compare(z, a, `rating`));
     default:
-      return places.sort((a, z) => comparator(a, z, `id`));
+      return places.sort((a, z) => compare(a, z, `id`));
   }
 };

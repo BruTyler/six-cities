@@ -16,7 +16,7 @@ import FavoriteScreen from '../favorite-screen/favorite-screen.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
 
 const App = (props) => {
-  const {authInfo, onLoginSubmit,
+  const {authInfo, handleLoginSubmit,
     apartmentList, cityList, activeCity, handleChangeCity
   } = props;
 
@@ -25,7 +25,7 @@ const App = (props) => {
       <Route exact path={AppRoute.AUTH}>
         <AuthScreen
           authInfo={authInfo}
-          onLoginSubmit={onLoginSubmit}
+          onLoginSubmit={handleLoginSubmit}
           activeCity={activeCity}
         />
       </Route>
@@ -58,7 +58,7 @@ App.propTypes = {
   cityList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   activeCity: PropTypes.shape().isRequired,
   handleChangeCity: PropTypes.func.isRequired,
-  onLoginSubmit: PropTypes.func.isRequired,
+  handleLoginSubmit: PropTypes.func.isRequired,
   authInfo: PropTypes.shape(),
 };
 
@@ -72,7 +72,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoginSubmit(authData) {
+  handleLoginSubmit(authData) {
     return dispatch(UserOperation.makeAuthorization(authData));
   },
   handleChangeCity(city) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {ApartmentCard} from './apartment-card.jsx';
-import {AuthorizationStatus} from '../../const.js';
+import {AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
 
 const EMPTY_HANDLER = () => {};
 const SINGLE_APARTMENT = {
@@ -19,7 +19,7 @@ describe(`<ApartmentCard /> render suit`, () => {
   it(`<ApartmentCard /> render single apartment`, () => {
     const generatedTree = renderer.create(
         <ApartmentCard
-          className="cities"
+          parentBox={ApartmentEnvironment.MAIN_WINDOW}
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={EMPTY_HANDLER}
           authStatus={AuthorizationStatus.AUTH}

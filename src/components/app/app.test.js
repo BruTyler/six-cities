@@ -69,7 +69,7 @@ describe(`<App /> render suit`, () => {
             handleFirstCityLoad={EMPTY_HANDLER}
             handleFetchingHotels={EMPTY_HANDLER}
             handleFinishLoading={EMPTY_HANDLER}
-            onLoginSubmit={EMPTY_HANDLER}
+            handleLoginSubmit={EMPTY_HANDLER}
           />
         </Provider>,
         {
