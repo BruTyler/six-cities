@@ -12,6 +12,7 @@ import AuthScreen from '../auth-screen/auth-screen.jsx';
 import {getAuthInfo} from '../../reducer/user/selectors.js';
 import {AppRoute} from '../../const.js';
 import history from '../../history.js';
+import FavoriteScreen from '../favorite-screen/favorite-screen.jsx';
 
 const App = (props) => {
   const {authInfo, onLoginSubmit,
@@ -20,7 +21,24 @@ const App = (props) => {
 
   return <Router history={history}>
     <Switch>
-      <Route exact path={AppRoute.ROOT}>
+      <Route exact path={AppRoute.AUTH}>
+        <AuthScreen
+          authInfo={authInfo}
+          onLoginSubmit={onLoginSubmit}
+          activeCity={activeCity}
+        />
+      </Route>
+      <Route exact path={AppRoute.FAVORITES}>
+        <FavoriteScreen />
+      </Route>
+      <Route exact
+        path={AppRoute.PROPERTY_WITH_ID}
+        render={({match}) =>
+          <Property
+            id={Number(match.params.id)}
+          />}
+      />
+      <Route path={AppRoute.ROOT}>
         <MainScreen
           activeCity={activeCity}
           cityList={cityList}
@@ -29,21 +47,6 @@ const App = (props) => {
           authInfo={authInfo}
         />;
       </Route>
-      <Route exact path={AppRoute.AUTH}>
-        <AuthScreen
-          authInfo={authInfo}
-          onLoginSubmit={onLoginSubmit}
-          activeCity={activeCity}
-        />
-      </Route>
-      <Route
-        path={AppRoute.PROPERTY_WITH_ID}
-        render={({match}) =>
-          <Property
-            id={Number(match.params.id)}
-          />}
-        exact
-      />
     </Switch>
   </Router>;
 };

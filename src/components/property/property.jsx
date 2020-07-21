@@ -60,16 +60,17 @@ class Property extends PureComponent {
           <div className="property__container container">
             <div className="property__wrapper">
               {isPremium &&
-            <div className="property__mark">
-              <span>Premium</span>
-            </div>}
+                <div className="property__mark">
+                  <span>Premium</span>
+                </div>
+              }
               <div className="property__name-wrapper">
                 <h1 className="property__name">{description}</h1>
-                <button className={
-                  `property__bookmark-button 
-              ${isFavourite ? `` : `property__bookmark-button--active `}
-              button`
-                } type="button">
+                <button
+                  className={`property__bookmark-button button ${isFavourite ? `property__bookmark-button--active` : ``}`}
+                  type="button"
+                  onClick={() => {}}
+                >
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>

@@ -224,7 +224,7 @@ exports[`<MainScreen /> render suit <MainScreen /> render apartment list case 1`
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button "
+                    className="place-card__bookmark-button button  place-card__bookmark-button--active"
                     onClick={[Function]}
                     type="button"
                   >
@@ -324,7 +324,7 @@ exports[`<MainScreen /> render suit <MainScreen /> render apartment list case 1`
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button  place-card__bookmark-button--active"
+                    className="place-card__bookmark-button button "
                     onClick={[Function]}
                     type="button"
                   >

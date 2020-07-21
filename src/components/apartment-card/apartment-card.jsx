@@ -55,9 +55,9 @@ class ApartmentCard extends PureComponent {
           </div>
           <button
             type="button"
-            className={`place-card__bookmark-button button ${apartment.isFavourite ? `` : ` place-card__bookmark-button--active`}`}
+            className={`place-card__bookmark-button button ${apartment.isFavourite ? ` place-card__bookmark-button--active` : ``}`}
             onClick={authStatus === AuthorizationStatus.AUTH
-              ? () => handleFavoriteStatusChange(apartment)
+              ? () => handleFavoriteStatusChange(apartment, className)
               : () => this.handleFavoriteClickNotLogged()}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -109,8 +109,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleFavoriteStatusChange(apartment) {
-    dispatch(DataOperation.updateFavoriteStatus(apartment));
+  handleFavoriteStatusChange(apartment, className) {
+    if (className === `favorites`) {
+      dispatch(DataOperation.removeFavorite(apartment));
+    } else {
+      dispatch(DataOperation.updateFavoriteStatus(apartment));
+    }
   },
 });
 

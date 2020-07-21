@@ -106,9 +106,8 @@ exports[`<Property /> render suit <Property /> render single apartment 1`] = `
               description1
             </h1>
             <button
-              className="property__bookmark-button 
-              property__bookmark-button--active 
-              button"
+              className="property__bookmark-button button "
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -566,7 +565,7 @@ exports[`<Property /> render suit <Property /> render single apartment 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button button  place-card__bookmark-button--active"
+                  className="place-card__bookmark-button button "
                   onClick={[Function]}
                   type="button"
                 >
