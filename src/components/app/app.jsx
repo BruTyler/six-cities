@@ -13,6 +13,7 @@ import {getAuthInfo} from '../../reducer/user/selectors.js';
 import {AppRoute} from '../../const.js';
 import history from '../../history.js';
 import FavoriteScreen from '../favorite-screen/favorite-screen.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
 
 const App = (props) => {
   const {authInfo, onLoginSubmit,
@@ -28,9 +29,10 @@ const App = (props) => {
           activeCity={activeCity}
         />
       </Route>
-      <Route exact path={AppRoute.FAVORITES}>
-        <FavoriteScreen />
-      </Route>
+      <PrivateRoute exact
+        path={AppRoute.FAVORITES}
+        render={() => <FavoriteScreen />}
+      />
       <Route exact
         path={AppRoute.PROPERTY_WITH_ID}
         render={({match}) =>
