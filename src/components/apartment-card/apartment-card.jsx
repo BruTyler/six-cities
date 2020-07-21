@@ -38,7 +38,13 @@ class ApartmentCard extends PureComponent {
       </div>}
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={apartment.photo} width="260" height="200" alt={apartment.description} />
+          <img
+            className="place-card__image"
+            src={apartment.photo}
+            width={className === `favorites` ? `150` : `260`}
+            height={className === `favorites` ? `110` : `200`}
+            alt={apartment.description}
+          />
         </a>
       </div>
       <div className="place-card__info">
