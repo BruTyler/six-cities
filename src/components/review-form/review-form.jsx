@@ -7,10 +7,10 @@ class ReviewForm extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.textRef = createRef();
-    this.starRefs = new Array(5);
-    for (let i = 0; i < this.starRefs.length; i++) {
-      this.starRefs[i] = createRef();
+    this._textRef = createRef();
+    this._starRefs = new Array(5);
+    for (let i = 0; i < this._starRefs.length; i++) {
+      this._starRefs[i] = createRef();
     }
 
     this.handleButtonUnlock = this.handleButtonUnlock.bind(this);
@@ -26,8 +26,8 @@ class ReviewForm extends PureComponent {
   handleFormInit() {
     const {onItemSelect: setButtonDisabled} = this.props;
     setButtonDisabled(true);
-    this.textRef.current.value = ``;
-    this.starRefs.forEach((x) => {
+    this._textRef.current.value = `777`;
+    this._starRefs.forEach((x) => {
       x.current.checked = false;
     });
   }
@@ -35,8 +35,8 @@ class ReviewForm extends PureComponent {
   handleFormFreeze(isDisabled) {
     const {onItemSelect: setButtonDisabled} = this.props;
     setButtonDisabled(isDisabled);
-    this.textRef.current.disabled = isDisabled;
-    this.starRefs.forEach((x) => {
+    this._textRef.current.disabled = isDisabled;
+    this._starRefs.forEach((x) => {
       x.current.disabled = isDisabled;
     });
   }
@@ -47,8 +47,8 @@ class ReviewForm extends PureComponent {
     this.handleFormFreeze(true);
     evt.preventDefault();
 
-    const comment = this.textRef.current.value;
-    const checkedStarRef = this.starRefs.find((x) => x.current.checked === true);
+    const comment = this._textRef.current.value;
+    const checkedStarRef = this._starRefs.find((x) => x.current.checked === true);
     const rating = Number(checkedStarRef.current.value);
 
     onFormSubmit({comment, rating, apartmentId})
@@ -64,8 +64,8 @@ class ReviewForm extends PureComponent {
   handleButtonUnlock() {
     const {onItemSelect: setButtonDisabled} = this.props;
 
-    const text = this.textRef.current.value;
-    const isStarChecked = this.starRefs.findIndex((x) => x.current.checked === true) !== -1;
+    const text = this._textRef.current.value;
+    const isStarChecked = this._starRefs.findIndex((x) => x.current.checked === true) !== -1;
 
     if (isStarChecked
         && text.length >= BuisnessRequirements.MIN_REVIEW_TEXT_LENGTH
@@ -87,7 +87,7 @@ class ReviewForm extends PureComponent {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"
-          ref={this.starRefs[4]}
+          ref={this._starRefs[4]}
           onClick={this.handleButtonUnlock}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
@@ -97,7 +97,7 @@ class ReviewForm extends PureComponent {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"
-          ref={this.starRefs[3]}
+          ref={this._starRefs[3]}
           onClick={this.handleButtonUnlock}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
@@ -107,7 +107,7 @@ class ReviewForm extends PureComponent {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"
-          ref={this.starRefs[2]}
+          ref={this._starRefs[2]}
           onClick={this.handleButtonUnlock}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
@@ -117,7 +117,7 @@ class ReviewForm extends PureComponent {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"
-          ref={this.starRefs[1]}
+          ref={this._starRefs[1]}
           onClick={this.handleButtonUnlock}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
@@ -127,7 +127,7 @@ class ReviewForm extends PureComponent {
         </label>
 
         <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"
-          ref={this.starRefs[0]}
+          ref={this._starRefs[0]}
           onClick={this.handleButtonUnlock}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
@@ -140,7 +140,7 @@ class ReviewForm extends PureComponent {
         className="reviews__textarea form__textarea" id="review" name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={this.handleButtonUnlock}
-        ref={this.textRef}
+        ref={this._textRef}
       >
       </textarea>
       <span style={{color: `red`}}>{errorMsg}</span>
