@@ -57,7 +57,7 @@ class ApartmentCard extends PureComponent {
           </div>
           <button
             type="button"
-            className={`place-card__bookmark-button button ${apartment.isFavourite ? ` place-card__bookmark-button--active` : ``}`}
+            className={`place-card__bookmark-button button${apartment.isFavourite ? ` place-card__bookmark-button--active` : ``}`}
             onClick={authStatus === AuthorizationStatus.AUTH
               ? () => handleFavoriteStatusChange(apartment, parentBox)
               : () => this.handleFavoriteClickNotLogged()}

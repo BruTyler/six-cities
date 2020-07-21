@@ -148,7 +148,7 @@ exports[`<FavoriteScreen /> render suit <FavoriteScreen /> render favorite apart
                       </span>
                     </div>
                     <button
-                      className="place-card__bookmark-button button  place-card__bookmark-button--active"
+                      className="place-card__bookmark-button button place-card__bookmark-button--active"
                       onClick={[Function]}
                       type="button"
                     >
@@ -248,7 +248,7 @@ exports[`<FavoriteScreen /> render suit <FavoriteScreen /> render favorite apart
                       </span>
                     </div>
                     <button
-                      className="place-card__bookmark-button button "
+                      className="place-card__bookmark-button button"
                       onClick={[Function]}
                       type="button"
                     >
