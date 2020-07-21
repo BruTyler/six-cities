@@ -13,6 +13,8 @@ export const getReviews = (state) => {
 export const getCities = (state) => state[NameSpace.DATA].cityList;
 export const getApiError = (state) => state[NameSpace.DATA].apiError;
 export const getNeighboorApartments = (state) => state[NameSpace.DATA].neighboorApartmentList;
+export const getFavoriteCities = (state) => state[NameSpace.DATA].favoriteCities;
+export const getFavoriteApartments = (state) => state[NameSpace.DATA].favoriteApartments;
 
 const _sortTypeSelector = (state) => state[NameSpace.APPLICATION].sortType;
 const _cityIdSelector = (state) => state[NameSpace.APPLICATION].cityId;

@@ -15,6 +15,10 @@ export const replaceItemById = (array, item) => {
   return newArray;
 };
 
+export const removeItemById = (array, item) => {
+  return array.filter((x) => x.id !== item.id);
+};
+
 const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
   `July`, `August`, `September`, `October`, `November`, `December`];
 
