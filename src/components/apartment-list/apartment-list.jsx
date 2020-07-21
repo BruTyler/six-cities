@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ApartmentCard from '../apartment-card/apartment-card.jsx';
+import {ApartmentEnvironment} from '../../const.js';
 
 const ApartmentList = (props) => {
-  const {className, apartmentList, onApartmentCardHover} = props;
+  const {parentBox, apartmentList, onApartmentCardHover} = props;
 
-  return <div className={`${className}__places-list ${className}__list places__list tabs__content`}>
+  return <div className={`${parentBox}__places-list ${parentBox}__list places__list tabs__content`}>
     {apartmentList.map((apartment) =>
       <ApartmentCard
         key={apartment.id}
-        className={className}
+        parentBox={parentBox}
         apartment={apartment}
         onApartmentCardHover={onApartmentCardHover}
       />)
@@ -18,7 +19,7 @@ const ApartmentList = (props) => {
 };
 
 ApartmentList.propTypes = {
-  className: PropTypes.string.isRequired,
+  parentBox: PropTypes.oneOf(Object.values(ApartmentEnvironment)).isRequired,
   apartmentList: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired

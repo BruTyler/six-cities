@@ -13,24 +13,18 @@ import {AuthorizationStatus} from '../../const.js';
 class ReviewList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this._init();
-  }
-
-  _init() {
-    const {handleLoadReviews, apartmentId} = this.props;
-    handleLoadReviews(apartmentId);
+    props.handleReviewsLoad(props.apartmentId);
   }
 
   componentDidUpdate(prevProps) {
-    const {handleLoadReviews, apartmentId} = this.props;
+    const {handleReviewsLoad, apartmentId} = this.props;
     if (apartmentId !== prevProps.apartmentId) {
-      handleLoadReviews(apartmentId);
+      handleReviewsLoad(apartmentId);
     }
   }
 
   render() {
-    const {reviewList, authStatus, apartmentId, handleSendReview, errorSubmitMsg} = this.props;
+    const {reviewList, authStatus, apartmentId, handleReviewSend, errorSubmitMsg} = this.props;
 
     return <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewList.length}</span></h2>
@@ -49,7 +43,7 @@ class ReviewList extends PureComponent {
       { authStatus === AuthorizationStatus.AUTH &&
        <ReviewForm
          apartmentId={apartmentId}
-         onSubmitForm={handleSendReview}
+         onFormSubmit={handleReviewSend}
          errorMsg={errorSubmitMsg}
        />
       }
@@ -64,10 +58,10 @@ ReviewList.propTypes = {
     rating: PropTypes.number.isRequired,
     opinion: PropTypes.string.isRequired,
   })).isRequired,
-  handleLoadReviews: PropTypes.func.isRequired,
+  handleReviewsLoad: PropTypes.func.isRequired,
   apartmentId: PropTypes.number.isRequired,
   authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
-  handleSendReview: PropTypes.func.isRequired,
+  handleReviewSend: PropTypes.func.isRequired,
   errorSubmitMsg: PropTypes.string
 };
 
@@ -81,10 +75,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleLoadReviews(apartmentId) {
+  handleReviewsLoad(apartmentId) {
     dispatch(Operation.loadReviews(apartmentId));
   },
-  handleSendReview(comment) {
+  handleReviewSend(comment) {
     return dispatch(Operation.sendReview(comment));
   },
 });

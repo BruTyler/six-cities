@@ -12,15 +12,35 @@ import AuthScreen from '../auth-screen/auth-screen.jsx';
 import {getAuthInfo} from '../../reducer/user/selectors.js';
 import {AppRoute} from '../../const.js';
 import history from '../../history.js';
+import FavoriteScreen from '../favorite-screen/favorite-screen.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
 
 const App = (props) => {
-  const {authInfo, onLoginSubmit,
+  const {authInfo, handleLoginSubmit,
     apartmentList, cityList, activeCity, handleChangeCity
   } = props;
 
   return <Router history={history}>
     <Switch>
-      <Route exact path={AppRoute.ROOT}>
+      <Route exact path={AppRoute.AUTH}>
+        <AuthScreen
+          authInfo={authInfo}
+          onLoginSubmit={handleLoginSubmit}
+          activeCity={activeCity}
+        />
+      </Route>
+      <PrivateRoute exact
+        path={AppRoute.FAVORITES}
+        render={() => <FavoriteScreen />}
+      />
+      <Route exact
+        path={AppRoute.PROPERTY_WITH_ID}
+        render={({match}) =>
+          <Property
+            id={Number(match.params.id)}
+          />}
+      />
+      <Route path={AppRoute.ROOT}>
         <MainScreen
           activeCity={activeCity}
           cityList={cityList}
@@ -29,18 +49,6 @@ const App = (props) => {
           authInfo={authInfo}
         />;
       </Route>
-      <Route exact path={AppRoute.AUTH}>
-        <AuthScreen
-          authInfo={authInfo}
-          onLoginSubmit={onLoginSubmit}
-          activeCity={activeCity}
-        />
-      </Route>
-      <Route
-        path={AppRoute.PROPERTY_WITH_ID}
-        render={({match}) => <Property id={Number(match.params.id)} />}
-        exact
-      />
     </Switch>
   </Router>;
 };
@@ -50,7 +58,7 @@ App.propTypes = {
   cityList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   activeCity: PropTypes.shape().isRequired,
   handleChangeCity: PropTypes.func.isRequired,
-  onLoginSubmit: PropTypes.func.isRequired,
+  handleLoginSubmit: PropTypes.func.isRequired,
   authInfo: PropTypes.shape(),
 };
 
@@ -64,7 +72,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoginSubmit(authData) {
+  handleLoginSubmit(authData) {
     return dispatch(UserOperation.makeAuthorization(authData));
   },
   handleChangeCity(city) {

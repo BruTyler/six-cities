@@ -1,17 +1,20 @@
 import {createSelector} from 'reselect';
 import NameSpace from '../name-space.js';
 import {SortType, BuisnessRequirements} from '../../const.js';
-import {getItemById, comparator} from '../../utils.js';
+import {getItemById, compare} from '../../utils.js';
 
 export const getReviews = (state) => {
   return state[NameSpace.DATA]
     .reviewList
-    .sort((a, z) => comparator(z, a, `publishDate`))
+    .sort((a, z) => compare(z, a, `publishDate`))
     .slice(0, BuisnessRequirements.MAX_REVIEWS_PER_APARTMENT);
 };
 
 export const getCities = (state) => state[NameSpace.DATA].cityList;
 export const getApiError = (state) => state[NameSpace.DATA].apiError;
+export const getNeighboorApartments = (state) => state[NameSpace.DATA].neighboorApartmentList;
+export const getFavoriteCities = (state) => state[NameSpace.DATA].favoriteCities;
+export const getFavoriteApartments = (state) => state[NameSpace.DATA].favoriteApartments;
 
 const _sortTypeSelector = (state) => state[NameSpace.APPLICATION].sortType;
 const _cityIdSelector = (state) => state[NameSpace.APPLICATION].cityId;
@@ -29,13 +32,6 @@ export const getApartmentList = createSelector(
     }
 );
 
-export const getNeighboorApartments = createSelector(
-    _cityIdSelector,
-    _allApartmentsSelector,
-    (cityId, allApartments) => allApartments.filter((x) => x.cityId === cityId).slice(0, 3)
-);
-
-
 export const getCity = createSelector(
     getCities,
     _cityIdSelector,
@@ -52,12 +48,12 @@ const sortPlaces = (oldPlaces, sortType) => {
   const places = oldPlaces.slice(0);
   switch (sortType) {
     case SortType.PRICE_LOW:
-      return places.sort((a, z) => comparator(a, z, `price`));
+      return places.sort((a, z) => compare(a, z, `price`));
     case SortType.PRICE_HIGH:
-      return places.sort((a, z) => comparator(z, a, `price`));
+      return places.sort((a, z) => compare(z, a, `price`));
     case SortType.TOP_RATED:
-      return places.sort((a, z) => comparator(z, a, `rating`));
+      return places.sort((a, z) => compare(z, a, `rating`));
     default:
-      return places.sort((a, z) => comparator(a, z, `id`));
+      return places.sort((a, z) => compare(a, z, `id`));
   }
 };

@@ -15,6 +15,9 @@ describe(`Data reducer unit-test`, () => {
       apartmentList: [],
       reviewList: [],
       apiError: null,
+      neighboorApartmentList: [],
+      favoriteCities: [],
+      favoriteApartments: [],
     });
   });
 
@@ -41,6 +44,38 @@ describe(`Data reducer unit-test`, () => {
     })).toEqual({
       cityList: CitiesMock,
       apartmentList: ApartmentsMock,
+    });
+  });
+
+  it(`Data reducer should load favorite`, () => {
+    expect(reducer({
+      favoriteCities: [],
+      favoriteApartments: [],
+    }, ActionCreator.loadFavorite(
+        CitiesMock,
+        ApartmentsMock,
+    )
+    )).toEqual({
+      favoriteCities: CitiesMock,
+      favoriteApartments: ApartmentsMock,
+    });
+  });
+
+  it(`Data reducer should remove favorite one`, () => {
+    expect(reducer({
+      favoriteApartments: [
+        {id: 1, description: `room1`},
+        {id: 2, description: `room2`},
+        {id: 3, description: `room3`},
+      ],
+    }, ActionCreator.removeFavorite(
+        {id: 2, description: `room2`}
+    )
+    )).toEqual({
+      favoriteApartments: [
+        {id: 1, description: `room1`},
+        {id: 3, description: `room3`},
+      ],
     });
   });
 
@@ -78,6 +113,17 @@ describe(`Data reducer unit-test`, () => {
         {id: 2, isFavorite: false},
         {id: 3, isFavorite: true},
       ],
+    });
+  });
+
+  it(`Data reducer should load nearby hotels`, () => {
+    const neighboorApartments = ApartmentsMock.slice(0, 3);
+
+    expect(reducer({
+      neighboorApartmentList: [],
+    }, ActionCreator.loadNeighboorHotels(neighboorApartments)
+    )).toEqual({
+      neighboorApartmentList: neighboorApartments,
     });
   });
 

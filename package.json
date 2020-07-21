@@ -33,7 +33,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "./src/setupTests.js"
+      "./src/setup-tests.js"
     ]
   },
   "engines": {

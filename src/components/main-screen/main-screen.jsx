@@ -15,9 +15,9 @@ const MainScreen = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <CityList
-          activeItem={activeCity}
+          activeCity={activeCity}
           cityList={cityList}
-          onItemSelect={onCityTitleClick}
+          onCitySelect={onCityTitleClick}
         />
       </div>
       {apartmentList.length === 0 ?

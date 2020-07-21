@@ -86,7 +86,8 @@ describe(`<Property /> render suit`, () => {
               onApartmentTitleClick={EMPTY_HANDLER}
               neighboorApartmentList={[SINGLE_APARTMENT]}
               apartment={SINGLE_APARTMENT}
-              handleChangeApartment={EMPTY_HANDLER}
+              handleApartmentChange={EMPTY_HANDLER}
+              handleFavoriteStatusChange={EMPTY_HANDLER}
             />
           </Router>
         </Provider>,
