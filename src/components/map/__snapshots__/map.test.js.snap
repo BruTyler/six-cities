@@ -2,6 +2,6 @@
 
 exports[`<Map /> render suit <Map /> render pin list of apartments 1`] = `
 <section
-  className=" map"
+  className="cities__map map"
 />
 `;

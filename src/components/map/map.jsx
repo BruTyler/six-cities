@@ -1,12 +1,23 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import {MapEnvironment} from '../../const.js';
 
 class Map extends PureComponent {
   constructor(props) {
     super(props);
 
     this._mapRef = React.createRef();
+  }
+
+  componentDidUpdate() {
+    this._clearOffers(this._offerLayer);
+    this._offerLayer = this._renderOffers(this._map);
+  }
+
+  componentDidMount() {
+    this._map = this._renderMap(this._mapRef.current);
+    this._offerLayer = this._renderOffers(this._map);
   }
 
   _clearOffers(oldLayerGroup) {
@@ -78,28 +89,14 @@ class Map extends PureComponent {
     return map;
   }
 
-  componentDidUpdate() {
-    this._clearOffers(this._offerLayer);
-    this._offerLayer = this._renderOffers(this._map);
-  }
-
-  componentDidMount() {
-    this._map = this._renderMap(this._mapRef.current);
-    this._offerLayer = this._renderOffers(this._map);
-  }
-
   render() {
-    const {className} = this.props;
-    return <section className={`${className} map`} ref={this._mapRef}></section>;
+    const {parentBox} = this.props;
+    return <section className={`${parentBox} map`} ref={this._mapRef}></section>;
   }
 }
 
-Map.defaultProps = {
-  className: ``,
-};
-
 Map.propTypes = {
-  className: PropTypes.string,
+  parentBox: PropTypes.oneOf(Object.values(MapEnvironment)).isRequired,
   city: PropTypes.shape({
     defaultZoom: PropTypes.number.isRequired,
     location: PropTypes.arrayOf(PropTypes.number).isRequired

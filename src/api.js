@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const Error = {
+export const ErrorStatus = {
   UNAUTHORIZED: 401
 };
 
@@ -19,7 +19,7 @@ export const createAPI = (onUnauthorized, onUpdateLastApiError) => {
   const onFail = (err) => {
     const {response} = err;
 
-    if (response.status === Error.UNAUTHORIZED) {
+    if (response.status === ErrorStatus.UNAUTHORIZED) {
       onUnauthorized();
     }
 

@@ -8,6 +8,7 @@ import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {Operation as UserOperation} from '../../reducer/user/user.js';
 import OfflineScreen from '../offline-screen/offline-screen.jsx';
 import App from '../app/app.jsx';
+import {ErrorStatus} from '../../api.js';
 
 class AppPreloader extends PureComponent {
   constructor(props) {
@@ -17,14 +18,16 @@ class AppPreloader extends PureComponent {
 
   _init() {
     const {handleFetchingHotels, handleFetchingAuth, handleLoadingStatus, handleOfflineStatus} = this.props;
-    handleLoadingStatus(true);
-    const loadTasks = [
-      handleFetchingAuth(),
-      handleFetchingHotels(),
-    ];
 
-    Promise.all(loadTasks)
-      .catch(handleOfflineStatus);
+    const onErrorCatch = (error) => {
+      if (error.response.status !== ErrorStatus.UNAUTHORIZED) {
+        handleOfflineStatus();
+      }
+    };
+
+    handleLoadingStatus(true);
+    handleFetchingAuth(onErrorCatch);
+    handleFetchingHotels(onErrorCatch);
   }
 
   componentDidUpdate() {
@@ -72,11 +75,13 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleFetchingHotels() {
-    return dispatch(DataOperation.loadCitiesWithApartments());
+  handleFetchingHotels(onErrorCatch) {
+    dispatch(DataOperation.loadCitiesWithApartments())
+      .catch(onErrorCatch);
   },
-  handleFetchingAuth() {
-    return dispatch(UserOperation.checkAuthorization());
+  handleFetchingAuth(onErrorCatch) {
+    dispatch(UserOperation.checkAuthorization())
+      .catch(onErrorCatch);
   },
   handleLoadingStatus(newLoadingStatus) {
     dispatch(ActionCreator.changeLoadingStatus(newLoadingStatus));

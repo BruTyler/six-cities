@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {ApartmentCard} from './apartment-card.jsx';
-import {AuthorizationStatus} from '../../const.js';
+import {AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
 
 const SINGLE_APARTMENT = {
   id: 0,
@@ -20,7 +20,7 @@ describe(`<ApartmentCard /> e2e suite`, () => {
 
     const apartmentCardWrapper = shallow(
         <ApartmentCard
-          className="cities"
+          parentBox={ApartmentEnvironment.MAIN_WINDOW}
           apartment={SINGLE_APARTMENT}
           onApartmentCardHover={onApartmentCardHoverMock}
           authStatus={AuthorizationStatus.AUTH}

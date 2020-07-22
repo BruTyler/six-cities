@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PrivateRoute /> render suit <PrivateRoute /> enables rendering private page for authenticated user 1`] = `
+<div>
+  private page
+</div>
+`;
+
+exports[`<PrivateRoute /> render suit <PrivateRoute /> redirects non-authenticated user to login page 1`] = `
+<div>
+  login page
+</div>
+`;
