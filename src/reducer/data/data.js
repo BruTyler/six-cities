@@ -158,10 +158,13 @@ const reducer = (state = initialState, action) => {
     case ActionType.REPLACE_HOTEL:
       return extend(state, {
         apartmentList: replaceItemById(state.apartmentList, action.payload),
+        neighboorApartmentList: replaceItemById(state.neighboorApartmentList, action.payload),
       });
     case ActionType.REMOVE_FAVORITE:
       return extend(state, {
         favoriteApartments: removeItemById(state.favoriteApartments, action.payload),
+        apartmentList: replaceItemById(state.apartmentList, action.payload),
+        neighboorApartmentList: replaceItemById(state.neighboorApartmentList, action.payload),
       });
     case ActionType.LOAD_NEARBY_HOTELS:
       return extend(state, {

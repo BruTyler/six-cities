@@ -26,7 +26,7 @@ class ReviewForm extends PureComponent {
   handleFormInit() {
     const {onItemSelect: setButtonDisabled} = this.props;
     setButtonDisabled(true);
-    this._textRef.current.value = `777`;
+    this._textRef.current.value = ``;
     this._starRefs.forEach((x) => {
       x.current.checked = false;
     });
