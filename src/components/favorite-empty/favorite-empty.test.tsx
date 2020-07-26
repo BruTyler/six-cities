@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import FavoriteEmpty from './favorite-empty.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import FavoriteEmpty from './favorite-empty';
 
 describe(`<FavoriteEmpty /> render suit`, () => {
   it(`<FavoriteEmpty /> render special empty screen`, () => {

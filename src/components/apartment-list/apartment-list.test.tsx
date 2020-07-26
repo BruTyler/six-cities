@@ -1,10 +1,10 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import ApartmentList from './apartment-list.jsx';
-import NameSpace from '../../reducer/name-space.js';
-import {AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
+import ApartmentList from './apartment-list';
+import NameSpace from '../../reducer/name-space';
+import {AuthorizationStatus, ApartmentEnvironment} from '../../const';
 
 const APARTMENTS = [
   {

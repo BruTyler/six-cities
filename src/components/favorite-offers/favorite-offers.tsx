@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ApartmentCard from '../apartment-card/apartment-card.jsx';
-import history from '../../history.js';
-import {AppRoute, ApartmentEnvironment} from '../../const.js';
+import ApartmentCard from '../apartment-card/apartment-card';
+import history from '../../history';
+import {AppRoute, ApartmentEnvironment} from '../../const';
 
 const FavoriteOffers = (props) => {
   const {favoriteApartments, favoriteCities, onCityTitleClick} = props;

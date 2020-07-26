@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {ApartmentCard} from './apartment-card.jsx';
-import {AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {ApartmentCard} from './apartment-card';
+import {AuthorizationStatus, ApartmentEnvironment} from '../../const';
 
 const EMPTY_HANDLER = () => {};
 const SINGLE_APARTMENT = {

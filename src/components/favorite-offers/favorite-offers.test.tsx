@@ -1,11 +1,11 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 
-import FavoriteOffers from './favorite-offers.jsx';
-import {AuthorizationStatus} from '../../const.js';
-import NameSpace from '../../reducer/name-space.js';
+import FavoriteOffers from './favorite-offers';
+import {AuthorizationStatus} from '../../const';
+import NameSpace from '../../reducer/name-space';
 
 const CITIES = [
   {

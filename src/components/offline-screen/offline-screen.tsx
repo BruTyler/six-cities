@@ -1,5 +1,5 @@
-import React from 'react';
-import MainEmpty from '../main-empty/main-empty.jsx';
+import * as React from 'react';
+import MainEmpty from '../main-empty/main-empty';
 
 const OfflineScreen = () => (
   <div className="page page--gray page--main">

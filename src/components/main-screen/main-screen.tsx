@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import CityList from '../city-list/city-list.jsx';
-import Header from '../header/header.jsx';
-import MainEmpty from '../main-empty/main-empty.jsx';
-import MainOffers from '../main-offers/main-offers.jsx';
+import CityList from '../city-list/city-list';
+import Header from '../header/header';
+import MainEmpty from '../main-empty/main-empty';
+import MainOffers from '../main-offers/main-offers';
 
 const MainScreen = (props) => {
   const {activeCity, cityList, apartmentList, onCityTitleClick, authInfo} = props;

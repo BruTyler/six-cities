@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import {Route, MemoryRouter} from 'react-router-dom';
-import renderer from 'react-test-renderer';
-import {PrivateRoute} from './private-route.jsx';
-import {AuthorizationStatus, AppRoute} from '../../const.js';
+import * as renderer from 'react-test-renderer';
+import {PrivateRoute} from './private-route';
+import {AuthorizationStatus, AppRoute} from '../../const';
 
 const routeTravelling = (userAuthStatus) => (
   <MemoryRouter initialEntries={[`/secret`]} initialIndex={0}>

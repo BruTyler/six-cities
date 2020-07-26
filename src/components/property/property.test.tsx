@@ -1,16 +1,16 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {Router} from 'react-router-dom';
 
-import {Property} from './property.jsx';
-import NameSpace from '../../reducer/name-space.js';
-import {createAPI} from '../../api.js';
-import {AuthorizationStatus} from '../../const.js';
-import history from '../../history.js';
+import {Property} from './property';
+import NameSpace from '../../reducer/name-space';
+import {createAPI} from '../../api';
+import {AuthorizationStatus} from '../../const';
+import history from '../../history';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {

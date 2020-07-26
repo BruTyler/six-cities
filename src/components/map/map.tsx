@@ -1,9 +1,9 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
-import {MapEnvironment} from '../../const.js';
+import {MapEnvironment} from '../../const';
 
-class Map extends PureComponent {
+class Map extends React.PureComponent {
   constructor(props) {
     super(props);
 

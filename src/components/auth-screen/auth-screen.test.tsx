@@ -1,10 +1,10 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Router} from 'react-router-dom';
 
-import AuthScreen from './auth-screen.jsx';
-import AuthInfoMock from '../../mocks/authInfo.js';
-import history from '../../history.js';
+import AuthScreen from './auth-screen';
+import AuthInfoMock from '../../mocks/authInfo';
+import history from '../../history';
 
 describe(`<AuthScreen /> render suit`, () => {
   it(`<AuthScreen /> render screen`, () => {

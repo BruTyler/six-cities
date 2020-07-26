@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
 import PropTypes from 'prop-types';
-import withActiveItem from './with-active-item.jsx';
+import withActiveItem from './with-active-item';
 
 
 const elementsMock = [{id: 1}, {id: 2}];

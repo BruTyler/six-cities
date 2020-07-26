@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import OfflineScreen from './offline-screen.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import OfflineScreen from './offline-screen';
 
 describe(`<OfflineScreen /> render suit`, () => {
   it(`<OfflineScreen /> render special screen`, () => {

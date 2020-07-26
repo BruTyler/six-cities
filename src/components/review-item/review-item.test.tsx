@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import ReviewItem from './review-item.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import ReviewItem from './review-item';
 
 const SINGLE_REVIEW = {
   id: 0,

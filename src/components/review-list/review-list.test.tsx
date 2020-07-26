@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {ReviewList} from './review-list.jsx';
-import {AuthorizationStatus} from '../../const.js';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {ReviewList} from './review-list';
+import {AuthorizationStatus} from '../../const';
 
 const EMPTY_HANDLER = () => {};
 const REVIEWS = [

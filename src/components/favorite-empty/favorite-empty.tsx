@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const FavoriteEmpty = () => (
   <div className="page__favorites-container container">

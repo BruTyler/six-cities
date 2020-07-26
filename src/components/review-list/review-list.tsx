@@ -1,16 +1,16 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {Operation} from '../../reducer/data/data.js';
-import {getReviews, getApiError} from '../../reducer/data/selectors.js';
-import {getApartmentId} from '../../reducer/application/selectors.js';
-import ReviewItem from '../review-item/review-item.jsx';
-import ReviewForm from '../review-form/review-form.jsx';
-import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
-import {AuthorizationStatus} from '../../const.js';
+import {Operation} from '../../reducer/data/data';
+import {getReviews, getApiError} from '../../reducer/data/selectors';
+import {getApartmentId} from '../../reducer/application/selectors';
+import ReviewItem from '../review-item/review-item';
+import ReviewForm from '../review-form/review-form';
+import {getAuthorizationStatus} from '../../reducer/user/selectors';
+import {AuthorizationStatus} from '../../const';
 
-class ReviewList extends PureComponent {
+class ReviewList extends React.PureComponent {
   constructor(props) {
     super(props);
     props.handleReviewsLoad(props.apartmentId);

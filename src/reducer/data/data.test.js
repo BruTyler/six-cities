@@ -1,10 +1,10 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api.js';
-import {reducer, ActionType, Operation, ActionCreator} from './data.js';
-import ApartmentsMock from '../../mocks/offers.js';
-import CitiesMock from '../../mocks/cities.js';
-import ReviewsMock from '../../mocks/reviews.js';
-import {transformToReviews} from '../../adapters/fetch-manager.js';
+import {createAPI} from '../../api';
+import {reducer, ActionType, Operation, ActionCreator} from './data';
+import ApartmentsMock from '../../mocks/offers';
+import CitiesMock from '../../mocks/cities';
+import ReviewsMock from '../../mocks/reviews';
+import {transformToReviews} from '../../adapters/fetch-manager';
 
 const api = createAPI(() => {}, () => {});
 

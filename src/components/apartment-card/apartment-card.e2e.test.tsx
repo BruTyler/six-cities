@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import {shallow} from 'enzyme';
-import {ApartmentCard} from './apartment-card.js';
-import {AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
+import {ApartmentCard} from './apartment-card';
+import {AuthorizationStatus, ApartmentEnvironment} from '../../const';
 
 const SINGLE_APARTMENT = {
   id: 0,

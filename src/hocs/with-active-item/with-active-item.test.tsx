@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import PropTypes from 'prop-types';
-import withActiveItem from './with-active-item.jsx';
+import withActiveItem from './with-active-item';
 
 const MockComponent = (props) => {
   const {activeItem, onItemSelect} = props;

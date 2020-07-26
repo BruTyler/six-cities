@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import {getMonthName, getShortDate} from './../../utils.js';
+import {getMonthName, getShortDate} from './../../utils';
 
 const ReviewItem = ({authorName, authorAvatar, rating, opinion, publishDate: rawDate}) => {
   const percentageRating = Math.round(Math.round(rating) / 5 * 100);

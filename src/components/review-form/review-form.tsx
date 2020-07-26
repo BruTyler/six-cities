@@ -1,16 +1,16 @@
-import React, {PureComponent, createRef} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import {BuisnessRequirements} from '../../const.js';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {BuisnessRequirements} from '../../const';
 
-class ReviewForm extends PureComponent {
+class ReviewForm extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this._textRef = createRef();
+    this._textRef = React.createRef();
     this._starRefs = new Array(5);
     for (let i = 0; i < this._starRefs.length; i++) {
-      this._starRefs[i] = createRef();
+      this._starRefs[i] = React.createRef();
     }
 
     this.handleButtonUnlock = this.handleButtonUnlock.bind(this);

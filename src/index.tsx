@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
-import AppPreloader from './components/app-preloader/app-preloader.jsx';
-import reducer from './reducer/reducer.js';
-import {createAPI} from './api.js';
-import {ActionCreator as UserActionCreator} from './reducer/user/user.js';
-import {ActionCreator as DataActionCreator} from './reducer/data/data.js';
-import {AuthorizationStatus} from './const.js';
+import AppPreloader from './components/app-preloader/app-preloader';
+import reducer from './reducer/reducer';
+import {createAPI} from './api';
+import {ActionCreator as UserActionCreator} from './reducer/user/user';
+import {ActionCreator as DataActionCreator} from './reducer/data/data';
+import {AuthorizationStatus} from './const';
 
 const onUpdateLastApiError = (errorMsg) => {
   store.dispatch(DataActionCreator.setApiError(errorMsg));

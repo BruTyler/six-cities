@@ -1,16 +1,16 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getLoadingStatus, getOfflineStatus} from '../../reducer/application/selectors';
 import {ActionCreator} from '../../reducer/application/application';
-import {getCity, getCities} from '../../reducer/data/selectors.js';
-import {Operation as DataOperation} from '../../reducer/data/data.js';
-import {Operation as UserOperation} from '../../reducer/user/user.js';
-import OfflineScreen from '../offline-screen/offline-screen.jsx';
-import App from '../app/app.jsx';
-import {ErrorStatus} from '../../api.js';
+import {getCity, getCities} from '../../reducer/data/selectors';
+import {Operation as DataOperation} from '../../reducer/data/data';
+import {Operation as UserOperation} from '../../reducer/user/user';
+import OfflineScreen from '../offline-screen/offline-screen';
+import App from '../app/app';
+import {ErrorStatus} from '../../api';
 
-class AppPreloader extends PureComponent {
+class AppPreloader extends React.PureComponent {
   constructor(props) {
     super(props);
     this._init();

@@ -1,13 +1,13 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {PlaceType, AppRoute, AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
-import history from '../../history.js';
-import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
-import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {PlaceType, AppRoute, AuthorizationStatus, ApartmentEnvironment} from '../../const';
+import history from '../../history';
+import {getAuthorizationStatus} from '../../reducer/user/selectors';
+import {Operation as DataOperation} from '../../reducer/data/data';
 
-class ApartmentCard extends PureComponent {
+class ApartmentCard extends React.PureComponent {
   constructor(props) {
     super(props);
     this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);

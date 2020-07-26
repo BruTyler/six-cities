@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {AppPreloader} from './app-preloader.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {AppPreloader} from './app-preloader';
 
 const EMPTY_HANDLER = () => {};
 

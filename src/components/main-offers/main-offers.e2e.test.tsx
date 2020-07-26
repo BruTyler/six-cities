@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import {mount} from 'enzyme';
-import MainOffers from './main-offers.jsx';
+import MainOffers from './main-offers';
 import configureStore from 'redux-mock-store';
-import {SortType, AuthorizationStatus} from '../../const.js';
+import {SortType, AuthorizationStatus} from '../../const';
 import {Provider} from 'react-redux';
-import NameSpace from '../../reducer/name-space.js';
+import NameSpace from '../../reducer/name-space';
 
 const EMPTY_HANDLER = () => {};
 const CITY = {

@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import ApartmentList from '../apartment-list/apartment-list.jsx';
-import Map from '../map/map.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import PlaceSorter from '../place-sorter/place-sorter.jsx';
-import {ApartmentEnvironment, MapEnvironment} from '../../const.js';
+import ApartmentList from '../apartment-list/apartment-list';
+import Map from '../map/map';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import PlaceSorter from '../place-sorter/place-sorter';
+import {ApartmentEnvironment, MapEnvironment} from '../../const';
 
 const MainOffers = (props) => {
   const {activeCity, apartmentList,

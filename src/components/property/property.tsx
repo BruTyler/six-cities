@@ -1,18 +1,18 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ApartmentList from '../apartment-list/apartment-list.jsx';
+import ApartmentList from '../apartment-list/apartment-list';
 import {connect} from 'react-redux';
 
-import {PlaceType, ApartmentEnvironment, BuisnessRequirements, MapEnvironment} from '../../const.js';
-import ReviewList from '../review-list/review-list.jsx';
-import Header from '../header/header.jsx';
-import Map from '../map/map.jsx';
-import {getCity, getApartmentList, getCities, getNeighboorApartments, getApartment} from '../../reducer/data/selectors.js';
-import {getAuthorizationStatus, getAuthInfo} from '../../reducer/user/selectors.js';
-import {ActionCreator} from '../../reducer/application/application.js';
-import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {PlaceType, ApartmentEnvironment, BuisnessRequirements, MapEnvironment} from '../../const';
+import ReviewList from '../review-list/review-list';
+import Header from '../header/header';
+import Map from '../map/map';
+import {getCity, getApartmentList, getCities, getNeighboorApartments, getApartment} from '../../reducer/data/selectors';
+import {getAuthorizationStatus, getAuthInfo} from '../../reducer/user/selectors';
+import {ActionCreator} from '../../reducer/application/application';
+import {Operation as DataOperation} from '../../reducer/data/data';
 
-class Property extends PureComponent {
+class Property extends React.PureComponent {
 
   constructor(props) {
     super(props);

@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import CityList from './city-list.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import CityList from './city-list';
 
 const EMPTY_HANDLER = () => {};
 const CITIES = [

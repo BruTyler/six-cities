@@ -1,18 +1,18 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Header from '../header/header.jsx';
-import FavoriteEmpty from '../favorite-empty/favorite-empty.jsx';
-import FavoriteOffers from '../favorite-offers/favorite-offers.jsx';
-import {AppRoute} from '../../const.js';
-import {Operation} from '../../reducer/data/data.js';
-import {getFavoriteCities, getFavoriteApartments} from '../../reducer/data/selectors.js';
-import {getAuthInfo} from '../../reducer/user/selectors.js';
-import {ActionCreator} from '../../reducer/application/application.js';
+import Header from '../header/header';
+import FavoriteEmpty from '../favorite-empty/favorite-empty';
+import FavoriteOffers from '../favorite-offers/favorite-offers';
+import {AppRoute} from '../../const';
+import {Operation} from '../../reducer/data/data';
+import {getFavoriteCities, getFavoriteApartments} from '../../reducer/data/selectors';
+import {getAuthInfo} from '../../reducer/user/selectors';
+import {ActionCreator} from '../../reducer/application/application';
 
-class FavoriteScreen extends PureComponent {
+class FavoriteScreen extends React.PureComponent {
   constructor(props) {
     super(props);
     props.handleLoadFavorites();

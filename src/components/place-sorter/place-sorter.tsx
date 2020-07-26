@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {SortType} from '../../const.js';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import {ActionCreator} from '../../reducer/application/application.js';
-import {getSortType} from '../../reducer/application/selectors.js';
+import {SortType} from '../../const';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {ActionCreator} from '../../reducer/application/application';
+import {getSortType} from '../../reducer/application/selectors';
 
 const PlaceSorter = (props) => {
   const {selectedSortValue, handleSorterItemClick,

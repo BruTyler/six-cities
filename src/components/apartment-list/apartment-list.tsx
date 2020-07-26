@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import ApartmentCard from '../apartment-card/apartment-card.jsx';
-import {ApartmentEnvironment} from '../../const.js';
+import ApartmentCard from '../apartment-card/apartment-card';
+import {ApartmentEnvironment} from '../../const';
 
 const ApartmentList = (props) => {
   const {parentBox, apartmentList, onApartmentCardHover} = props;

@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {SortType} from '../../const.js';
-import {PlaceSorter} from './place-sorter.jsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {SortType} from '../../const';
+import {PlaceSorter} from './place-sorter';
 
 describe(`<PlaceSorter /> render suit`, () => {
   it(`<PlaceSorter /> without HOC render sorter`, () => {

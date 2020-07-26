@@ -1,13 +1,13 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import {Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import MainScreen from './main-screen.jsx';
-import {SortType, AuthorizationStatus} from '../../const.js';
-import NameSpace from '../../reducer/name-space.js';
-import history from '../../history.js';
+import MainScreen from './main-screen';
+import {SortType, AuthorizationStatus} from '../../const';
+import NameSpace from '../../reducer/name-space';
+import history from '../../history';
 
 
 const EMPTY_HANDLER = () => {};

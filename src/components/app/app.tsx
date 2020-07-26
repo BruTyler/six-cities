@@ -1,19 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch, Router} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {ActionCreator} from '../../reducer/application/application.js';
-import {getCity, getApartmentList, getCities} from '../../reducer/data/selectors.js';
-import MainScreen from './../main-screen/main-screen.jsx';
-import Property from '../property/property.jsx';
-import {Operation as UserOperation} from '../../reducer/user/user.js';
-import AuthScreen from '../auth-screen/auth-screen.jsx';
-import {getAuthInfo} from '../../reducer/user/selectors.js';
-import {AppRoute} from '../../const.js';
-import history from '../../history.js';
-import FavoriteScreen from '../favorite-screen/favorite-screen.jsx';
-import PrivateRoute from '../private-route/private-route.jsx';
+import {ActionCreator} from '../../reducer/application/application';
+import {getCity, getApartmentList, getCities} from '../../reducer/data/selectors';
+import MainScreen from './../main-screen/main-screen';
+import Property from '../property/property';
+import {Operation as UserOperation} from '../../reducer/user/user';
+import AuthScreen from '../auth-screen/auth-screen';
+import {getAuthInfo} from '../../reducer/user/selectors';
+import {AppRoute} from '../../const';
+import history from '../../history';
+import FavoriteScreen from '../favorite-screen/favorite-screen';
+import PrivateRoute from '../private-route/private-route';
 
 const App = (props) => {
   const {authInfo, handleLoginSubmit,

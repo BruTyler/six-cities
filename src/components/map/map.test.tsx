@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import Map from './map.jsx';
-import {MapEnvironment} from '../../const.js';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import Map from './map';
+import {MapEnvironment} from '../../const';
 
 const CITY = {
   defaultZoom: 1,

@@ -1,11 +1,11 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 
-import {App} from './app.jsx';
-import {SortType, AuthorizationStatus} from '../../const.js';
-import NameSpace from '../../reducer/name-space.js';
+import {App} from './app';
+import {SortType, AuthorizationStatus} from '../../const';
+import NameSpace from '../../reducer/name-space';
 
 const EMPTY_HANDLER = () => {};
 const CITIES = [

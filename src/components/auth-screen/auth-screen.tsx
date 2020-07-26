@@ -1,17 +1,17 @@
-import React, {PureComponent, createRef} from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import Header from '../header/header.jsx';
-import {AppRoute} from '../../const.js';
-import history from '../../history.js';
+import Header from '../header/header';
+import {AppRoute} from '../../const';
+import history from '../../history';
 
-class AuthScreen extends PureComponent {
+class AuthScreen extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.loginRef = createRef();
-    this.passwordRef = createRef();
+    this.loginRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }

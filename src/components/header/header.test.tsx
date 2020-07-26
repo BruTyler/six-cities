@@ -1,10 +1,10 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Router} from 'react-router-dom';
 
-import Header from './header.jsx';
-import AuthInfoMock from '../../mocks/authInfo.js';
-import history from '../../history.js';
+import Header from './header';
+import AuthInfoMock from '../../mocks/authInfo';
+import history from '../../history';
 
 describe(`<Header /> render suit`, () => {
   it(`<Header /> render case`, () => {
