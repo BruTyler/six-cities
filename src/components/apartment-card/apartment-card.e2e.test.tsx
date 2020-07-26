@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {ApartmentCard} from './apartment-card.jsx';
+import {ApartmentCard} from './apartment-card.js';
 import {AuthorizationStatus, ApartmentEnvironment} from '../../const.js';
 
 const SINGLE_APARTMENT = {
