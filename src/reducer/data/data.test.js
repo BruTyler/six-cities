@@ -1,10 +1,10 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api.js';
-import {reducer, ActionType, Operation, ActionCreator} from './data.js';
-import ApartmentsMock from '../../mocks/offers.js';
-import CitiesMock from '../../mocks/cities.js';
-import ReviewsMock from '../../mocks/reviews.js';
-import {transformToReviews} from '../../adapters/fetch-manager.js';
+import {createAPI} from '../../api';
+import {reducer, ActionType, Operation, ActionCreator} from './data';
+import ApartmentsMock from '../../mocks/offers';
+import CitiesMock from '../../mocks/cities';
+import ReviewsMock from '../../mocks/reviews';
+import {transformToReviews} from '../../adapters/fetch-manager';
 
 const api = createAPI(() => {}, () => {});
 
@@ -63,6 +63,8 @@ describe(`Data reducer unit-test`, () => {
 
   it(`Data reducer should remove favorite one`, () => {
     expect(reducer({
+      neighboorApartmentList: [],
+      apartmentList: [],
       favoriteApartments: [
         {id: 1, description: `room1`},
         {id: 2, description: `room2`},
@@ -72,6 +74,8 @@ describe(`Data reducer unit-test`, () => {
         {id: 2, description: `room2`}
     )
     )).toEqual({
+      neighboorApartmentList: [],
+      apartmentList: [],
       favoriteApartments: [
         {id: 1, description: `room1`},
         {id: 3, description: `room3`},
@@ -106,9 +110,19 @@ describe(`Data reducer unit-test`, () => {
         {id: 2, isFavorite: true},
         {id: 3, isFavorite: true},
       ],
+      neighboorApartmentList: [
+        {id: 1, isFavorite: true},
+        {id: 2, isFavorite: true},
+        {id: 3, isFavorite: true},
+      ],
     }, ActionCreator.replaceHotel({id: 2, isFavorite: false})
     )).toEqual({
       apartmentList: [
+        {id: 1, isFavorite: true},
+        {id: 2, isFavorite: false},
+        {id: 3, isFavorite: true},
+      ],
+      neighboorApartmentList: [
         {id: 1, isFavorite: true},
         {id: 2, isFavorite: false},
         {id: 3, isFavorite: true},

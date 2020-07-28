@@ -1,6 +1,6 @@
-import {reducer, ActionCreator, ActionType} from './user.js';
-import {AuthorizationStatus} from '../../const.js';
-import AuthInfoMock from '../../mocks/authInfo.js';
+import {reducer, ActionCreator, ActionType} from './user';
+import {AuthorizationStatus} from '../../const';
+import AuthInfoMock from '../../mocks/authInfo';
 
 describe(`User reducer unit-tests`, () => {
   it(`User reducer without additional parameters should return initial state`, () => {

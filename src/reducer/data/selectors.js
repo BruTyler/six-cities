@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
-import NameSpace from '../name-space.js';
-import {SortType, BuisnessRequirements} from '../../const.js';
-import {getItemById, compare} from '../../utils.js';
+import NameSpace from '../name-space';
+import {SortType, BuisnessRequirements} from '../../const';
+import {getItemById, compare} from '../../utils';
 
 export const getReviews = (state) => {
   return state[NameSpace.DATA]
