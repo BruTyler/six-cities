@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {Route, Switch, Router} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -14,8 +13,18 @@ import {AppRoute} from '../../const';
 import history from '../../history';
 import FavoriteScreen from '../favorite-screen/favorite-screen';
 import PrivateRoute from '../private-route/private-route';
+import {City, AuthInfo, AuthData, SingleApartment} from '../../types';
 
-const App = (props) => {
+interface Props {
+  apartmentList: Array<SingleApartment>;
+  cityList: Array<City>;
+  activeCity: City;
+  handleChangeCity: (city: City) => void;
+  handleLoginSubmit: (authData: AuthData) => Promise<void>;
+  authInfo?: AuthInfo;
+}
+
+const App: React.FunctionComponent<Props> = (props: Props) => {
   const {authInfo, handleLoginSubmit,
     apartmentList, cityList, activeCity, handleChangeCity
   } = props;
@@ -51,15 +60,6 @@ const App = (props) => {
       </Route>
     </Switch>
   </Router>;
-};
-
-App.propTypes = {
-  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  cityList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  activeCity: PropTypes.shape().isRequired,
-  handleChangeCity: PropTypes.func.isRequired,
-  handleLoginSubmit: PropTypes.func.isRequired,
-  authInfo: PropTypes.shape(),
 };
 
 const mapStateToProps = (state) => {

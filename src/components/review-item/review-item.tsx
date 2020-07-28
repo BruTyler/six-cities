@@ -1,8 +1,12 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {getMonthName, getShortDate} from './../../utils';
+import {Review, WithId} from '../../types';
+import {Subtract} from 'utility-types';
 
-const ReviewItem = ({authorName, authorAvatar, rating, opinion, publishDate: rawDate}) => {
+type Props = Subtract<Review, WithId<number>>;
+
+const ReviewItem: React.FunctionComponent<Props> = (props: Props) => {
+  const {authorName, authorAvatar, rating, opinion, publishDate: rawDate} = props;
   const percentageRating = Math.round(Math.round(rating) / 5 * 100);
   const convertedDate = new Date(rawDate);
   const monthName = getMonthName(convertedDate.getMonth());
@@ -27,14 +31,6 @@ const ReviewItem = ({authorName, authorAvatar, rating, opinion, publishDate: raw
       <time className="reviews__time" dateTime={shortDate}>{monthName} {year}</time>
     </div>
   </li>;
-};
-
-ReviewItem.propTypes = {
-  authorName: PropTypes.string.isRequired,
-  authorAvatar: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  opinion: PropTypes.string.isRequired,
-  publishDate: PropTypes.string.isRequired,
 };
 
 export default ReviewItem;

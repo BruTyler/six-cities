@@ -1,5 +1,5 @@
-import {reducer, ActionCreator} from "./application.js";
-import {SortType} from "../../const.js";
+import {reducer, ActionCreator} from './application';
+import {SortType} from '../../const';
 
 describe(`Application reducer unit- suit`, () => {
   it(`Should return initial state`, () => {

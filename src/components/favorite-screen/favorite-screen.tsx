@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -11,9 +10,18 @@ import {Operation} from '../../reducer/data/data';
 import {getFavoriteCities, getFavoriteApartments} from '../../reducer/data/selectors';
 import {getAuthInfo} from '../../reducer/user/selectors';
 import {ActionCreator} from '../../reducer/application/application';
+import {SingleApartment, City, AuthInfo} from '../../types';
 
-class FavoriteScreen extends React.PureComponent {
-  constructor(props) {
+interface Props {
+  favoriteApartments: Array<SingleApartment>;
+  favoriteCities: Array<City>;
+  handleChangeCity: (city: City) => void;
+  authInfo?: AuthInfo;
+  handleLoadFavorites: () => void;
+}
+
+class FavoriteScreen extends React.PureComponent<Props> {
+  constructor(props: Props) {
     super(props);
     props.handleLoadFavorites();
   }
@@ -43,14 +51,6 @@ class FavoriteScreen extends React.PureComponent {
     </div>;
   }
 }
-
-FavoriteScreen.propTypes = {
-  favoriteApartments: PropTypes.array.isRequired,
-  favoriteCities: PropTypes.array.isRequired,
-  handleChangeCity: PropTypes.func.isRequired,
-  authInfo: PropTypes.shape(),
-  handleLoadFavorites: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => {
   return {

@@ -1,38 +1,61 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
-import MainOffers from './main-offers';
 import configureStore from 'redux-mock-store';
-import {SortType, AuthorizationStatus} from '../../const';
 import {Provider} from 'react-redux';
-import NameSpace from '../../reducer/name-space';
 
-const EMPTY_HANDLER = () => {};
-const CITY = {
+import {MainOffers} from './main-offers';
+import {SortType, AuthorizationStatus, PlaceType} from '../../const';
+import NameSpace from '../../reducer/name-space';
+import {City, SingleApartment} from '../../types';
+
+const CITY: City = {
   id: `Amsterdam`,
   location: [1, 1],
   defaultZoom: 1,
 };
-const APARTMENTS = [
+const APARTMENTS: SingleApartment[] = [
   {
     id: 0,
-    type: `Apartment`,
+    cityId: `Amsterdam`,
+    type: PlaceType.APARTMENT,
     description: `description0`,
+    fullDescription: `d1`,
     rating: 0.1,
     price: 1,
     isPremium: true,
     isFavourite: true,
     photo: `img0.jpg`,
+    photoSet: [],
+    bedrooms: 3,
+    adultsMax: 4,
+    goods: [`Wi-Fi`],
+    host: {
+      avatar: `img.jpg`,
+      name: `A`,
+      isSuper: true,
+    },
     location: [1, 1],
   },
   {
     id: 1,
-    type: `Private room`,
+    cityId: `Amsterdam`,
+    type: PlaceType.ROOM,
     description: `description1`,
+    fullDescription: `d1`,
     rating: 1,
     price: 2,
     isPremium: false,
     isFavourite: false,
     photo: `img1.jpg`,
+    photoSet: [],
+    bedrooms: 3,
+    adultsMax: 4,
+    goods: [`Wi-Fi`],
+    host: {
+      avatar: `img.jpg`,
+      name: `A`,
+      isSuper: true,
+    },
     location: [1, 1],
   }
 ];
@@ -60,16 +83,14 @@ describe(`<MainOffers /> e2e suite`, () => {
         <Provider store={store}>
           <MainOffers
             activeCity={CITY}
-            cityList={[CITY]}
             apartmentList={APARTMENTS}
-            onCityTitleClick={EMPTY_HANDLER}
             onItemSelect={onApartmentHoverMock}
           />
         </Provider>
     );
 
     const apartmentsElems = mainOffersWrapper.find(`.place-card`);
-    const eventMock = {preventDefault() {}};
+    const eventMock = {preventDefault: () => null};
     apartmentsElems.at(0).simulate(`mouseEnter`, eventMock);
 
     expect(apartmentsElems.length).toBe(2);

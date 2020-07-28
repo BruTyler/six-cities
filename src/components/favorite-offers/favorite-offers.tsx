@@ -1,10 +1,16 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import ApartmentCard from '../apartment-card/apartment-card';
 import history from '../../history';
 import {AppRoute, ApartmentEnvironment} from '../../const';
+import {SingleApartment, City} from '../../types';
 
-const FavoriteOffers = (props) => {
+interface Props {
+  favoriteApartments: Array<SingleApartment>;
+  favoriteCities: Array<City>;
+  onCityTitleClick: (city: City) => void;
+}
+
+const FavoriteOffers: React.FunctionComponent<Props> = (props: Props) => {
   const {favoriteApartments, favoriteCities, onCityTitleClick} = props;
 
   return <div className="page__favorites-container container">
@@ -35,6 +41,7 @@ const FavoriteOffers = (props) => {
                     key={apartment.id}
                     parentBox={ApartmentEnvironment.FAVORITE}
                     apartment={apartment}
+                    onApartmentCardHover={() => null}
                   />
                 )
               }
@@ -44,17 +51,6 @@ const FavoriteOffers = (props) => {
       </ul>
     </section>
   </div>;
-};
-
-FavoriteOffers.propTypes = {
-  favoriteApartments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    cityId: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  favoriteCities: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  onCityTitleClick: PropTypes.func.isRequired,
 };
 
 export default FavoriteOffers;

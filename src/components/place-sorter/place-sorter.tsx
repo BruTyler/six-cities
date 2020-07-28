@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {SortType} from '../../const';
@@ -7,7 +6,14 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {ActionCreator} from '../../reducer/application/application';
 import {getSortType} from '../../reducer/application/selectors';
 
-const PlaceSorter = (props) => {
+interface Props {
+  activeItem: boolean;
+  onItemSelect: (isSorterOpen: boolean) => void;
+  selectedSortValue: SortType;
+  handleSorterItemClick: (newSortType: SortType) => void;
+}
+
+const PlaceSorter: React.FunctionComponent<Props> = (props: Props) => {
   const {selectedSortValue, handleSorterItemClick,
     activeItem: isSorterOpen, onItemSelect: toggleSorter
   } = props;
@@ -16,7 +22,6 @@ const PlaceSorter = (props) => {
     <span className="places__sorting-caption">Sort by</span>
     <span
       className="places__sorting-type"
-      tabIndex="0"
       onClick={() => toggleSorter(!isSorterOpen)}
     >
       {selectedSortValue}
@@ -29,9 +34,8 @@ const PlaceSorter = (props) => {
         <li
           key={sortKey}
           className="places__option"
-          tabIndex="0"
           onClick={() => {
-            handleSorterItemClick(sortKey);
+            handleSorterItemClick(SortType[sortKey]);
             toggleSorter(!isSorterOpen);
           }}
         >
@@ -42,13 +46,6 @@ const PlaceSorter = (props) => {
   </form>;
 };
 
-PlaceSorter.propTypes = {
-  activeItem: PropTypes.bool.isRequired,
-  onItemSelect: PropTypes.func.isRequired,
-  selectedSortValue: PropTypes.oneOf(Object.values(SortType)).isRequired,
-  handleSorterItemClick: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = (state) => {
   return {
     selectedSortValue: getSortType(state),
@@ -56,8 +53,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSorterItemClick(selectedSortKey) {
-    dispatch(ActionCreator.changeSortType(SortType[selectedSortKey]));
+  handleSorterItemClick(newSortType) {
+    dispatch(ActionCreator.changeSortType(newSortType));
   },
 });
 

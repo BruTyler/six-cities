@@ -1,14 +1,22 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {PlaceType, AppRoute, AuthorizationStatus, ApartmentEnvironment} from '../../const';
+import {AppRoute, AuthorizationStatus, ApartmentEnvironment} from '../../const';
 import history from '../../history';
 import {getAuthorizationStatus} from '../../reducer/user/selectors';
 import {Operation as DataOperation} from '../../reducer/data/data';
+import {SingleApartment} from '../../types';
 
-class ApartmentCard extends React.PureComponent {
-  constructor(props) {
+interface Props {
+  parentBox: ApartmentEnvironment;
+  apartment: SingleApartment;
+  onApartmentCardHover: (apartment?: SingleApartment) => void;
+  authStatus: AuthorizationStatus;
+  handleFavoriteStatusChange: (apartment: SingleApartment, parentBox: ApartmentEnvironment) => void;
+}
+
+class ApartmentCard extends React.PureComponent<Props> {
+  constructor(props: Props) {
     super(props);
     this.handleApartmentTitleClick = this.handleApartmentTitleClick.bind(this);
     this.handleFavoriteClickNotLogged = this.handleFavoriteClickNotLogged.bind(this);
@@ -80,28 +88,11 @@ class ApartmentCard extends React.PureComponent {
       </div>
     </article>;
   }
+
+  static defaultProps = {
+    onApartmentCardHover: () => null,
+  };
 }
-
-ApartmentCard.defaultProps = {
-  onApartmentCardHover: () => {},
-};
-
-ApartmentCard.propTypes = {
-  parentBox: PropTypes.oneOf(Object.values(ApartmentEnvironment)).isRequired,
-  apartment: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    photo: PropTypes.string.isRequired
-  }).isRequired,
-  onApartmentCardHover: PropTypes.func.isRequired,
-  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)),
-  handleFavoriteStatusChange: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => {
   return {

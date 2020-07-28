@@ -1,9 +1,13 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import {AuthInfo} from '../../types';
 
-const Header = ({authInfo}) => {
+interface Props {
+  authInfo?: AuthInfo;
+}
+
+const Header: React.FunctionComponent<Props> = ({authInfo}: Props) => {
   return <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -34,12 +38,6 @@ const Header = ({authInfo}) => {
       </div>
     </div>
   </header>;
-};
-
-Header.propTypes = {
-  authInfo: PropTypes.shape({
-    email: PropTypes.string.isRequired
-  }),
 };
 
 export default Header;

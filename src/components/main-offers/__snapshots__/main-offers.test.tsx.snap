@@ -35,7 +35,6 @@ exports[`<MainOffers /> render suit <MainOffers /> render apartment list case 1`
         <span
           className="places__sorting-type"
           onClick={[Function]}
-          tabIndex="0"
         >
           Popular
           <svg
@@ -54,28 +53,24 @@ exports[`<MainOffers /> render suit <MainOffers /> render apartment list case 1`
           <li
             className="places__option"
             onClick={[Function]}
-            tabIndex="0"
           >
             Popular
           </li>
           <li
             className="places__option"
             onClick={[Function]}
-            tabIndex="0"
           >
             Price: low to high
           </li>
           <li
             className="places__option"
             onClick={[Function]}
-            tabIndex="0"
           >
             Price: high to low
           </li>
           <li
             className="places__option"
             onClick={[Function]}
-            tabIndex="0"
           >
             Top rated first
           </li>

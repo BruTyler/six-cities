@@ -1,43 +1,43 @@
-export const PlaceType = {
-  APARTMENT: `Apartment`,
-  ROOM: `Private room`,
-  HOUSE: `House`,
-  HOTEL: `Hotel`,
+export enum PlaceType {
+  APARTMENT = `Apartment`,
+  ROOM = `Private room`,
+  HOUSE = `House`,
+  HOTEL = `Hotel`,
 };
 
-export const SortType = {
-  POPULAR: `Popular`,
-  PRICE_LOW: `Price: low to high`,
-  PRICE_HIGH: `Price: high to low`,
-  TOP_RATED: `Top rated first`,
+export enum SortType {
+  POPULAR = `Popular`,
+  PRICE_LOW = `Price: low to high`,
+  PRICE_HIGH = `Price: high to low`,
+  TOP_RATED = `Top rated first`,
 };
 
-export const AuthorizationStatus = {
-  NO_AUTH: `NO_AUTH`,
-  AUTH: `AUTH`,
+export enum AuthorizationStatus {
+  NO_AUTH = `NO_AUTH`,
+  AUTH = `AUTH`,
 };
 
-export const BuisnessRequirements = {
-  MAX_PHOTOS_PER_APARTMENT: 6,
-  MAX_REVIEWS_PER_APARTMENT: 10,
-  MIN_REVIEW_TEXT_LENGTH: 50,
-  MAX_REVIEW_TEXT_LENGTH: 300,
+export enum BuisnessRequirements {
+  MAX_PHOTOS_PER_APARTMENT = 6,
+  MAX_REVIEWS_PER_APARTMENT = 10,
+  MIN_REVIEW_TEXT_LENGTH = 50,
+  MAX_REVIEW_TEXT_LENGTH = 300,
 };
 
-export const AppRoute = {
-  AUTH: `/login`,
-  ROOT: `/`,
-  FAVORITES: `/favorites`,
-  PROPERTY_WITH_ID: `/offer/:id`,
+export enum AppRoute {
+  AUTH = `/login`,
+  ROOT = `/`,
+  FAVORITES = `/favorites`,
+  PROPERTY_WITH_ID = `/offer/:id`,
 };
 
-export const ApartmentEnvironment = {
-  FAVORITE: `favorites`,
-  NEARBY_PLACES: `near-places`,
-  MAIN_WINDOW: `cities`
+export enum ApartmentEnvironment {
+  FAVORITE = `favorites`,
+  NEARBY_PLACES = `near-places`,
+  MAIN_WINDOW = `cities`
 };
 
-export const MapEnvironment = {
-  NEARBY_PLACES: `property__map`,
-  MAIN_WINDOW: `cities__map`
+export enum MapEnvironment {
+  NEARBY_PLACES = `property__map`,
+  MAIN_WINDOW = `cities__map`
 };

@@ -4,28 +4,53 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import ApartmentList from './apartment-list';
 import NameSpace from '../../reducer/name-space';
-import {AuthorizationStatus, ApartmentEnvironment} from '../../const';
+import {AuthorizationStatus, ApartmentEnvironment, PlaceType} from '../../const';
+import {SingleApartment} from '../../types';
 
-const APARTMENTS = [
+const APARTMENTS: Array<SingleApartment> = [
   {
     id: 0,
-    type: `Apartment`,
+    cityId: `Amsterdam`,
+    type: PlaceType.APARTMENT,
     description: `description0`,
+    fullDescription: `d1`,
     rating: 0.1,
     price: 1,
     isPremium: true,
     isFavourite: true,
-    photo: `img0.jpg`
+    photo: `img0.jpg`,
+    photoSet: [],
+    bedrooms: 3,
+    adultsMax: 4,
+    goods: [`Wi-Fi`],
+    host: {
+      avatar: `img.jpg`,
+      name: `A`,
+      isSuper: true,
+    },
+    location: [1, 2],
   },
   {
     id: 1,
-    type: `Private room`,
+    cityId: `Amsterdam`,
+    type: PlaceType.ROOM,
     description: `description1`,
+    fullDescription: `d1`,
     rating: 1,
     price: 2,
     isPremium: false,
     isFavourite: false,
-    photo: `img1.jpg`
+    photo: `img1.jpg`,
+    photoSet: [],
+    bedrooms: 3,
+    adultsMax: 4,
+    goods: [`Wi-Fi`],
+    host: {
+      avatar: `img.jpg`,
+      name: `A`,
+      isSuper: true,
+    },
+    location: [1, 2],
   }
 ];
 const mockStore = configureStore();
@@ -42,6 +67,7 @@ describe(`<ApartmentList /> render suit`, () => {
           <ApartmentList
             parentBox={ApartmentEnvironment.MAIN_WINDOW}
             apartmentList={APARTMENTS}
+            onApartmentCardHover={() => null}
           />
         </Provider>
     ).toJSON();

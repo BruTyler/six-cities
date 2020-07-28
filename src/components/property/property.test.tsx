@@ -9,19 +9,20 @@ import {Router} from 'react-router-dom';
 import {Property} from './property';
 import NameSpace from '../../reducer/name-space';
 import {createAPI} from '../../api';
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, PlaceType} from '../../const';
 import history from '../../history';
+import {SingleApartment, City, Review} from '../../types';
 
-const EMPTY_HANDLER = () => {};
-const CITY = {
+const EMPTY_HANDLER = () => null;
+const CITY: City = {
   id: `Amsterdam`,
   location: [1, 1],
   defaultZoom: 1,
 };
-const SINGLE_APARTMENT = {
+const SINGLE_APARTMENT: SingleApartment = {
   id: 1,
   cityId: `Amsterdam`,
-  type: `Private room`,
+  type: PlaceType.ROOM,
   description: `description1`,
   fullDescription: `full description1`,
   rating: 1,
@@ -44,7 +45,7 @@ const SINGLE_APARTMENT = {
   location: [1, 1],
 };
 
-const REVIEWS = [
+const REVIEWS: Review[] = [
   {
     id: 1,
     authorName: `Max`,
@@ -55,7 +56,7 @@ const REVIEWS = [
   },
 ];
 
-const api = createAPI(() => {}, () => {});
+const api = createAPI(EMPTY_HANDLER, EMPTY_HANDLER);
 const apiMock = new MockAdapter(api);
 apiMock
   .onAny()
@@ -83,7 +84,6 @@ describe(`<Property /> render suit`, () => {
             <Property
               id={SINGLE_APARTMENT.id}
               activeCity={CITY}
-              onApartmentTitleClick={EMPTY_HANDLER}
               neighboorApartmentList={[SINGLE_APARTMENT]}
               apartment={SINGLE_APARTMENT}
               handleApartmentChange={EMPTY_HANDLER}

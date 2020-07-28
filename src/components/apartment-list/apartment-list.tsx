@@ -1,9 +1,15 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import ApartmentCard from '../apartment-card/apartment-card';
 import {ApartmentEnvironment} from '../../const';
+import {SingleApartment} from '../../types';
 
-const ApartmentList = (props) => {
+interface Props {
+  parentBox: ApartmentEnvironment;
+  apartmentList: SingleApartment[];
+  onApartmentCardHover?: (apartment?: SingleApartment) => void;
+}
+
+const ApartmentList: React.FunctionComponent<Props> = (props: Props) => {
   const {parentBox, apartmentList, onApartmentCardHover} = props;
 
   return <div className={`${parentBox}__places-list ${parentBox}__list places__list tabs__content`}>
@@ -16,16 +22,6 @@ const ApartmentList = (props) => {
       />)
     }
   </div>;
-};
-
-ApartmentList.propTypes = {
-  parentBox: PropTypes.oneOf(Object.values(ApartmentEnvironment)).isRequired,
-  apartmentList: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired
-      })
-  ).isRequired,
-  onApartmentCardHover: PropTypes.func,
 };
 
 export default ApartmentList;

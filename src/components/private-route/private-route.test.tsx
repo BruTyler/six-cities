@@ -4,7 +4,7 @@ import * as renderer from 'react-test-renderer';
 import {PrivateRoute} from './private-route';
 import {AuthorizationStatus, AppRoute} from '../../const';
 
-const routeTravelling = (userAuthStatus) => (
+const routeTravelling = (userAuthStatus: AuthorizationStatus) => (
   <MemoryRouter initialEntries={[`/secret`]} initialIndex={0}>
     <Route exact
       path={AppRoute.AUTH}

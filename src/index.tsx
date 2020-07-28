@@ -21,6 +21,12 @@ const onUnauthorized = () => {
 
 const api = createAPI(onUnauthorized, onUpdateLastApiError);
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION__?: () => null;
+  }
+}
+
 const store = createStore(
     reducer,
     compose(

@@ -1,9 +1,14 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import PropTypes from 'prop-types';
 import withActiveItem from './with-active-item';
+import {WithId} from '../../types';
 
-const MockComponent = (props) => {
+interface Props {
+  activeItem: WithId<number>;
+  onItemSelect: (ObjWithId: WithId<number>) => void;
+}
+
+const MockComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {activeItem, onItemSelect} = props;
 
   return (
@@ -11,13 +16,6 @@ const MockComponent = (props) => {
       {activeItem.id}
     </div>
   );
-};
-
-MockComponent.propTypes = {
-  activeItem: PropTypes.shape({
-    id: PropTypes.number.isRequired
-  }).isRequired,
-  onItemSelect: PropTypes.func.isRequired,
 };
 
 const MockComponentWrapped = withActiveItem(MockComponent);

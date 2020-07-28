@@ -1,18 +1,31 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import {ApartmentCard} from './apartment-card';
-import {AuthorizationStatus, ApartmentEnvironment} from '../../const';
+import {AuthorizationStatus, ApartmentEnvironment, PlaceType} from '../../const';
+import {SingleApartment} from '../../types';
 
-const EMPTY_HANDLER = () => {};
-const SINGLE_APARTMENT = {
+const EMPTY_HANDLER = () => null;
+const SINGLE_APARTMENT: SingleApartment = {
   id: 1,
-  type: `Private room`,
-  description: `description1`,
+  cityId: `A`,
+  type: PlaceType.ROOM,
+  description: `de1`,
+  fullDescription: `d1`,
   rating: 1,
   price: 2,
   isPremium: false,
   isFavourite: false,
-  photo: `img1.jpg`
+  photo: `img1.jpg`,
+  photoSet: [],
+  bedrooms: 3,
+  adultsMax: 4,
+  goods: [`Wi-Fi`],
+  host: {
+    avatar: `img.jpg`,
+    name: `A`,
+    isSuper: true,
+  },
+  location: [1, 2],
 };
 
 describe(`<ApartmentCard /> render suit`, () => {

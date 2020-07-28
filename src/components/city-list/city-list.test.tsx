@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import CityList from './city-list';
+import {City} from '../../types';
 
-const EMPTY_HANDLER = () => {};
-const CITIES = [
+const EMPTY_HANDLER = () => null;
+const CITIES: City[] = [
   {
     id: `A`,
     location: [1, 2],

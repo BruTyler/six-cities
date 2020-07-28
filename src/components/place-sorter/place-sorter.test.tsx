@@ -9,8 +9,8 @@ describe(`<PlaceSorter /> render suit`, () => {
         <PlaceSorter
           selectedSortValue={SortType.POPULAR}
           activeItem={false}
-          onItemSelect={()=>{}}
-          handleSorterItemClick={()=>{}}
+          onItemSelect={()=>null}
+          handleSorterItemClick={()=>null}
         />
     ).toJSON();
 

@@ -7,8 +7,8 @@ describe(`<ReviewForm /> render suit`, () => {
     const generatedTree = renderer.create(
         <ReviewForm
           activeItem={true}
-          onItemSelect={() => {}}
-          onFormSubmit={() => {}}
+          onItemSelect={() => null}
+          onFormSubmit={() => null}
           apartmentId={1}
         />, {
           createNodeMock: () => {

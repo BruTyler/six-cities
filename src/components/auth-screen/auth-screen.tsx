@@ -1,17 +1,25 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-
 import Header from '../header/header';
 import {AppRoute} from '../../const';
 import history from '../../history';
+import {AuthInfo, AuthData, City} from '../../types';
 
-class AuthScreen extends React.PureComponent {
-  constructor(props) {
+interface Props {
+  authInfo?: AuthInfo;
+  onLoginSubmit: (authData: AuthData) => Promise<void>;
+  activeCity: City;
+}
+
+class AuthScreen extends React.PureComponent<Props> {
+  private _loginRef: React.RefObject<HTMLInputElement>
+  private _passwordRef: React.RefObject<HTMLInputElement>;
+
+  constructor(props: Props) {
     super(props);
 
-    this.loginRef = React.createRef();
-    this.passwordRef = React.createRef();
+    this._loginRef = React.createRef();
+    this._passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,8 +27,8 @@ class AuthScreen extends React.PureComponent {
   handleSubmit(evt) {
     const {onLoginSubmit} = this.props;
     evt.preventDefault();
-    const login = this.loginRef.current.value;
-    const password = this.passwordRef.current.value;
+    const login = this._loginRef.current.value;
+    const password = this._passwordRef.current.value;
 
     onLoginSubmit({login, password})
       .then(history.push(AppRoute.ROOT));
@@ -44,11 +52,11 @@ class AuthScreen extends React.PureComponent {
             >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" placeholder="Email" ref={this.loginRef} autoComplete="email" />
+                <input className="login__input form__input" type="email" name="email" placeholder="Email" ref={this._loginRef} autoComplete="email" />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" placeholder="Password" ref={this.passwordRef} autoComplete="current-password" />
+                <input className="login__input form__input" type="password" name="password" placeholder="Password" ref={this._passwordRef} autoComplete="current-password" />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
@@ -68,13 +76,5 @@ class AuthScreen extends React.PureComponent {
     </div>;
   }
 }
-
-AuthScreen.propTypes = {
-  authInfo: PropTypes.shape(),
-  onLoginSubmit: PropTypes.func.isRequired,
-  activeCity: PropTypes.shape({
-    id: PropTypes.string.isRequired
-  }).isRequired,
-};
 
 export default AuthScreen;

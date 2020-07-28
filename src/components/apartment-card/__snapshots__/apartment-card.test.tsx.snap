@@ -13,7 +13,7 @@ exports[`<ApartmentCard /> render suit <ApartmentCard /> render single apartment
       href="#"
     >
       <img
-        alt="description1"
+        alt="de1"
         className="place-card__image"
         height="200"
         src="img1.jpg"
@@ -91,7 +91,7 @@ exports[`<ApartmentCard /> render suit <ApartmentCard /> render single apartment
         href="#"
         onClick={[Function]}
       >
-        description1
+        de1
       </a>
     </h2>
     <p

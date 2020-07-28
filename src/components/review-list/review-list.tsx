@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {Operation} from '../../reducer/data/data';
@@ -9,8 +8,18 @@ import ReviewItem from '../review-item/review-item';
 import ReviewForm from '../review-form/review-form';
 import {getAuthorizationStatus} from '../../reducer/user/selectors';
 import {AuthorizationStatus} from '../../const';
+import {Review, ReviewFormData} from '../../types';
 
-class ReviewList extends React.PureComponent {
+interface Props {
+  reviewList: Array<Review>;
+  handleReviewsLoad: (apartmentId: number) => void;
+  apartmentId: number;
+  authStatus: AuthorizationStatus;
+  handleReviewSend: (obj: ReviewFormData) => Promise<void>;
+  errorSubmitMsg?: string;
+}
+
+class ReviewList extends React.PureComponent<Props> {
   constructor(props) {
     super(props);
     props.handleReviewsLoad(props.apartmentId);
@@ -42,6 +51,7 @@ class ReviewList extends React.PureComponent {
       </ul>
       { authStatus === AuthorizationStatus.AUTH &&
        <ReviewForm
+         activeItem={true}
          apartmentId={apartmentId}
          onFormSubmit={handleReviewSend}
          errorMsg={errorSubmitMsg}
@@ -50,20 +60,6 @@ class ReviewList extends React.PureComponent {
     </section>;
   }
 }
-
-ReviewList.propTypes = {
-  reviewList: PropTypes.arrayOf(PropTypes.shape({
-    authorName: PropTypes.string.isRequired,
-    authorAvatar: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    opinion: PropTypes.string.isRequired,
-  })).isRequired,
-  handleReviewsLoad: PropTypes.func.isRequired,
-  apartmentId: PropTypes.number.isRequired,
-  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
-  handleReviewSend: PropTypes.func.isRequired,
-  errorSubmitMsg: PropTypes.string
-};
 
 const mapStateToProps = (state) => {
   return {

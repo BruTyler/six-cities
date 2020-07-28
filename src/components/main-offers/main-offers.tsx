@@ -1,13 +1,19 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-
 import ApartmentList from '../apartment-list/apartment-list';
 import Map from '../map/map';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import PlaceSorter from '../place-sorter/place-sorter';
 import {ApartmentEnvironment, MapEnvironment} from '../../const';
+import {City, SingleApartment} from '../../types';
 
-const MainOffers = (props) => {
+interface Props {
+  activeCity: City;
+  apartmentList: Array<SingleApartment>;
+  activeItem?: SingleApartment;
+  onItemSelect: (apartment: SingleApartment) => void;
+}
+
+const MainOffers: React.FunctionComponent<Props> = (props: Props) => {
   const {activeCity, apartmentList,
     activeItem: hoveredApartment,
     onItemSelect: onApartmentCardHover} = props;
@@ -34,15 +40,6 @@ const MainOffers = (props) => {
       </div>
     </div>
   </div>;
-};
-
-MainOffers.propTypes = {
-  activeCity: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
-  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  activeItem: PropTypes.shape(),
-  onItemSelect: PropTypes.func.isRequired,
 };
 
 export {MainOffers};

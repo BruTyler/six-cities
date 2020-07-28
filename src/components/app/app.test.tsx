@@ -4,11 +4,12 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 
 import {App} from './app';
-import {SortType, AuthorizationStatus} from '../../const';
+import {SortType, AuthorizationStatus, PlaceType} from '../../const';
 import NameSpace from '../../reducer/name-space';
+import {City, SingleApartment} from '../../types';
 
-const EMPTY_HANDLER = () => {};
-const CITIES = [
+const EMPTY_HANDLER = () => null;
+const CITIES: City[] = [
   {
     id: `A`,
     location: [1, 2],
@@ -21,11 +22,13 @@ const CITIES = [
   },
 ];
 
-const APARTMENTS = [
+const APARTMENTS: SingleApartment[] = [
   {
     id: 0,
-    type: `Apartment`,
+    cityId: `A`,
+    type: PlaceType.APARTMENT,
     description: `description0`,
+    fullDescription: `description1`,
     rating: 0.1,
     price: 1,
     isPremium: true,
@@ -66,9 +69,6 @@ describe(`<App /> render suit`, () => {
             activeCity={CITIES[0]}
             apartmentList={APARTMENTS}
             handleChangeCity={EMPTY_HANDLER}
-            handleFirstCityLoad={EMPTY_HANDLER}
-            handleFetchingHotels={EMPTY_HANDLER}
-            handleFinishLoading={EMPTY_HANDLER}
             handleLoginSubmit={EMPTY_HANDLER}
           />
         </Provider>,

@@ -5,39 +5,62 @@ import {Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import MainScreen from './main-screen';
-import {SortType, AuthorizationStatus} from '../../const';
+import {SortType, AuthorizationStatus, PlaceType} from '../../const';
 import NameSpace from '../../reducer/name-space';
 import history from '../../history';
+import {City, SingleApartment} from '../../types';
 
 
-const EMPTY_HANDLER = () => {};
-const CITY = {
+const EMPTY_HANDLER = () => null;
+const CITY: City = {
   id: `Amsterdam`,
   location: [1, 1],
   defaultZoom: 1
 };
-const APARTMENTS = [
+const APARTMENTS: SingleApartment[] = [
   {
     id: 0,
-    type: `Apartment`,
+    cityId: `Amsterdam`,
+    type: PlaceType.APARTMENT,
     description: `description0`,
+    fullDescription: `description1`,
     rating: 0.1,
     price: 1,
     isPremium: true,
     isFavourite: true,
     photo: `img0.jpg`,
     location: [1, 2],
+    photoSet: [],
+    bedrooms: 3,
+    adultsMax: 4,
+    goods: [`Wi-Fi`],
+    host: {
+      avatar: `img/avatar.jpg`,
+      name: `Angelina`,
+      isSuper: true,
+    },
   },
   {
     id: 1,
-    type: `Private room`,
+    cityId: `Amsterdam`,
+    type: PlaceType.ROOM,
     description: `description1`,
+    fullDescription: `description3`,
     rating: 1,
     price: 2,
     isPremium: false,
     isFavourite: false,
     photo: `img1.jpg`,
     location: [3, 4],
+    photoSet: [],
+    bedrooms: 3,
+    adultsMax: 4,
+    goods: [`Wi-Fi`],
+    host: {
+      avatar: `img/avatar.jpg`,
+      name: `Angelina`,
+      isSuper: true,
+    },
   }
 ];
 const mockStore = configureStore();

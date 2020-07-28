@@ -1,12 +1,20 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import CityList from '../city-list/city-list';
 import Header from '../header/header';
 import MainEmpty from '../main-empty/main-empty';
 import MainOffers from '../main-offers/main-offers';
+import {City, SingleApartment, AuthInfo} from '../../types';
 
-const MainScreen = (props) => {
+interface Props {
+  activeCity: City;
+  apartmentList: Array<SingleApartment>;
+  cityList: Array<City>;
+  onCityTitleClick: (city: City) => void;
+  authInfo?: AuthInfo;
+}
+
+const MainScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {activeCity, cityList, apartmentList, onCityTitleClick, authInfo} = props;
 
   return <div className="page page--gray page--main">
@@ -33,18 +41,6 @@ const MainScreen = (props) => {
         />}
     </main>
   </div>;
-};
-
-MainScreen.propTypes = {
-  activeCity: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
-  apartmentList: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  cityList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })).isRequired,
-  onCityTitleClick: PropTypes.func.isRequired,
-  authInfo: PropTypes.shape(),
 };
 
 export default MainScreen;

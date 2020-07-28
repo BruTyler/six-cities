@@ -1,9 +1,8 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import ApartmentList from '../apartment-list/apartment-list';
 import {connect} from 'react-redux';
 
-import {PlaceType, ApartmentEnvironment, BuisnessRequirements, MapEnvironment} from '../../const';
+import {ApartmentEnvironment, BuisnessRequirements, MapEnvironment} from '../../const';
 import ReviewList from '../review-list/review-list';
 import Header from '../header/header';
 import Map from '../map/map';
@@ -11,10 +10,20 @@ import {getCity, getApartmentList, getCities, getNeighboorApartments, getApartme
 import {getAuthorizationStatus, getAuthInfo} from '../../reducer/user/selectors';
 import {ActionCreator} from '../../reducer/application/application';
 import {Operation as DataOperation} from '../../reducer/data/data';
+import {SingleApartment, City, AuthInfo} from '../../types';
 
-class Property extends React.PureComponent {
+interface Props {
+  id: number;
+  neighboorApartmentList: Array<SingleApartment>;
+  activeCity: City;
+  apartment: SingleApartment;
+  authInfo?: AuthInfo;
+  handleApartmentChange: (apartmentId: number) => void;
+  handleFavoriteStatusChange: (apartment: SingleApartment) => void;
+}
 
-  constructor(props) {
+class Property extends React.PureComponent<Props> {
+  constructor(props: Props) {
     super(props);
     props.handleApartmentChange(props.id);
   }
@@ -142,34 +151,6 @@ class Property extends React.PureComponent {
     </div>;
   }
 }
-
-Property.propTypes = {
-  neighboorApartmentList: PropTypes.array.isRequired,
-  activeCity: PropTypes.shape().isRequired,
-  apartment: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    type: PropTypes.oneOf(Object.values(PlaceType)).isRequired,
-    description: PropTypes.string.isRequired,
-    fullDescription: PropTypes.string,
-    rating: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    photoSet: PropTypes.arrayOf(PropTypes.string).isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    adultsMax: PropTypes.number.isRequired,
-    goods: PropTypes.arrayOf(PropTypes.string).isRequired,
-    host: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isSuper: PropTypes.bool.isRequired,
-    }),
-  }),
-  authInfo: PropTypes.shape(),
-  id: PropTypes.number.isRequired,
-  handleApartmentChange: PropTypes.func.isRequired,
-  handleFavoriteStatusChange: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => {
   return {

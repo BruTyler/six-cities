@@ -1,10 +1,21 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {BuisnessRequirements} from '../../const';
+import {ReviewFormData} from '../../types';
 
-class ReviewForm extends React.PureComponent {
-  constructor(props) {
+interface Props {
+  activeItem: boolean;
+  onItemSelect: (activeItem: boolean) => void;
+  onFormSubmit: (obj: ReviewFormData) => Promise<void>;
+  apartmentId: number;
+  errorMsg?: string;
+}
+
+class ReviewForm extends React.PureComponent<Props> {
+  private _textRef: React.RefObject<HTMLTextAreaElement>
+  private _starRefs: Array<React.RefObject<HTMLInputElement>>
+
+  constructor(props: Props) {
     super(props);
 
     this._textRef = React.createRef();
@@ -158,14 +169,6 @@ class ReviewForm extends React.PureComponent {
     </form>;
   }
 }
-
-ReviewForm.propTypes = {
-  activeItem: PropTypes.bool,
-  onItemSelect: PropTypes.func.isRequired,
-  onFormSubmit: PropTypes.func.isRequired,
-  apartmentId: PropTypes.number.isRequired,
-  errorMsg: PropTypes.string,
-};
 
 export {ReviewForm};
 export default withActiveItem(ReviewForm);

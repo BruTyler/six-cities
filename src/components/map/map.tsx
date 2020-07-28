@@ -1,12 +1,22 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import leaflet from 'leaflet';
+import * as leaflet from 'leaflet';
 import {MapEnvironment} from '../../const';
+import {City, SingleApartment} from '../../types';
 
-class Map extends React.PureComponent {
-  constructor(props) {
+interface Props {
+  parentBox: MapEnvironment;
+  city: City;
+  apartmentList: Array<SingleApartment>;
+  activeApartment?: SingleApartment;
+}
+
+class Map extends React.PureComponent<Props> {
+  private _mapRef: React.RefObject<HTMLDivElement>
+  private _offerLayer: object
+  private _map: object
+
+  constructor(props: Props) {
     super(props);
-
     this._mapRef = React.createRef();
   }
 
@@ -94,21 +104,5 @@ class Map extends React.PureComponent {
     return <section className={`${parentBox} map`} ref={this._mapRef}></section>;
   }
 }
-
-Map.propTypes = {
-  parentBox: PropTypes.oneOf(Object.values(MapEnvironment)).isRequired,
-  city: PropTypes.shape({
-    defaultZoom: PropTypes.number.isRequired,
-    location: PropTypes.arrayOf(PropTypes.number).isRequired
-  }).isRequired,
-  apartmentList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    location: PropTypes.arrayOf(PropTypes.number).isRequired
-  })).isRequired,
-  activeApartment: PropTypes.shape({
-    id: PropTypes.number,
-    location: PropTypes.arrayOf(PropTypes.number).isRequired
-  })
-};
 
 export default Map;

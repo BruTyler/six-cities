@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import ReviewItem from './review-item';
+import {Review} from '../../types';
 
-const SINGLE_REVIEW = {
+const SINGLE_REVIEW: Review = {
   id: 0,
   authorName: `Max`,
   authorAvatar: `img.jpg`,

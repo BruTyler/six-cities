@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getLoadingStatus, getOfflineStatus} from '../../reducer/application/selectors';
 import {ActionCreator} from '../../reducer/application/application';
@@ -9,9 +8,26 @@ import {Operation as UserOperation} from '../../reducer/user/user';
 import OfflineScreen from '../offline-screen/offline-screen';
 import App from '../app/app';
 import {ErrorStatus} from '../../api';
+import {City} from '../../types';
 
-class AppPreloader extends React.PureComponent {
-  constructor(props) {
+interface ErrorCatcher {
+    (error: Error): void;
+}
+
+interface Props {
+  handleFetchingAuth: (onErrorCatch: ErrorCatcher) => void;
+  handleFetchingHotels: (onErrorCatch: ErrorCatcher) => void;
+  handleLoadingStatus: (newLoadingStatus: boolean) => void;
+  isLoading: boolean;
+  isOffline: boolean;
+  cityList: Array<City>;
+  activeCity?: City;
+  handleFirstCity: (cityList: Array<City>) => void;
+  handleOfflineStatus: () => void;
+}
+
+class AppPreloader extends React.PureComponent<Props> {
+  constructor(props: Props) {
     super(props);
     this._init();
   }
@@ -52,18 +68,6 @@ class AppPreloader extends React.PureComponent {
     return <App />;
   }
 }
-
-AppPreloader.propTypes = {
-  handleFetchingAuth: PropTypes.func.isRequired,
-  handleFetchingHotels: PropTypes.func.isRequired,
-  handleLoadingStatus: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isOffline: PropTypes.bool.isRequired,
-  cityList: PropTypes.array.isRequired,
-  activeCity: PropTypes.shape(),
-  handleFirstCity: PropTypes.func.isRequired,
-  handleOfflineStatus: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => {
   return {

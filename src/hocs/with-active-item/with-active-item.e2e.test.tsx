@@ -1,12 +1,15 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
-import PropTypes from 'prop-types';
 import withActiveItem from './with-active-item';
+import {WithId} from '../../types';
 
+interface Props {
+  elements: Array<WithId<number>>;
+  activeItem: WithId<number>;
+  onItemSelect: (ObjWithId: WithId<number>) => void;
+}
 
-const elementsMock = [{id: 1}, {id: 2}];
-
-const MockComponent = (props) => {
+const MockComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {activeItem, onItemSelect, elements} = props;
   return (
     <div>
@@ -20,18 +23,12 @@ const MockComponent = (props) => {
   );
 };
 
-MockComponent.propTypes = {
-  elements: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  activeItem: PropTypes.shape({
-    id: PropTypes.number.isRequired
-  }).isRequired,
-  onItemSelect: PropTypes.func.isRequired,
-};
-
 const MockComponentWrapped = withActiveItem(MockComponent);
 
 describe(`withActiveItem e2e suit`, () => {
   it(`withActiveItem switch active element correctly`, () => {
+    const elementsMock = [{id: 1}, {id: 2}];
+
     const component = mount(
         <MockComponentWrapped
           elements={elementsMock}

@@ -1,9 +1,25 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import {Subtract} from 'utility-types';
+
+interface Props {
+  activeItem?: object | boolean;
+}
+
+interface State {
+  activeItem: object | boolean;
+}
+
+interface InjectedProps {
+  onItemSelect: (activeItem: object | boolean) => void;
+  activeItem: object | boolean;
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends React.PureComponent {
-    constructor(props) {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectedProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
+    constructor(props: Props) {
       super(props);
 
       this.state = {
@@ -17,10 +33,6 @@ const withActiveItem = (Component) => {
       this.setState({
         activeItem: selectedItem
       });
-
-      if (this.props.onItemSelect) {
-        this.props.onItemSelect(selectedItem);
-      }
     }
 
     render() {
@@ -33,11 +45,6 @@ const withActiveItem = (Component) => {
       />;
     }
   }
-
-  WithActiveItem.propTypes = {
-    onItemSelect: PropTypes.func,
-    activeItem: PropTypes.oneOfType([PropTypes.shape(), PropTypes.bool]),
-  };
 
   return WithActiveItem;
 };

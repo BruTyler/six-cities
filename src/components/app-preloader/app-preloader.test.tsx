@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import {AppPreloader} from './app-preloader';
 
-const EMPTY_HANDLER = () => {};
+const EMPTY_HANDLER = () => null;
 
 describe(`<AppPreloader /> render suit`, () => {
   it(`<AppPreloader /> render offline screen`, () => {
@@ -14,7 +14,6 @@ describe(`<AppPreloader /> render suit`, () => {
           isLoading={true}
           isOffline={true}
           cityList={[]}
-          activeCity={{}}
           handleFirstCity={EMPTY_HANDLER}
           handleOfflineStatus={EMPTY_HANDLER}
         />

@@ -14,7 +14,6 @@ exports[`<PlaceSorter /> render suit <PlaceSorter /> without HOC render sorter 1
   <span
     className="places__sorting-type"
     onClick={[Function]}
-    tabIndex="0"
   >
     Popular
     <svg
@@ -33,28 +32,24 @@ exports[`<PlaceSorter /> render suit <PlaceSorter /> without HOC render sorter 1
     <li
       className="places__option"
       onClick={[Function]}
-      tabIndex="0"
     >
       Popular
     </li>
     <li
       className="places__option"
       onClick={[Function]}
-      tabIndex="0"
     >
       Price: low to high
     </li>
     <li
       className="places__option"
       onClick={[Function]}
-      tabIndex="0"
     >
       Price: high to low
     </li>
     <li
       className="places__option"
       onClick={[Function]}
-      tabIndex="0"
     >
       Top rated first
     </li>

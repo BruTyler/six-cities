@@ -2,9 +2,10 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import {ReviewList} from './review-list';
 import {AuthorizationStatus} from '../../const';
+import {Review} from '../../types';
 
-const EMPTY_HANDLER = () => {};
-const REVIEWS = [
+const EMPTY_HANDLER = () => null;
+const REVIEWS: Review[] = [
   {
     id: 1,
     authorName: `name1`,

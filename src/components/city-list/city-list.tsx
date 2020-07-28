@@ -1,7 +1,13 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import {City} from '../../types';
 
-const CityList = (props) => {
+interface Props {
+  activeCity: City;
+  cityList: Array<City>;
+  onCitySelect: (city: City) => void;
+}
+
+const CityList: React.FunctionComponent<Props> = (props: Props) => {
   const {cityList, activeCity, onCitySelect} = props;
 
   return <section className="locations container">
@@ -17,16 +23,6 @@ const CityList = (props) => {
       })}
     </ul>
   </section>;
-};
-
-CityList.propTypes = {
-  activeCity: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
-  cityList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  })).isRequired,
-  onCitySelect: PropTypes.func.isRequired,
 };
 
 export default CityList;

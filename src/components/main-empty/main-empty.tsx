@@ -1,7 +1,10 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
-const MainEmpty = ({detailMessage}) => (
+interface Props {
+  detailMessage: string;
+}
+
+const MainEmpty: React.FunctionComponent<Props> = ({detailMessage}: Props) => (
   <div className="cities">
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">
@@ -14,9 +17,5 @@ const MainEmpty = ({detailMessage}) => (
     </div>
   </div>
 );
-
-MainEmpty.propTypes = {
-  detailMessage: PropTypes.string.isRequired,
-};
 
 export default MainEmpty;
