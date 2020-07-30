@@ -1,5 +1,5 @@
-import {extend} from '../../utils.js';
-import {SortType} from '../../const.js';
+import {extend} from '../../utils';
+import {SortType} from '../../const';
 
 const initialState = {
   cityId: null,

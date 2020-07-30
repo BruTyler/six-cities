@@ -1,5 +1,5 @@
-import {extend, replaceItemById, removeItemById} from '../../utils.js';
-import {transformToCities, transformToApartments, transformToReviews, transformToApartment} from '../../adapters/fetch-manager.js';
+import {extend, replaceItemById, removeItemById} from '../../utils';
+import {transformToCities, transformToApartments, transformToReviews, transformToApartment} from '../../adapters/fetch-manager';
 
 const initialState = {
   cityList: [],
